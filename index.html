@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head> 
+    <meta charset="UTF-8">
+    <title>FREE FIRE E-SPORT.CI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; background: #0d0d0d; color: white; scroll-behavior: smooth; }
+        header { background: #ff6600; padding: 20px; text-align: center; font-size: 26px; font-weight: bold; }
+        nav { background: #111; padding: 15px; position: sticky; top: 0; text-align: center; z-index: 1000; }
+        nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        nav a:hover { color: #ff6600; }
+        section { padding: 60px 20px; text-align: center; border-bottom: 1px solid #222; }
+        .box { background: #1a1a1a; padding: 25px; margin: 15px auto; max-width: 500px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: 0.3s; border: 1px solid transparent; }
+        .box:hover { transform: translateY(-5px); border: 1px solid #ff6600; }
+        input, select, button { width: 90%; padding: 12px; margin: 10px 0; border-radius: 5px; border: 1px solid #333; background: #222; color: white; box-sizing: border-box; }
+        button { background: #ff6600; border: none; cursor: pointer; font-weight: bold; text-transform: uppercase; }
+        button:hover { background: #cc5200; }
+        #Acceuil { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('hero_freefire_ci.jpeg') no-repeat center center; background-size: cover; height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .guilde-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #333; text-align: left; }
+        .badge-chef { color: #ff6600; font-size: 0.8em; display: block; }
+        footer { background: #111; text-align: center; padding: 20px; margin-top: 30px; }
+    </style>
+</head>
+<body>
+
+<header>COMMUNAUTÉ FREE FIRE CÔTE D'IVOIRE</header>
+
+<nav>
+    <a href="#Acceuil"><i class="fas fa-home"></i> Accueil</a>
+    <a href="#Guildes"><i class="fas fa-shield-alt"></i> Guildes</a>
+    <a href="#Tournois"><i class="fas fa-trophy"></i> Tournois</a>
+    <a href="#Classement"><i class="fas fa-chart-line"></i> Classement</a>
+    <a href="#Recrutement"><i class="fas fa-users"></i> Recrutement</a>
+</nav>
+
+<section id="Acceuil">
+    <h1 style="font-size: 3.5em; text-shadow: 0 0 15px #ff6600;">BIENVENUE SURVIVANT</h1>
+    <p style="font-size: 1.4em;">La plateforme officielle des joueurs ivoiriens</p>
+    <a href="#Tournois"><button style="width:200px;">Voir les Tournois</button></a>
+</section>
+
+<section id="Guildes">
+   <h1>ENREGISTRER UNE GUILDE</h1>
+   <div class="box">
+        <input type="text" id="reg_nomGuilde" placeholder="Nom de la guilde">
+        <input type="text" id="reg_idGuilde" placeholder="ID de la guilde">
+        <input type="text" id="reg_nomChef" placeholder="Nom du chef">
+        <input type="text" id="reg_whatsappChef" placeholder="WhatsApp (ex: 225...)">
+        <button id="btn_reg" onclick="envoyerRegGuilde()">S'enregistrer</button>
+   </div>
+
+   <h2>PROPOSER UN GvG ⚔️</h2>
+   <div class="box">
+        <input type="text" id="gvg_maGuilde" placeholder="Votre guilde">
+        <select id="gvg_adversaire_select">
+            <option value="">Chargement des guildes...</option>
+        </select>
+        <input type="date" id="gvg_date">
+        <button onclick="envoyerGvG()">Proposer le GvG</button>
+   </div>
+
+   <h2>RÉPERTOIRE DES GUILDES</h2>
+   <div class="box" id="listeGuildes">
+       Chargement...
+   </div>
+</section>
+
+<section id="Tournois">
+    <h1>INSCRIPTION TOURNOIS</h1>
+    <div class="box">
+        <input type="text" id="tour_equipe" placeholder="Nom de l'équipe">
+        <input type="text" id="tour_chef" placeholder="Nom du chef d'équipe">
+        <select id="tour_nom">
+            <option value="">Choisir un tournoi</option>
+            <option value="Tournoi de guildes">Tournoi de guildes</option>
+            <option value="Tournoi Clash Squad">Tournoi Clash Squad</option>
+        </select>
+        <button onclick="envoyerTournoi()">S'inscrire (DB + WhatsApp)</button>
+    </div>
+</section>
+
+<section id="Classement">
+    <h1>CLASSEMENT DES GUILDES</h1>
+    <div class="box">
+        <p>🥇 <strong>KILL ZONE X</strong> - 20,674 PTS</p>
+        <p>🥈 <strong>DIVINE REIGN</strong> - 18,650 PTS</p>
+        <p>🥉 <strong>AKATSUKI</strong> - 8,662 PTS</p>
+    </div>
+</section>
+
+<section id="Recrutement">
+    <h1>COMMUNAUTÉ</h1>
+    <div class="box">
+        <p>Rejoins le groupe WhatsApp officiel !</p>
+        <a href="https://chat.whatsapp.com/KAHUaz3gS5LaBcdy0MJ0" target="_blank"><button>Rejoindre</button></a>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 FREE FIRE E-SPORT-CI</p>
+</footer>
+
+<script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+    const SUPABASE_URL = "https://hxdpeqfcefhrfonegtok.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_g82aHODUwq-eaULqMl_MQw_n8Hn-LO-";
+    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    const NUMERO_ADMIN = "2250161912755";
+    let listeDesGuildes = [];
+
+    // 1. ENREGISTRER GUILDE
+    window.envoyerRegGuilde = async function() {
+        const btn = document.getElementById("btn_reg");
+        const nom = document.getElementById('reg_nomGuilde').value.trim();
+        const id_jeu = document.getElementById('reg_idGuilde').value.trim();
+        const chef = document.getElementById('reg_nomChef').value.trim();
+        const whatsapp = document.getElementById('reg_whatsappChef').value.replace(/\s/g, '');
+
+        if(!nom || !id_jeu || !chef || !whatsapp) return alert("Remplis tout !");
+
+        btn.disabled = true;
+        btn.innerText = "Patientez...";
+
+        const { error } = await supabase.from('guildes').insert([{ nom, id_jeu, chef, whatsapp }]);
+
+        if (error) {
+            alert("Erreur base de données !");
+            console.error(error);
+        } else {
+            alert("✅ Guilde enregistrée !");
+            chargerGuildes();
+        }
+        btn.disabled = false;
+        btn.innerText = "S'enregistrer";
+    };
+
+    // 2. CHARGER LES GUILDES
+    async function chargerGuildes() {
+        const { data, error } = await supabase.from('guildes').select('*').order('nom', { ascending: true });
+        if (error) return;
+
+        listeDesGuildes = data;
+        const conteneur = document.getElementById('listeGuildes');
+        const selectGvG = document.getElementById('gvg_adversaire_select');
+
+        conteneur.innerHTML = "";
+        selectGvG.innerHTML = '<option value="">Choisir l\'adversaire</option>';
+
+        data.forEach((g) => {
+            const div = document.createElement('div');
+            div.className = "guilde-item";
+            div.innerHTML = `<span><strong>${g.nom}</strong><br><small>Chef: ${g.chef}</small></span>
+                             <button style="width:auto; padding:5px 10px;" onclick="preparerGvG('${g.id}')">Défier</button>`;
+            conteneur.appendChild(div);
+
+            const opt = document.createElement('option');
+            opt.value = g.id;
+            opt.textContent = g.nom;
+            selectGvG.appendChild(opt);
+        });
+    }
+
+    // 3. LOGIQUE GvG
+    window.preparerGvG = function(id) {
+        document.getElementById('gvg_adversaire_select').value = id;
+        window.location.href = "#Guildes";
+    };
+
+    window.envoyerGvG = function() {
+        const ma = document.getElementById('gvg_maGuilde').value;
+        const idAdv = document.getElementById('gvg_adversaire_select').value;
+        const date = document.getElementById('gvg_date').value;
+        const adv = listeDesGuildes.find(g => g.id == idAdv);
+
+        if(!ma || !adv || !date) return alert("Complète le défi !");
+        
+        const msg = `⚔️ *DÉFI GvG*\nDe: ${ma}\nContre: ${adv.nom}\nDate: ${date}\nPrêts ? 🔥`;
+        window.open(`https://wa.me/${adv.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
+    };
+
+    // 4. INSCRIPTION TOURNOIS (DB + WHATSAPP)
+    window.envoyerTournoi = async function() {
+        const eq = document.getElementById('tour_equipe').value.trim();
+        const ch = document.getElementById('tour_chef').value.trim();
+        const nm = document.getElementById('tour_nom').value;
+
+        if(!eq || !nm || !ch) return alert("⚠️ Remplis tous les champs du tournoi !");
+
+        const { error } = await supabase
+            .from('inscriptions_tournois')
+            .insert([{ nom_equipe: eq, nom_chef: ch, type_tournoi: nm }]);
+
+        if (error) {
+            alert("Erreur base de données. As-tu créé la table 'inscriptions_tournois' ?");
+            console.error(error);
+        } else {
+            alert("✅ Inscription enregistrée !");
+            const msg = `🏆 *INSCRIPTION TOURNOI*\n\nTournoi: *${nm}*\nÉquipe: *${eq}*\nChef: *${ch}*`;
+            window.open(`https://wa.me/${NUMERO_ADMIN}?text=${encodeURIComponent(msg)}`, '_blank');
+            document.getElementById('tour_equipe').value = "";
+            document.getElementById('tour_chef').value = "";
+        }
+    };
+
+    document.addEventListener('DOMContentLoaded', chargerGuildes);
+</script>
+</body>
+</html>
