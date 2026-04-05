@@ -12,6 +12,13 @@
 <meta property="og:image" content="https://hxdpeqfcefhrfonegtok.supabase.co/storage/v1/object/public/assets/ffesci.png">
 <meta property="og:url" content="https://ffesport-ci.github.io/freefireesport-ci/">
 <meta name="twitter:card" content="summary_large_image">
+
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="FF ESPORT-CI">
+<link rel="apple-touch-icon" href="ffesci.png">
+
  <style>
     :root { 
         --primary: #ff6600; 
@@ -395,8 +402,156 @@ body::before {
         display: none;
     }
 }
+body { font-family: 'Orbitron', sans-serif !important; }
+    .btn-wa, button { font-family: 'Orbitron', sans-serif !important; letter-spacing: 1px; }
 
+    .btn-rejoindre {
+        background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        color: white !important;
+        text-decoration: none !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        font-weight: bold;
+        transition: 0.3s;
+        border: none;
+        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
+    }
+
+    .btn-rejoindre:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.1);
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    }
+
+    /* Le bouton Défier pour équilibrer */
+    .btn-defier {
+        background: linear-gradient(135deg, var(--primary) 0%, #cc5200 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+    
+    .btn-defier:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.1);
+    }
+
+    .btn-recruter {
+        background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        color: white !important;
+        text-decoration: none !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        font-weight: bold;
+        transition: 0.3s;
+        border: none;
+        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
+        font-family: 'Orbitron', sans-serif;
+    }
+
+    .btn-recruter:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.1);
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    }
+
+    /* Badge de Rôle */
+    .role-tag-new {
+        background: var(--primary);
+        color: white;
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 10px;
+        font-weight: bold;
+        text-transform: uppercase;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 10;
+    }
+
+    /* Effet de lueur sur les cartes */
+.box, .player-card {
+    transition: all 0.4s ease;
+    border: 1px solid #333 !important;
+}
+
+.box:hover, .player-card:hover {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 15px rgba(255, 102, 0, 0.3); /* Lueur orange */
+    transform: translateY(-5px);
+}
+
+/* Style spécifique pour le bouton de partage */
+.btn-share {
+    background: transparent;
+    border: 1px solid #444;
+    color: #888;
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-share:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+.player-card, .box {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 1px solid #333 !important;
+}
+
+.player-card:hover, .box:hover {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 15px rgba(255, 102, 0, 0.4);
+    transform: translateY(-5px);
+}
+
+.btn-share {
+    background: rgba(255,255,255,0.05);
+    border: none;
+    color: #888;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.btn-share:hover {
+    color: var(--gold);
+}
+
+#install-banner {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #1a1a1a; /* Sombre pour s'intégrer au design */
+    border-top: 2px solid var(--primary);
+    padding: 15px;
+    z-index: 10000;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+}
+
+.install-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 500px;
+    margin: 0 auto;
+}
 </style>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -456,17 +611,48 @@ body::before {
         </div>
     </div>
 </section>
+
 <section id="page-guildes" class="page">
     <div class="container">
-        <h2 style="text-align:center; color: var(--primary);">RÉPERTOIRE OFFICIEL DES GUILDES</h2>
-        <div class="box">
-            <h3 style="margin-top:0; text-align:center;">ENREGISTRER UNE GUILDE</h3>
-            <div class="input-group"><i class="fas fa-shield-alt"></i><input type="text" id="g_nom" placeholder="Nom de la Guilde"></div>
-            <div class="input-group"><i class="fas fa-user-tie"></i><input type="text" id="g_chef" placeholder="Nom du Chef"></div>
-            <div class="input-group"><i class="fab fa-whatsapp"></i><input type="text" id="g_wa" placeholder="WhatsApp du Chef"></div>
-            <button onclick="validerGuilde()">Certifier ma Guilde<i class="fab fa-save"></i></button>
+        <h2 style="text-align:center;">RÉPERTOIRE DES GUILDES</h2>
+        <div class="box" style="margin-bottom: 30px;">
+            <h3>ENREGISTRER MA GUILDE</h3>
+            <div class="input-group">
+                <i class="fas fa-shield-alt"></i>
+                <input type="text" id="g_nom" placeholder="Nom de la Guilde">
+            </div>
+            <div class="input-group">
+                <i class="fas fa-user-tie"></i>
+                <input type="text" id="g_chef" placeholder="Nom du Chef">
+            </div>
+            <div style="display: flex; gap: 5px; margin-bottom: 15px;">
+               <select id="g_pays" style="flex: 0.4; padding: 10px; border-radius: 8px; background: #222; color: white; border: 1px solid #333;">
+    <option value="225">🇨🇮 +225</option>
+    <option value="221">🇸🇳 +221</option>
+    <option value="223">🇲🇱 +223</option>
+    <option value="226">🇧🇫 +226</option>
+    <option value="224">🇬🇳 +224</option>
+    <option value="237">🇨🇲 +237</option>
+    <option value="241">🇬🇦 +241</option>
+    <option value="229">🇧🇯 +229</option>
+    <option value="228">🇹🇬 +228</option>
+    <option value="242">🇨🇬 +242</option>
+    <option value="243">🇨🇩 +243</option>
+    <option value="212">🇲🇦 +212</option>
+    <option value="216">🇹🇳 +216</option>
+    <option value="213">🇩🇿 +213</option>
+    <option value="227">🇳🇪 +227</option>
+    <option value="235">🇹🇩 +235</option>
+    <option value="261">🇲🇬 +261</option>
+    <option value="33">🇫🇷 +33</option>
+    <option value="1">🇺🇸 +1</option>
+</select>
+                <input type="number" id="g_wa" placeholder="WhatsApp Chef" style="flex: 1; margin-bottom: 0;">
+            </div>
+            <button onclick="validerGuilde()" style="width:100%;">CERTIFIER MA GUILDE</button>
         </div>
-        <div id="listeGuildes" style="margin-top:30px;">Chargement des guildes en cours...</div>
+
+        <div id="listeGuildes"></div>
     </div>
 </section>
 
@@ -476,21 +662,59 @@ body::before {
         <div class="box">
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
                 <input type="text" id="p_pseudo" placeholder="Pseudo" style="padding-left:15px">
-              <select id="p_role" style="padding-left:15px">
-    <option value="Fusilier">🔫 Fusilier</option>
-    <option value="Rusher">⚔️ Rusher</option>
-    <option value="Sniper">🎯 Sniper</option>
-    <option value="Support">🛡️ Support</option>
-    <option value="Bombardier">💣 Bombardier</option>
-</select>
+                <select id="p_role" style="padding-left:15px">
+                    <option value="Fusilier">🔫 Fusilier</option>
+                    <option value="Rusher">⚔️ Rusher</option>
+                    <option value="Sniper">🎯 Sniper</option>
+                    <option value="Support">🛡️ Support</option>
+                    <option value="Bombardier">💣 Bombardier</option>
+                </select>
                 <input type="number" id="p_lvl" placeholder="Niveau (Ex: 72)" style="padding-left:15px">
-                <input type="text" id="p_wa" placeholder="WhatsApp (+225...)" style="padding-left:15px">
+                
+              <div style="display: flex; gap: 5px;">
+                    <select id="p_pays" style="flex: 0.4; padding-left:5px; font-size: 13px; background: #222; color: white; border: 1px solid #333; border-radius: 8px;">
+                        <option value="225">🇨🇮 +225</option>
+                        <option value="221">🇸🇳 +221</option>
+                        <option value="223">🇲🇱 +223</option>
+                        <option value="226">🇧🇫 +226</option>
+                        <option value="224">🇬🇳 +224</option>
+                        <option value="237">🇨🇲 +237</option>
+                        <option value="241">🇬🇦 +241</option>
+                        <option value="229">🇧🇯 +229</option>
+                        <option value="228">🇹🇬 +228</option>
+                        <option value="242">🇨🇬 +242</option>
+                        <option value="243">🇨🇩 +243</option>
+                        <option value="212">🇲🇦 +212</option>
+                        <option value="216">🇹🇳 +216</option>
+                        <option value="213">🇩🇿 +213</option>
+                        <option value="227">🇳🇪 +227</option>
+                        <option value="235">🇹🇩 +235</option>
+                        <option value="261">🇲🇬 +261</option>
+                        <option value="33">🇫🇷 +33</option>
+                        <option value="1">🇺🇸 +1</option>
+                    </select>
+                    <input type="number" id="p_wa" placeholder="WhatsApp" style="flex: 1; padding-left:10px">
+                </div>
             </div>
-            <label>photo du compte</label>
+            <label>Photo du compte (Screenshot Lobby)</label>
             <input type="file" id="p_photo" accept="image/*" style="padding-left:15px">
             <button onclick="validerJoueur()" style="padding-left:0; margin-top:15px">PUBLIER MON PROFIL</button>
         </div>
         <div class="player-grid" id="listeJoueurs"></div>
+    </div>
+
+    <div id="preview-container" style="margin-top: 20px; border-top: 1px dashed #444; padding-top: 20px;">
+    <p style="font-size: 10px; color: #666; text-align: center;">APERCU DE TA CARTE :</p>
+    <div id="card-preview"></div>
+</div>
+
+<div class="container">
+        <h2 style="text-align:center;">S'ENREGISTRER</h2>
+        <p id="btn-recup" onclick="recupererAncienProfil()" style="text-align:center; color:var(--gold); font-size:12px; cursor:pointer; text-decoration:underline; margin-bottom:15px;">
+            Déjà inscrit ? Récupérer mon profil
+        </p>
+        <div class="box">
+            </div>
     </div>
 </section>
 
@@ -498,14 +722,43 @@ body::before {
     <div class="container">
         <h2 style="text-align:center;">INSCRIPTION TOURNOI</h2>
         <div class="box">
-            <div class="input-group"><i class="fas fa-users"></i><input type="text" id="t_eq" placeholder="Nom de l'Équipe"></div>
-            <div class="input-group"><i class="fas fa-user-tie"></i><input type="text" id="t_chef" placeholder="Nom du Chef"></div>
-            <div class="input-group"><i class="fab fa-whatsapp"></i><input type="text" id="t_num" placeholder="WhatsApp"></div>
-            <select id="t_nom" style="padding-left:45px">
-                <option value="Elite Cup">Elite Cup (BR Solo)</option>
-                <option value="GUILDE CLASH">GUILDE CLASH (CS)</option>
-            </select>
-            <button onclick="validerTournoi()" class="btn-wa" style="padding-left:0">S'inscrire</button>
+            <div class="input-group">
+                <i class="fas fa-trophy"></i>
+                <input type="text" id="t_nom_tournoi" placeholder="Nom du tournoi (ex: Coupe Ivoire)">
+            </div>
+            <div class="input-group">
+                <i class="fas fa-users"></i>
+                <input type="text" id="t_equipe" placeholder="Nom de votre Équipe">
+            </div>
+            <div class="input-group">
+                <i class="fas fa-user-tie"></i>
+                <input type="text" id="t_chef" placeholder="Nom du Chef">
+            </div>
+            <div style="display: flex; gap: 5px; margin-bottom: 15px;">
+               <select id="t_pays" style="flex: 0.4; padding: 10px; border-radius: 8px; background: #222; color: white; border: 1px solid #333;">
+    <option value="225">🇨🇮 +225</option>
+    <option value="221">🇸🇳 +221</option>
+    <option value="223">🇲🇱 +223</option>
+    <option value="226">🇧🇫 +226</option>
+    <option value="224">🇬🇳 +224</option>
+    <option value="237">🇨🇲 +237</option>
+    <option value="241">🇬🇦 +241</option>
+    <option value="229">🇧🇯 +229</option>
+    <option value="228">🇹🇬 +228</option>
+    <option value="242">🇨🇬 +242</option>
+    <option value="243">🇨🇩 +243</option>
+    <option value="212">🇲🇦 +212</option>
+    <option value="216">🇹🇳 +216</option>
+    <option value="213">🇩🇿 +213</option>
+    <option value="227">🇳🇪 +227</option>
+    <option value="235">🇹🇩 +235</option>
+    <option value="261">🇲🇬 +261</option>
+    <option value="33">🇫🇷 +33</option>
+    <option value="1">🇺🇸 +1</option>
+</select>
+                <input type="number" id="t_whatsapp" placeholder="Numéro WhatsApp" style="flex: 1; margin-bottom: 0;">
+            </div>
+            <button onclick="validerTournoi()" style="width:100%;">S'INSCRIRE VIA WHATSAPP</button>
         </div>
     </div>
 </section>
@@ -582,7 +835,7 @@ body::before {
     </div>
 </section>
 
-   <div id="page-support" class="page">
+<div id="page-support" class="page">
     <div class="container" style="text-align: center;">
         <div class="box" style="border-top: 4px solid var(--primary);">
             <i class="fas fa-headset" style="font-size: 3em; color: var(--primary); margin-bottom: 20px;"></i>
@@ -596,12 +849,9 @@ body::before {
                 <h3 style="margin-top: 0; color: white;">Assistance Directe</h3>
                 <p style="font-size: 0.9em; color: #888; margin-bottom: 20px;">Clique sur le bouton ci-dessous pour discuter avec un technicien.</p>
                 
-                <a href="https://wa.me/2250718767611?text=Salut%20Support%20FF%20ESPORT-CI,%20j'ai%20besoin%20d'aide%20sur%20le%20site." target="_blank" style="text-decoration: none;">
-                    <button class="btn-wa" style="display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 1.1em; width: 100%; max-width: 300px; margin: 0 auto; padding: 15px; background: #25D366; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;">
-                        <i class="fab fa-whatsapp" style="font-size: 1.4em;"></i>
-                        CONTACTER LE SUPPORT
-                    </button>
-                </a>
+                <span id="compteur-joueurs">0</span> <div id="loader-joueurs">...</div>   <div id="listeGuildes"></div>        <a id="link-support" href="https://wa.me/2250718767611?text=..." target="_blank">
+    <button class="btn-wa">CONTACTER LE SUPPORT</button>
+</a>
             </div>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 30px;">
@@ -618,6 +868,44 @@ body::before {
     </div>
 </div>
 
+<div id="modalDefi" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:1000; padding:20px; box-sizing:border-box;">
+    <div class="box" style="max-width:400px; margin: 40px auto; border: 1px solid var(--primary);">
+        <h3 style="color:var(--primary); text-align:center;">LANCER UN DÉFI</h3>
+        <p id="target_guilde_display" style="text-align:center; font-weight:bold;"></p>
+        
+        <label>Ta Guilde (déjà enregistrée) :</label>
+        <select id="ma_guilde_select" style="width:100%; margin-bottom:15px; padding:10px; background:#222; color:white; border:1px solid #444;"></select>
+        
+        <label>Date du match :</label>
+        <input type="date" id="date_match" style="width:100%; margin-bottom:15px;">
+        
+        <label>Heure du match :</label>
+        <input type="time" id="heure_match" style="width:100%; margin-bottom:15px;">
+        
+        <div style="display:flex; gap:10px;">
+            <button onclick="envoyerDefi()" style="flex:1;">ENVOYER LE DÉFI</button>
+            <button onclick="document.getElementById('modalDefi').style.display='none'" style="flex:1; background:#444;">ANNULER</button>
+        </div>
+    </div>
+</div>
+
+<div id="install-banner" style="display:none; position:fixed; bottom:20px; left:20px; right:20px; background:var(--primary); color:white; padding:15px; border-radius:10px; z-index:9999; text-align:center;">
+    <p style="margin:0 0 10px 0; font-weight:bold;">Installe l'app FF ESPORT-CI !</p>
+    <button id="btn-install" style="background:white; color:black; border:none; padding:10px 20px; border-radius:5px;">INSTALLER MAINTENANT</button>
+</div>
+
+<div id="install-banner">
+    <div class="install-flex">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="ffesci.png" width="30" height="30" style="border-radius: 5px;">
+            <span style="font-size: 13px; color: white;">Installer l'App FFESCI ?</span>
+        </div>
+        <div style="display: flex; gap: 10px;">
+            <button id="btn-close-install" style="background:transparent; color:#888; border:none; font-size:12px;">Plus tard</button>
+            <button id="btn-install" style="background:var(--primary); color:white; border:none; padding: 8px 15px; border-radius: 5px; font-size:12px; font-weight:bold;">INSTALLER</button>
+        </div>
+    </div>
+</div>
 
 <footer>
     <div style="margin-bottom: 15px;">
@@ -634,258 +922,401 @@ body::before {
 
 <script type="module">
     import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+    
+    // Configuration Supabase
     const supabase = createClient("https://hxdpeqfcefhrfonegtok.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh4ZHBlcWZjZWZocmZvbmVndG9rIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMDc4OTMsImV4cCI6MjA4OTU4Mzg5M30.i_c9zU6sABenDuHZtwK4ZQ9KWDOJh7QB07GezDIkWqM");
 
-    // ==========================================
-    // 1. NAVIGATION ET MENU (CORRIGÉS)
-    // ==========================================
-    
+    let tousLesJoueurs = [];
+
+    // --- 1. NAVIGATION & MENU ---
     window.toggleMenu = () => {
         const sidebar = document.getElementById('sidebar');
-        if (sidebar) {
-            sidebar.classList.toggle('open');
-        }
+        if (sidebar) sidebar.classList.toggle('open');
     };
 
     window.showPage = (id) => {
-        // Fermer le menu mobile immédiatement
         const sidebar = document.getElementById('sidebar');
-        if (sidebar) {
-            sidebar.classList.remove('open');
-        }
+        if (sidebar) sidebar.classList.remove('open');
 
-        // Changer de page
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         const target = document.getElementById(id);
         if (target) {
             target.classList.add('active');
-            
-            // Charger les données selon la page
+            // Chargement automatique des données selon la page
             if(id === 'page-liste-joueurs') chargerDonnees();
             if(id === 'page-guildes') chargerGuildes(); 
         }
+
+        
         window.scrollTo(0,0);
+
+        if(id === 'page-recrutement') checkMyProfile(); 
+    // ...
+
     };
 
-    // ==========================================
-    // 2. CHARGEMENT DES JOUEURS
-    // ==========================================
-    let tousLesJoueurs = []; // Ajout de la variable de stockage
-async function chargerDonnees() {
+    // --- 2. GESTION DES JOUEURS (RECRUTEMENT) ---
+    async function chargerDonnees() {
         const pc = document.getElementById('listeJoueursPublique');
-        if(!pc) return;
-
-        pc.innerHTML = "<p style='text-align:center;'>Détection des talents en ligne...</p>";
-
-        const { data: js, error } = await supabase.from('joueurs').select('*'); 
-tousLesJoueurs = js;
-        if (error) {
-            pc.innerHTML = `<p style='color:red; text-align:center;'>Erreur : ${error.message}</p>`;
-            return;
-        }
+        const loader = document.getElementById('loader-joueurs');
+        const compteur = document.getElementById('compteur-joueurs');
         
-        if (!js || js.length === 0) {
-            pc.innerHTML = "<p style='text-align:center;'>Aucun soldat n'est encore enregistré.</p>";
+        if(loader) loader.style.display = 'block';
+        if(pc) pc.innerHTML = "";
+
+        const { data, error } = await supabase.from('joueurs').select('*');
+        
+        if(loader) loader.style.display = 'none';
+
+        if (error) {
+            if(pc) pc.innerHTML = `<p style='color:red;'>Erreur : ${error.message}</p>`;
             return;
         }
 
-        pc.innerHTML = js.map(j => {
-            const pseudo = j.pseudo || "Guerrier";
-            const role = j.role || "Joueur";
-            const niveau = j.level || "NC";
-            const whatsapp = j.whatsapp ? j.whatsapp.toString().replace(/\s/g, '').replace('+', '') : "";
-
-            const msgRecrutementJoueur = encodeURIComponent(
-                `🎖️ *PROPOSITION DE RECRUTEMENT - FF ESPORT-CI* 🎖️\n\n` +
-                `Salut *${pseudo}*, j'ai analysé ton profil de *${role}* (Niveau ${niveau}) sur le site officiel.\n\n` +
-                `Ton style de jeu nous intéresse pour renforcer notre effectif. Es-tu prêt à passer un test et à intégrer une structure sérieuse ? Contacte-moi vite ! 🔥`
-            );
-
-            return `
-                <div class="player-card" style="background: #1a1a1a; border: 1px solid #333; border-radius: 15px; overflow: hidden;">
-                    <span class="role-tag">${role}</span>
-                    <img src="${j.photo_url}" class="player-banner" onerror="this.src='https://via.placeholder.com/300x180?text=IMAGE+INDISPONIBLE'">
-                    <div style="padding:15px">
-                        <p style="margin:0 0 5px 0; font-size: 1.2em; font-weight: bold; color: var(--primary);">${pseudo}</p>
-                        <p style="margin:0 0 15px 0; color: var(--gold); font-size: 0.9em; font-weight: bold;">NIVEAU : ${niveau}</p>
-                        <a href="https://wa.me/${whatsapp}?text=${msgRecrutementJoueur}" target="_blank" 
-                           style="display: block; text-align: center; background: var(--secondary); color: white; text-decoration: none; padding: 12px; border-radius: 8px; font-weight: 900; font-size: 12px; text-transform: uppercase;">
-                            RECRUTER LE TALENT <i class="fab fa-whatsapp"></i>
-                        </a>
-                    </div>
-                </div>`;
-        }).join('');
+        tousLesJoueurs = data || [];
+        if(compteur) {
+            compteur.innerText = tousLesJoueurs.length;
+            compteur.style.display = 'inline-block';
+        }
+        afficherListe(tousLesJoueurs);
     }
 
-    // ==========================================
-    // 3. INSCRIPTION JOUEUR
-    // ==========================================
+   function afficherListe(joueurs) {
+    const pc = document.getElementById('listeJoueursPublique');
+    if (!pc) return;
+    
+    if (joueurs.length === 0) {
+        pc.innerHTML = "<p style='text-align:center; color:#666; grid-column: 1/-1;'>Aucun soldat trouvé pour le moment.</p>";
+        return;
+    }
+
+   pc.innerHTML = joueurs.map(j => {
+    const waClean = j.whatsapp.replace(/\s/g, '');
+    
+    // Construction du message personnalisé
+    const msg = encodeURIComponent(
+        `👋 *SALUT ${j.pseudo.toUpperCase()} !*\n\n` +
+        `📢 J'ai vu ton profil de *${j.role}* (Niveau *${j.level}*) sur la plateforme *FF ESPORT-CI*.\n\n` +
+        `⚔️ Ta manière de jouer nous intéresse énormément. Serais-tu disponible pour passer un test de recrutement ou discuter d'une intégration dans notre guilde ?\n\n` +
+        `*Dans l'attente de ta réponse !* 🔥`
+    );
+
+   // Dans ton .map(j => { ... })
+return `
+    <div class="player-card">
+        <span class="role-tag-new">${j.role}</span>
+        
+        <div style="width: 100%; height: 160px; overflow: hidden; background: #222;">
+            <img src="${j.photo_url}" style="width:100%; height:100%; object-fit: cover;">
+        </div>
+
+        <div style="padding:15px">
+            <div style="display: flex; justify-content: space-between; align-items: start;">
+                <h4 style="margin:0; color:var(--primary); text-transform: uppercase;">${j.pseudo}</h4>
+                <button onclick="partagerProfil('${j.pseudo}', '${j.role}')" class="btn-share">
+                    <i class="fas fa-share-alt"></i>
+                </button>
+            </div>
+            
+            <p style="color:var(--gold); font-weight: bold; margin: 10px 0;">⭐ LVL ${j.level}</p>
+
+            <a href="https://wa.me/${waClean}?text=${msg}" target="_blank" class="btn-recruter" style="padding:12px; font-size: 11px;">
+               🔫 RECRUTER CE JOUEUR
+            </a>
+        </div>
+    </div>
+
+    `;
+}).join('');
+}
+
+    window.appliquerFiltres = () => {
+        const roleFiltre = document.getElementById('filter-role').value.toLowerCase();
+        const niveauFiltre = parseInt(document.getElementById('filter-level').value) || 0;
+
+        const filtres = tousLesJoueurs.filter(j => {
+            const matchRole = (roleFiltre === "tous" || j.role.toLowerCase() === roleFiltre);
+            const matchNiveau = (parseInt(j.level) >= niveauFiltre);
+            return matchRole && matchNiveau;
+        });
+        afficherListe(filtres);
+    };
+
     window.validerJoueur = async () => {
-    const btn = document.querySelector("#page-recrutement button:last-of-type");
     const p = document.getElementById('p_pseudo').value;
     const f = document.getElementById('p_photo').files[0];
-    const w = document.getElementById('p_wa').value;
+    const w = document.getElementById('p_pays').value + document.getElementById('p_wa').value.replace(/\s/g, '');
     const l = document.getElementById('p_lvl').value;
     const r = document.getElementById('p_role').value;
 
-    if(!p || !f || !l || !r) return alert("Veuillez remplir tous les champs et ajouter une photo !");
-
-    // --- ACTIVATION DU LOADER ---
-    const originalText = btn.innerHTML;
-    btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enregistrement en cours...';
+    if(!p || !f || !l) return alert("Remplis tous les champs !");
 
     try {
         const fileName = `${Date.now()}_${p}.jpg`;
-        const { data: uploadData, error: storageError } = await supabase.storage.from('avatars_joueurs').upload(fileName, f);
-        
-        if (storageError) throw storageError;
-
+        await supabase.storage.from('avatars_joueurs').upload(fileName, f);
         const { data: urlData } = supabase.storage.from('avatars_joueurs').getPublicUrl(fileName);
-
-        await supabase.from('joueurs').insert([{ 
-            pseudo: p, role: r, level: l, whatsapp: w, photo_url: urlData.publicUrl 
-        }]);
-
-        alert("Profil créé avec succès !");
-        showPage('page-liste-joueurs');
-    } catch (err) {
-        alert("Erreur : " + err.message);
-    } finally {
-        // --- DESACTIVATION DU LOADER ---
-        btn.disabled = false;
-        btn.innerHTML = originalText;
-    }
-};
-
-    // ==========================================
-    // 4. GESTION DES GUILDES
-    // ==========================================
-   window.validerGuilde = async () => {
-    const btn = document.querySelector("#page-guildes button");
-    const n = document.getElementById('g_nom').value;
-    const c = document.getElementById('g_chef').value;
-    const w = document.getElementById('g_wa').value;
-
-    if(!n || !c) return alert("Nom de guilde et Chef obligatoires !");
-
-    // --- ACTIVATION DU LOADER ---
-    const originalText = btn.innerHTML;
-    btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Certification en cours...';
-
-    try {
-        const { error } = await supabase.from('guildes').insert([{ 
-            nom_guilde: n, chef: c, whatsapp: w 
-        }]);
         
-        if (error) throw error;
+        const profil = { pseudo: p, role: r, level: l, whatsapp: w, photo_url: urlData.publicUrl };
+        
+        await supabase.from('joueurs').insert([profil]);
 
-        alert("Demande de certification envoyée !");
-        showPage('page-guildes');
-    } catch (err) {
-        alert("Erreur : " + err.message);
-    } finally {
-        // --- DESACTIVATION DU LOADER ---
-        btn.disabled = false;
-        btn.innerHTML = originalText;
-    }
+        // --- NOUVEAU : Sauvegarde locale ---
+        localStorage.setItem('monProfilFF', JSON.stringify(profil));
+        
+        alert("Profil publié et enregistré sur cet appareil !");
+        checkMyProfile(); // On rafraîchit l'affichage
+    } catch (err) { alert("Erreur: " + err.message); }
 };
+    // --- 3. GESTION DES GUILDES ---
+    window.validerGuilde = async () => {
+        const n = document.getElementById('g_nom').value;
+        const c = document.getElementById('g_chef').value;
+        const w = document.getElementById('g_pays').value + document.getElementById('g_wa').value.replace(/\s/g, '');
 
-    async function chargerGuildes() {
-        const divListe = document.getElementById('listeGuildes');
-        if(!divListe) return;
-        divListe.innerHTML = "<p style='text-align:center;'>Connexion à la base de données...</p>";
+        if(!n || !c) return alert("Infos manquantes !");
 
         try {
-            const { data, error } = await supabase.from('guildes').select('*');
-            if (error) throw error;
-            if (!data || data.length === 0) {
-                divListe.innerHTML = "<p style='text-align:center;'>Aucune guilde enregistrée.</p>";
-                return;
-            }
+           const { error } = await supabase.from('guildes').insert([{ nom: n, chef: c, whatsapp: w }]);
+            alert("Guilde certifiée avec succès !");
+            chargerGuildes();
+        } catch (err) { alert(err.message); }
+    };
 
-            divListe.innerHTML = data.map(g => {
-                const nom = g.nom_guilde || g.nom || "Guilde sans nom";
-                const chef = g.chef || "Inconnu";
-                const whatsapp = g.whatsapp ? g.whatsapp.toString().replace(/\s/g, '').replace('+', '') : "";
+// Remplace ton ancienne fonction chargerGuildes par celle-ci :
+
+async function chargerGuildes() {
+    const div = document.getElementById('listeGuildes');
+    if(!div) return;
+    
+    const { data } = await supabase.from('guildes').select('*');
+    
+    if(data) {
+        div.innerHTML = data.map(g => {
+            // Construction du message avec le nom du chef
+            const msgRejoindre = encodeURIComponent(
+                `👋 *SALUT ${g.chef.toUpperCase()} !*\n\n` +
+                `🛡️ Je suis intéressé par votre guilde *${g.nom}* vue sur FF ESPORT-CI.\n\n` +
+                `J'aimerais savoir si vous recrutez actuellement. Serait-il possible d'en discuter pour une éventuelle intégration ?\n\n` +
+                `*Merci d'avance !* 🔥`
+            );
+
+            return `
+            <div class="box" style="margin-bottom:20px; border: 1px solid #333; background: #111; padding: 20px; border-radius: 15px;">
+                <h4 style="margin:0 0 15px 0; color:var(--primary); font-size: 1.3em; letter-spacing: 1px;">${g.nom}</h4>
                 
-                const msgDefi = `⚡ *DÉFI OFFICIEL - FF ESPORT-CI* ⚡\n\nSalut *${chef}*, on a repéré ta guilde *${nom}* sur le répertoire du site FREE FIRE ESPORT-CI.\n\nEst-ce que vous avez le courage de nous affronter en GvG ? On attend votre reponse ! ⚔️🔥`;
-                const msgRejoindre = `🎖️ *CANDIDATURE RECRUTEMENT* 🎖️\n\nSalut Chef *${chef}*, je t'ai contacté via le site *FF ESPORT-CI*.\n\nJe veux prouver ma valeur dans ta guilde *${nom}*. Quelles sont les étapes pour le test ? 🛡️🇨🇮`;
-
-                return `
-                <div class="box" style="border-left: 5px solid var(--primary); margin-bottom:15px; background: #1a1a1a; padding: 20px; border-radius: 12px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
-                        <div>
-                            <h4 style="margin:0; color:var(--primary); text-transform:uppercase;">${nom}</h4>
-                            <p style="margin:5px 0 0 0; color:#888;">LEADER: <span style="color:white; font-weight:bold;">${chef}</span></p>
-                        </div>
-                        <div style="display: flex; gap: 10px;">
-                            <a href="https://wa.me/${whatsapp}?text=${encodeURIComponent(msgDefi)}" target="_blank" style="background:#ff0000; color:white; text-decoration:none; padding:12px; font-size:11px; font-weight:900; border-radius:5px;">DÉFIER ⚔️</a>
-                            <a href="https://wa.me/${whatsapp}?text=${encodeURIComponent(msgRejoindre)}" target="_blank" style="background:#25D366; color:white; text-decoration:none; padding:12px; font-size:11px; font-weight:900; border-radius:5px;">REJOINDRE</a>
-                        </div>
-                    </div>
-                </div>`;
-            }).join('');
-        } catch (err) {
-            divListe.innerHTML = "<p>Erreur de chargement.</p>";
-        }
+                <div style="margin-bottom: 20px;">
+                   <span style="color: #888; font-size: 0.8em; text-transform: uppercase;">Leader</span><br>
+                   <strong style="color: #fff; font-size: 1.1em;">👑 ${g.chef}</strong>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                    <a href="https://wa.me/${g.whatsapp}?text=${msgRejoindre}" target="_blank" class="btn-rejoindre" style="padding: 12px; font-size: 11px;">
+                       🤝 REJOINDRE
+                    </a>
+                    
+                    <button onclick="ouvrirDefi('${g.nom}', '${g.whatsapp}')" class="btn-defier" style="padding: 12px; font-size: 11px;">
+                       ⚔️ DÉFIER
+                    </button>
+                </div>
+            </div>`;
+        }).join('');
     }
+}
+    // --- 4. TOURNOIS ---
+    window.validerTournoi = () => {
+        const t = document.getElementById('t_nom_tournoi').value;
+        const e = document.getElementById('t_equipe').value;
+        const c = document.getElementById('t_chef').value;
+        const p = document.getElementById('t_pays').value;
+        const w = document.getElementById('t_whatsapp').value;
 
-    // ==========================================
-    // 5. LANCEMENT INITIAL
-    // ==========================================
+        if (!e || !c || !w) return alert("Champs obligatoires !");
+
+        const msg = encodeURIComponent(`🏆 INSCRIPTION TOURNOI\n\nTournoi: ${t}\nÉquipe: ${e}\nChef: ${c}\nWhatsApp: ${p}${w}`);
+        window.open(`https://wa.me/2250161912755?text=${msg}`, '_blank');
+    };
+
+    // Lancement au démarrage
     document.addEventListener('DOMContentLoaded', () => {
-        // Optionnel : charger la liste dès le départ
-        chargerDonnees();
+        showPage('page-accueil');
     });
 
-window.appliquerFiltres = () => {
-    // On récupère la valeur choisie et on la met en minuscule
-    const roleFiltre = document.getElementById('filter-role').value.toLowerCase().trim();
-    const niveauFiltre = parseInt(document.getElementById('filter-level').value) || 0;
+    let guildeCibleNom = "";
+let guildeCibleWhatsApp = "";
 
-    const joueursFiltrés = tousLesJoueurs.filter(j => {
-        // Nettoyage du rôle venant de la base de données
-        const roleBase = (j.role || "").toLowerCase().trim();
-        
-        const matchRole = (roleFiltre === "tous" || roleBase === roleFiltre);
-        const matchNiveau = (parseInt(j.level) >= niveauFiltre);
-        
-        return matchRole && matchNiveau;
-    });
-
-    afficherListe(joueursFiltrés);
-};
-
-window.validerTournoi = () => {
-    // Récupération des données du formulaire
-    const equipe = document.getElementById('t_eq').value;
-    const chef = document.getElementById('t_chef').value;
-    const whatsapp = document.getElementById('t_num').value;
-    const tournoiNom = document.getElementById('t_nom').value;
-
-    // Vérification si les champs sont remplis
-    if (!equipe || !chef || !whatsapp) {
-        return alert("⚠️ Merci de remplir tous les champs pour l'inscription !");
+window.ouvrirDefi = async (nomCible, waCible) => {
+    guildeCibleNom = nomCible;
+    guildeCibleWhatsApp = waCible;
+    
+    document.getElementById('target_guilde_display').innerText = "Adversaire : " + nomCible;
+    const select = document.getElementById('ma_guilde_select');
+    
+    const { data } = await supabase.from('guildes').select('nom'); // ICI : On sélectionne la colonne 'nom'
+    if(data) {
+        // ICI : On utilise g.nom au lieu de g.nom_guilde
+        select.innerHTML = data.map(g => `<option value="${g.nom}">${g.nom}</option>`).join('');
     }
-
-    // Création du message WhatsApp stylé
-    const message = encodeURIComponent(
-        `🏆 *INSCRIPTION TOURNOI - FF ESPORT-CI* 🏆\n\n` +
-        `📢 *Tournoi :* ${tournoiNom}\n` +
-        `🎮 *Équipe :* ${equipe}\n` +
-        `👤 *Chef d'équipe :* ${chef}\n` +
-        `📱 *WhatsApp :* ${whatsapp}\n\n` +
-        `Veuillez confirmer notre inscription pour le prochain tournoi ! 🔥`
-    );
-
-    // Ton numéro de téléphone (celui qui reçoit les inscriptions)
-    const monNumero = "2250161912755"; 
-
-    // Redirection vers WhatsApp
-    window.open(`https://wa.me/${monNumero}?text=${message}`, '_blank');
+    
+    document.getElementById('modalDefi').style.display = 'block';
 };
+
+window.envoyerDefi = () => {
+    const maGuilde = document.getElementById('ma_guilde_select').value;
+    const date = document.getElementById('date_match').value;
+    const heure = document.getElementById('heure_match').value;
+    
+    if(!date || !heure) return alert("⚠️ Précise la date et l'heure du défi !");
+    
+    // Ton message avec le formatage WhatsApp (* pour le gras)
+    const message = encodeURIComponent(
+        `🔥 *DÉFI FF ESPORT-CI* 🔥\n\n` +
+        `⚔️ *Ma Guilde :* ${maGuilde}\n` +
+        `🎯 *Défie votre Guilde :* ${guildeCibleNom} dans un GvG\n` +
+        `📅 *Date :* ${date}\n` +
+        `⏰ *Heure :* ${heure}\n\n` +
+        `*Acceptez-vous le combat ? Est-ce que la date et l'heure vous conviennent ?*`
+    );
+    
+    // Ouvre WhatsApp avec le message prêt
+    window.open(`https://wa.me/${guildeCibleWhatsApp}?text=${message}`, '_blank');
+    
+    // Ferme la fenêtre de défi après l'envoi
+    document.getElementById('modalDefi').style.display = 'none';
+};
+
+window.partagerProfil = (pseudo, role) => {
+    const texte = `Regarde le profil de ${pseudo} (${role}) sur FF ESPORT-CI ! 🔥 La plateforme des meilleurs joueurs de Côte d'Ivoire.`;
+    const url = window.location.href;
+
+    if (navigator.share) {
+        navigator.share({
+            title: 'FF ESPORT-CI',
+            text: texte,
+            url: url,
+        }).catch(console.error);
+    } else {
+        // Fallback si le navigateur ne supporte pas le partage (copie le lien)
+        navigator.clipboard.writeText(`${texte} ${url}`);
+        alert("Lien de partage copié ! Partage-le sur ton statut WhatsApp. 🚀");
+    }
+};
+
+// Ajoute des écouteurs sur les inputs
+document.getElementById('p_pseudo').addEventListener('input', updatePreview);
+document.getElementById('p_lvl').addEventListener('input', updatePreview);
+document.getElementById('p_role').addEventListener('change', updatePreview);
+
+function updatePreview() {
+    const pseudo = document.getElementById('p_pseudo').value || "TON PSEUDO";
+    const lvl = document.getElementById('p_lvl').value || "0";
+    const role = document.getElementById('p_role').value;
+    
+    document.getElementById('card-preview').innerHTML = `
+        <div class="player-card" style="opacity: 0.7; pointer-events: none;">
+            <span class="role-tag-new">${role}</span>
+            <div style="padding:15px">
+                <h4 style="color:var(--primary);">${pseudo}</h4>
+                <p style="color:var(--gold);">⭐ LVL ${lvl}</p>
+            </div>
+        </div>
+    `;
+}
+
+window.checkMyProfile = () => {
+    const savedProfile = localStorage.getItem('monProfilFF');
+    const container = document.querySelector('#page-recrutement .box');
+    const btnRecup = document.getElementById('btn-recup');
+    
+    if (savedProfile) {
+        if(btnRecup) btnRecup.style.display = 'none'; // Cache le lien de récupération
+        const p = JSON.parse(savedProfile);
+        
+        container.innerHTML = `
+            <div style="text-align:center; padding: 10px;">
+                <h3 style="color:var(--gold); margin-bottom:15px;">BIENVENUE SUR TON PROFIL</h3>
+                <div class="player-card" style="margin: 0 auto 20px auto; max-width: 280px; border: 1px solid var(--primary) !important; box-shadow: 0 0 15px rgba(255,102,0,0.3);">
+                    <span class="role-tag-new">${p.role}</span>
+                    <div style="width: 100%; height: 160px; overflow: hidden;">
+                        <img src="${p.photo_url}" style="width:100%; height:100%; object-fit: cover;">
+                    </div>
+                    <div style="padding:15px">
+                        <h4 style="color:var(--primary); margin:0;">${p.pseudo}</h4>
+                        <p style="color:var(--gold); margin:5px 0;">⭐ LVL ${p.level}</p>
+                    </div>
+                </div>
+                <button onclick="supprimerMonProfil()" style="background:transparent; border:1px solid #444; color:#666; width: auto; padding: 8px 15px; font-size: 10px; border-radius:5px;">
+                   DÉCONNECTER CE PROFIL
+                </button>
+            </div>
+        `;
+        document.getElementById('preview-container').style.display = 'none';
+    } else {
+        if(btnRecup) btnRecup.style.display = 'block';
+    }
+};
+window.supprimerMonProfil = () => {
+    if(confirm("Veux-tu vraiment supprimer ton profil de cet appareil ? (Il restera visible dans la liste publique)")) {
+        localStorage.removeItem('monProfilFF');
+        location.reload(); // Recharge pour réafficher le formulaire vide
+    }
+};
+
+window.recupererAncienProfil = async () => {
+    const pseudoCherche = prompt("Entre ton Pseudo exactement comme à l'inscription:");
+    if (!pseudoCherche) return;
+    
+    const waCherche = prompt("Entre ton numéro WhatsApp lié au profil (ex: +225...):");
+    if (!waCherche) return;
+
+    // On cherche dans la base de données le profil qui correspond au pseudo ET au WhatsApp
+    const { data, error } = await supabase
+        .from('joueurs')
+        .select('*')
+        .eq('pseudo', pseudoCherche)
+        .eq('whatsapp', waCherche) // <--- C'est ici la sécurité !
+        .single();
+
+    if (error || !data) {
+        alert("❌ Erreur : Le pseudo ou le numéro WhatsApp ne correspond pas.");
+    } else {
+        // Le joueur a le bon pseudo ET le bon numéro, on lui rend l'accès
+        localStorage.setItem('monProfilFF', JSON.stringify(data));
+        alert("✅ Profil récupéré avec succès !");
+        checkMyProfile();
+    }
+};
+
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+    // 1. Empêcher l'affichage automatique
+    e.preventDefault();
+    
+    // 2. Vérifier si on est sur mobile ET si l'utilisateur n'a pas déjà refusé aujourd'hui
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const isDismissed = localStorage.getItem('installDismissed');
+
+    if (isMobile && !isDismissed) {
+        deferredPrompt = e;
+        document.getElementById('install-banner').style.display = 'block';
+    }
+});
+
+// Bouton "Plus tard" : on cache et on enregistre le refus
+document.getElementById('btn-close-install').addEventListener('click', () => {
+    document.getElementById('install-banner').style.display = 'none';
+    // On se souvient du refus pour ne plus l'afficher pendant cette session
+    localStorage.setItem('installDismissed', 'true');
+});
+
+document.getElementById('btn-install').addEventListener('click', () => {
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+            document.getElementById('install-banner').style.display = 'none';
+            deferredPrompt = null;
+        });
+    }
+});
 </script>
 </body>
 </html>
