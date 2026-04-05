@@ -549,6 +549,70 @@ body { font-family: 'Orbitron', sans-serif !important; }
     max-width: 500px;
     margin: 0 auto;
 }
+
+.tournoi-exclusif {
+    max-width: 600px;
+    margin: 20px auto;
+    border: 1px solid var(--primary) !important;
+    background: linear-gradient(145deg, #111, #000);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 0 20px rgba(255, 102, 0, 0.1);
+}
+
+.status-badge {
+    position: absolute;
+    top: 20px;
+    right: -35px;
+    background: var(--gold);
+    color: black;
+    padding: 5px 40px;
+    transform: rotate(45deg);
+    font-size: 10px;
+    font-weight: 900;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.tournoi-header h3 {
+    letter-spacing: 1px;
+    background: linear-gradient(to bottom, #fff, #888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.rules-box {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #222;
+}
+
+.rules-box p {
+    font-size: 12px;
+    margin-bottom: 10px;
+    color: #eee;
+}
+
+.rules-box i {
+    color: var(--primary);
+    margin-right: 8px;
+}
+
+/* Style pour la boîte de règlement avec barre de défilement stylisée */
+.rules-scroll-box::-webkit-scrollbar {
+    width: 5px;
+}
+.rules-scroll-box::-webkit-scrollbar-track {
+    background: #111;
+}
+.rules-scroll-box::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+}
+.rules-scroll-box p {
+    margin-bottom: 12px;
+    border-left: 2px solid var(--primary);
+    padding-left: 10px;
+}
+
 </style>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
@@ -656,109 +720,53 @@ body { font-family: 'Orbitron', sans-serif !important; }
     </div>
 </section>
 
-<section id="page-recrutement" class="page">
-    <div class="container">
-        <h2 style="text-align:center;">S'ENREGISTRER</h2>
-        <div class="box">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                <input type="text" id="p_pseudo" placeholder="Pseudo" style="padding-left:15px">
-                <select id="p_role" style="padding-left:15px">
-                    <option value="Fusilier">🔫 Fusilier</option>
-                    <option value="Rusher">⚔️ Rusher</option>
-                    <option value="Sniper">🎯 Sniper</option>
-                    <option value="Support">🛡️ Support</option>
-                    <option value="Bombardier">💣 Bombardier</option>
-                </select>
-                <input type="number" id="p_lvl" placeholder="Niveau (Ex: 72)" style="padding-left:15px">
-                
-              <div style="display: flex; gap: 5px;">
-                    <select id="p_pays" style="flex: 0.4; padding-left:5px; font-size: 13px; background: #222; color: white; border: 1px solid #333; border-radius: 8px;">
-                        <option value="225">🇨🇮 +225</option>
-                        <option value="221">🇸🇳 +221</option>
-                        <option value="223">🇲🇱 +223</option>
-                        <option value="226">🇧🇫 +226</option>
-                        <option value="224">🇬🇳 +224</option>
-                        <option value="237">🇨🇲 +237</option>
-                        <option value="241">🇬🇦 +241</option>
-                        <option value="229">🇧🇯 +229</option>
-                        <option value="228">🇹🇬 +228</option>
-                        <option value="242">🇨🇬 +242</option>
-                        <option value="243">🇨🇩 +243</option>
-                        <option value="212">🇲🇦 +212</option>
-                        <option value="216">🇹🇳 +216</option>
-                        <option value="213">🇩🇿 +213</option>
-                        <option value="227">🇳🇪 +227</option>
-                        <option value="235">🇹🇩 +235</option>
-                        <option value="261">🇲🇬 +261</option>
-                        <option value="33">🇫🇷 +33</option>
-                        <option value="1">🇺🇸 +1</option>
-                    </select>
-                    <input type="number" id="p_wa" placeholder="WhatsApp" style="flex: 1; padding-left:10px">
-                </div>
-            </div>
-            <label>Photo du compte (Screenshot Lobby)</label>
-            <input type="file" id="p_photo" accept="image/*" style="padding-left:15px">
-            <button onclick="validerJoueur()" style="padding-left:0; margin-top:15px">PUBLIER MON PROFIL</button>
-        </div>
-        <div class="player-grid" id="listeJoueurs"></div>
-    </div>
-
-    <div id="preview-container" style="margin-top: 20px; border-top: 1px dashed #444; padding-top: 20px;">
-    <p style="font-size: 10px; color: #666; text-align: center;">APERCU DE TA CARTE :</p>
-    <div id="card-preview"></div>
-</div>
-
-<div class="container">
-        <h2 style="text-align:center;">S'ENREGISTRER</h2>
-        <p id="btn-recup" onclick="recupererAncienProfil()" style="text-align:center; color:var(--gold); font-size:12px; cursor:pointer; text-decoration:underline; margin-bottom:15px;">
-            Déjà inscrit ? Récupérer mon profil
-        </p>
-        <div class="box">
-            </div>
-    </div>
-</section>
-
 <section id="page-tournois" class="page">
     <div class="container">
-        <h2 style="text-align:center;">INSCRIPTION TOURNOI</h2>
-        <div class="box">
-            <div class="input-group">
-                <i class="fas fa-trophy"></i>
-                <input type="text" id="t_nom_tournoi" placeholder="Nom du tournoi (ex: Coupe Ivoire)">
+        <h2 style="text-align:center; color:var(--primary); letter-spacing: 2px;">CLASH OF GUILDS</h2>
+        
+        <div class="box tournoi-exclusif">
+            <div class="status-badge">1ST EDITION</div>
+            
+            <div class="tournoi-header">
+                <i class="fas fa-trophy" style="font-size: 50px; color: var(--gold); margin-bottom: 15px; filter: drop-shadow(0 0 10px rgba(255,215,0,0.5));"></i>
+                <h3 style="font-size: 28px; text-transform: uppercase;">Clash of Guilds</h3>
+                <p style="color:var(--primary); font-style: italic;">"Le combat pour la suprématie nationale"</p>
             </div>
-            <div class="input-group">
-                <i class="fas fa-users"></i>
-                <input type="text" id="t_equipe" placeholder="Nom de votre Équipe">
+
+            <div class="tournoi-details-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; text-align: center;">
+                <div style="background: #222; padding: 10px; border-radius: 5px;">
+                    <span style="display:block; font-size: 10px; color: #888;">CAPACITÉS</span>
+                    <strong style="color: #00ff00;">ACTIVÉES ✅</strong>
+                </div>
+                <div style="background: #222; padding: 10px; border-radius: 5px;">
+                    <span style="display:block; font-size: 10px; color: #888;">SKINS ARMES</span>
+                    <strong style="color: #ff0000;">DÉSACTIVÉS ❌</strong>
+                </div>
             </div>
-            <div class="input-group">
-                <i class="fas fa-user-tie"></i>
-                <input type="text" id="t_chef" placeholder="Nom du Chef">
+
+            <div class="tournoi-infos" style="margin-top: 25px;">
+                <h4 style="border-bottom: 1px solid var(--primary); padding-bottom: 5px;">
+                    <i class="fas fa-scroll"></i> RÈGLEMENT DU TOURNOI
+                </h4>
+                
+                <div class="rules-scroll-box" style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; font-size: 13px; line-height: 1.6; max-height: 300px; overflow-y: auto; border: 1px solid #333;">
+                    <p><strong>1. ÉLIGIBILITÉ :</strong> Guilde en région CI, Chef Ivoirien. Une grande partie de l'équipe doit résider en Côte d'Ivoire.</p>
+                    <p><strong>2. CLASSEMENT :</strong> Seules les guildes du <strong>Top 100 Guerre des Guildes</strong> sont acceptées.</p>
+                    <p><strong>3. PARTICIPATION :</strong> Des frais d'inscription (participation) seront fixés et obligatoires pour valider l'entrée.</p>
+                    <p><strong>4. DISCIPLINE :</strong> Émotes strictement <strong>INTERDITES</strong> pendant tout le match. Validation du score obligatoire avant de sortir.</p>
+                    <p><strong>5. ANTI-TRICHE :</strong> 100% Mobile (Pas d'émulateur). <strong>Comptes Proxy/Moddés INTERDITS</strong>. Ban définitif en cas de fraude.</p>
+                </div>
             </div>
-            <div style="display: flex; gap: 5px; margin-bottom: 15px;">
-               <select id="t_pays" style="flex: 0.4; padding: 10px; border-radius: 8px; background: #222; color: white; border: 1px solid #333;">
-    <option value="225">🇨🇮 +225</option>
-    <option value="221">🇸🇳 +221</option>
-    <option value="223">🇲🇱 +223</option>
-    <option value="226">🇧🇫 +226</option>
-    <option value="224">🇬🇳 +224</option>
-    <option value="237">🇨🇲 +237</option>
-    <option value="241">🇬🇦 +241</option>
-    <option value="229">🇧🇯 +229</option>
-    <option value="228">🇹🇬 +228</option>
-    <option value="242">🇨🇬 +242</option>
-    <option value="243">🇨🇩 +243</option>
-    <option value="212">🇲🇦 +212</option>
-    <option value="216">🇹🇳 +216</option>
-    <option value="213">🇩🇿 +213</option>
-    <option value="227">🇳🇪 +227</option>
-    <option value="235">🇹🇩 +235</option>
-    <option value="261">🇲🇬 +261</option>
-    <option value="33">🇫🇷 +33</option>
-    <option value="1">🇺🇸 +1</option>
-</select>
-                <input type="number" id="t_whatsapp" placeholder="Numéro WhatsApp" style="flex: 1; margin-bottom: 0;">
+
+            <div style="margin-top: 25px;">
+                <button disabled style="width:100%; padding: 18px; background: linear-gradient(45deg, #111, #222); color: #666; border: 1px dashed var(--primary); border-radius: 8px; font-weight: bold; cursor: not-allowed; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <i class="fas fa-lock"></i> 
+                    <span>INSCRIPTIONS BIENTÔT OUVERTES</span>
+                </button>
+                <p style="text-align: center; color: var(--gold); font-size: 11px; margin-top: 10px; font-weight: bold;">
+                    REJOIGNEZ LE GROUPE WHATSAPP POUR L'ANNONCE DU TARIF
+                </p>
             </div>
-            <button onclick="validerTournoi()" style="width:100%;">S'INSCRIRE VIA WHATSAPP</button>
         </div>
     </div>
 </section>
@@ -1317,6 +1325,10 @@ document.getElementById('btn-install').addEventListener('click', () => {
         });
     }
 });
+
+window.voirReglementComplet = () => {
+    alert("--- RÈGLEMENT COUPE DES GUILDES CI ---\n\n1. Respect total envers les adversaires.\n2. Utilisation d'émoticônes autorisée mais pas d'insultes.\n3. Logiciels tiers ou triche = Ban définitif de la plateforme.\n4. Les joueurs doivent obligatoirement appartenir à la guilde inscrite.\n\nLe document PDF complet sera bientôt disponible sur le groupe WhatsApp.");
+};
 </script>
 </body>
 </html>
