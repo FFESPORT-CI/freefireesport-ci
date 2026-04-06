@@ -26,7 +26,7 @@
         --dark: #0d0d0d; 
         --card: #1a1a1a; 
         --gold: #FFD700; 
-        --sidebar-width: 220px; /* Largeur augmentée pour le texte */
+        --sidebar-width: 220px; 
     }
     
     body { 
@@ -37,10 +37,10 @@
     overflow-x: hidden; 
     scroll-behavior: smooth; 
     display: flex; 
-    flex-direction: column; /* Aligne le contenu verticalement */
-    min-height: 100vh; /* Force la hauteur à 100% de l'écran */
+    flex-direction: column;
+    min-height: 100vh; 
 }
-    /* NAVIGATION LATÉRALE ÉLARGIE */
+
     nav { 
         background: #111; 
         padding: 20px 0; 
@@ -67,7 +67,7 @@
         padding: 15px 20px;
         display: flex;
         align-items: center;
-        gap: 15px; /* Espace entre l'icône et le texte */
+        gap: 15px;
         border-bottom: 1px solid #1a1a1a;
     }
     
@@ -75,7 +75,7 @@
         width: 20px; 
         text-align: center; 
         font-size: 1.2em;
-        color: var(--primary); /* Les icônes restent en couleur */
+        color: var(--primary);
     }
 
     nav a:hover, nav a.active { 
@@ -84,7 +84,6 @@
         border-left: 4px solid var(--primary);
     }
 
-    /* AJUSTEMENT DU CONTENU */
     .page { 
         flex: 1;
         margin-left: var(--sidebar-width); 
@@ -96,7 +95,6 @@
     }
     .page.active { display: block; }
 
-    /* Reste du CSS inchangé pour les cartes et boutons... */
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     #page-accueil { 
         background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('hero_freefire_ci.jpeg') no-repeat center center; 
@@ -114,17 +112,13 @@
     color: #444; 
     font-size: 11px; 
     margin-left: var(--sidebar-width); 
-    background: #0a0a0a; /* Optionnel : un fond léger pour le distinguer */
+    background: #0a0a0a; 
     border-top: 1px solid #1a1a1a;
-    width: auto; /* Laisse le margin-left gérer le placement */
+    width: auto; 
 }
 
-/* ================= RESPONSIVE CORRIGÉ ================= */
-
-/* Bouton Menu Mobile */
-/* Bouton Menu Mobile CORRIGÉ */
 .menu-toggle {
-    display: none; /* Caché sur PC */
+    display: none;
     position: fixed;
     top: 15px;
     right: 15px;
@@ -133,14 +127,14 @@
     width: 45px;
     height: 45px;
     border-radius: 8px;
-    /* Utilise flex uniquement quand display n'est plus none */
+   
     justify-content: center;
     align-items: center;
     z-index: 2001; 
     cursor: pointer;
     box-shadow: 0 0 15px rgba(255,102,0,0.4);
     font-size: 1.5em;
-    border: none; /* Évite les contours bizarres sur certains tels */
+    border: none; 
 }
 
 @media (max-width: 850px) {
@@ -149,14 +143,14 @@
     } 
 }
 
-/* MOBILE : Menu coulissant (Remplace tes anciens @media 800px et 600px) */
+
 @media (max-width: 850px) {
     .menu-toggle { 
         display: flex; 
     } 
 
     nav {
-        left: -100%; /* Totalement caché à gauche */
+        left: -100%; 
         width: 250px !important;
         height: 100vh !important;
         flex-direction: column !important;
@@ -168,7 +162,7 @@
     }
 
     nav.open {
-        left: 0; /* Glisse vers la droite */
+        left: 0; 
     }
 
     nav a {
@@ -187,8 +181,7 @@
     footer {
         margin-left: 0 !important;
     }
-
-    /* GRID RESPONSIVE */
+  
     .but-grid {
         display: grid;
         grid-template-columns: 1fr;
@@ -201,12 +194,10 @@
         gap: 15px;
     }
 
-    /* FORMULAIRE */
     #page-recrutement div[style*="grid"] {
         grid-template-columns: 1fr !important;
     }
 
-    /* TEXTES */
     h1 {
         font-size: 1.5em;
     }
@@ -215,7 +206,7 @@
         font-size: 1.5em;
     }
 }
-/* BACKGROUND GAMING À GAUCHE */
+
 body::before {
     content: "";
     position: fixed;
@@ -302,7 +293,6 @@ input:focus, select:focus {
     padding-left: 45px;
 }
 
-/* Grille de la Vision */
 .but-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -310,7 +300,6 @@ input:focus, select:focus {
     margin-top: 40px;
 }
 
-/* Style des Cartes Vision */
 .but-card {
     background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
     border: 1px solid #333;
@@ -322,14 +311,12 @@ input:focus, select:focus {
     overflow: hidden;
 }
 
-/* Effet au survol */
 .but-card:hover {
     transform: translateY(-10px);
     border-color: var(--primary);
     box-shadow: 0 10px 30px rgba(255, 102, 0, 0.2);
 }
 
-/* Décoration d'icône */
 .but-card i {
     color: var(--primary);
     margin-bottom: 20px;
@@ -349,7 +336,6 @@ input:focus, select:focus {
     line-height: 1.6;
 }
 
-/* Petit détail esthétique : la ligne sous le titre */
 .but-card::after {
     content: "";
     position: absolute;
@@ -382,7 +368,6 @@ button:disabled {
     margin-right: 10px;
 }
 
-/* BACKGROUND GAMING À GAUCHE CORRIGÉ */
 body::before {
     content: "";
     position: fixed;
@@ -393,10 +378,9 @@ body::before {
     background: linear-gradient(180deg, #ff6600, #000);
     opacity: 0.1;
     z-index: 0;
-    pointer-events: none; /* TRÈS IMPORTANT : permet de cliquer à travers */
+    pointer-events: none;
 }
 
-/* On cache ce fond sur mobile pour libérer l'espace */
 @media (max-width: 850px) {
     body::before {
         display: none;
@@ -425,7 +409,6 @@ body { font-family: 'Orbitron', sans-serif !important; }
         box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
     }
 
-    /* Le bouton Défier pour équilibrer */
     .btn-defier {
         background: linear-gradient(135deg, var(--primary) 0%, #cc5200 100%);
         color: white;
@@ -462,7 +445,6 @@ body { font-family: 'Orbitron', sans-serif !important; }
         box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
     }
 
-    /* Badge de Rôle */
     .role-tag-new {
         background: var(--primary);
         color: white;
@@ -477,7 +459,6 @@ body { font-family: 'Orbitron', sans-serif !important; }
         z-index: 10;
     }
 
-    /* Effet de lueur sur les cartes */
 .box, .player-card {
     transition: all 0.4s ease;
     border: 1px solid #333 !important;
@@ -535,7 +516,7 @@ body { font-family: 'Orbitron', sans-serif !important; }
     bottom: 0;
     left: 0;
     right: 0;
-    background: #1a1a1a; /* Sombre pour s'intégrer au design */
+    background: #1a1a1a; 
     border-top: 2px solid var(--primary);
     padding: 15px;
     z-index: 10000;
@@ -574,7 +555,7 @@ body { font-family: 'Orbitron', sans-serif !important; }
 .tournoi-header h3 {
     letter-spacing: 1px;
     background: linear-gradient(to bottom, #fff, #888);
-    -webkit-background-clip: text;
+    -webkit-backgroundclip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -596,7 +577,7 @@ body { font-family: 'Orbitron', sans-serif !important; }
     margin-right: 8px;
 }
 
-/* Style pour la boîte de règlement avec barre de défilement stylisée */
+
 .rules-scroll-box::-webkit-scrollbar {
     width: 5px;
 }
@@ -611,6 +592,149 @@ body { font-family: 'Orbitron', sans-serif !important; }
     margin-bottom: 12px;
     border-left: 2px solid var(--primary);
     padding-left: 10px;
+}
+
+#card-preview {
+    margin-top: 15px;
+    padding: 10px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    text-align: center;
+}
+
+
+#annonce-flash {
+    animation: pulse-border 2s infinite;
+}
+
+@keyframes pulse-border {
+    0% { box-shadow: 0 4px 15px rgba(255, 75, 43, 0.3); }
+    50% { box-shadow: 0 4px 25px rgba(255, 75, 43, 0.6); }
+    100% { box-shadow: 0 4px 15px rgba(255, 75, 43, 0.3); }
+}
+
+.news-ticker {
+    width: 100%;
+    background: #ff4b2b; /* Orange/Rouge Esport */
+    color: white;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    font-family: 'Oswald', sans-serif;
+    border-bottom: 2px solid #fff;
+}
+
+.ticker-wrap {
+    display: inline-block;
+    padding-left: 100%;
+    animation: ticker 25s linear infinite;
+}
+
+.ticker-item {
+    display: inline-block;
+    padding: 0 50px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+@keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+/* Pause au survol pour que les gens puissent lire tranquillement */
+.news-ticker:hover .ticker-wrap {
+    animation-play-state: paused;
+}
+
+#liste-maj ul {
+    list-style-type: '👉 ';
+}
+
+#liste-maj li {
+    margin-bottom: 5px;
+}
+
+.box {
+    background: #1a1a1a;
+    padding: 15px;
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+
+.box:hover {
+    transform: scale(1.01);
+}
+
+/* Style général de la page MAJ */
+.maj-card {
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    overflow: hidden;
+}
+
+.maj-card.major {
+    border: 1px solid var(--primary);
+    box-shadow: 0 0 15px rgba(255, 75, 43, 0.2);
+}
+
+.maj-header {
+    background: #1a1a1a;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+}
+
+.maj-badge {
+    background: var(--primary);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.maj-date {
+    color: #666;
+    font-size: 12px;
+}
+
+.maj-content {
+    padding: 15px;
+}
+
+.maj-item {
+    margin-bottom: 15px;
+    padding-left: 10px;
+    border-left: 2px solid #333;
+}
+
+.maj-item strong {
+    color: var(--gold);
+    display: block;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+.maj-item p {
+    margin: 0;
+    color: #bbb;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.maj-card.major .maj-item {
+    border-left: 2px solid var(--primary);
 }
 
 </style>
@@ -636,10 +760,21 @@ body { font-family: 'Orbitron', sans-serif !important; }
    <a onclick="showPage('page-tournois')"><i class="fas fa-trophy"></i> Tournois</a>
    <a onclick="showPage('page-sponsors')"><i class="fas fa-handshake"></i> Partenaires</a>
    <a onclick="showPage('page-support')"><i class="fas fa-headset"></i> Support Technique</a>
+   <a onclick="showPage('page-maj')"><i class="fas fa-tools"></i> Mises à Jour</a>
 </nav>
 
 <section id="page-accueil" class="page active">
-   <h1>FREE FIRE ESPORT-CI</h1>
+ <div class="news-ticker">
+    <div class="ticker-wrap">
+        <div class="ticker-item">
+            🏆 **CLASH OF GUILDS :** Les inscriptions ouvriront bientôt ! Plus d'infos dans l'onglet **TOURNOI**. 🔥
+        </div>
+        <div class="ticker-item">
+            🏆 **CLASH OF GUILDS :** Les inscriptions ouvriront bientôt ! Plus d'infos dans l'onglet **TOURNOI**. 🔥
+        </div>
+    </div>
+</div>
+    <h1>FREE FIRE ESPORT-CI</h1>
     <h2>UNITÉ • FORCE • VICTOIRE</h2>
     <p style="color: #888; font-size: 1.1em;">ENTRER DANS LA COMMUNAUTE ET DOMINEZ LA SCÈNE FREE FIRE IVOIRIENNE</p>
     <button onclick="showPage('page-recrutement')" style="width: 250px; border-radius: 50px;">REJOINDRE L'ÉLITE</button>
@@ -975,6 +1110,19 @@ body { font-family: 'Orbitron', sans-serif !important; }
     </div>
 </div>
 
+<div id="card-preview">
+   </div>
+<section id="page-maj" class="page">
+    <div class="container" style="padding: 20px;">
+        <h2 style="text-align: center; color: var(--primary);">🛠️ JOURNAL DES MISES À JOUR</h2>
+        <p style="text-align: center; color: #888; font-size: 14px;">Suivez l'évolution de la plateforme FF ESPORT-CI</p>
+
+        <div id="liste-maj" style="margin-top: 20px;">
+            </div>
+    </div>
+</section>
+
+
 <footer>
     <div style="margin-bottom: 15px;">
         <img src="ffesci.png" alt="FF ESPORT-CI" style="height: 40px; filter: grayscale(1); opacity: 0.5;">
@@ -991,12 +1139,10 @@ body { font-family: 'Orbitron', sans-serif !important; }
 <script type="module">
     import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
     
-    // Configuration Supabase
     const supabase = createClient("https://hxdpeqfcefhrfonegtok.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh4ZHBlcWZjZWZocmZvbmVndG9rIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMDc4OTMsImV4cCI6MjA4OTU4Mzg5M30.i_c9zU6sABenDuHZtwK4ZQ9KWDOJh7QB07GezDIkWqM");
 
     let tousLesJoueurs = [];
 
-    // --- 1. NAVIGATION & MENU ---
     window.toggleMenu = () => {
         const sidebar = document.getElementById('sidebar');
         if (sidebar) sidebar.classList.toggle('open');
@@ -1010,20 +1156,17 @@ body { font-family: 'Orbitron', sans-serif !important; }
         const target = document.getElementById(id);
         if (target) {
             target.classList.add('active');
-            // Chargement automatique des données selon la page
+         
             if(id === 'page-liste-joueurs') chargerDonnees();
             if(id === 'page-guildes') chargerGuildes(); 
         }
 
-        
         window.scrollTo(0,0);
 
         if(id === 'page-recrutement') checkMyProfile(); 
-    // ...
 
     };
-
-    // --- 2. GESTION DES JOUEURS (RECRUTEMENT) ---
+  
     async function chargerDonnees() {
         const pc = document.getElementById('listeJoueursPublique');
         const loader = document.getElementById('loader-joueurs');
@@ -1061,7 +1204,6 @@ body { font-family: 'Orbitron', sans-serif !important; }
    pc.innerHTML = joueurs.map(j => {
     const waClean = j.whatsapp.replace(/\s/g, '');
     
-    // Construction du message personnalisé
     const msg = encodeURIComponent(
         `👋 *SALUT ${j.pseudo.toUpperCase()} !*\n\n` +
         `📢 J'ai vu ton profil de *${j.role}* (Niveau *${j.level}*) sur la plateforme *FF ESPORT-CI*.\n\n` +
@@ -1069,7 +1211,6 @@ body { font-family: 'Orbitron', sans-serif !important; }
         `*Dans l'attente de ta réponse !* 🔥`
     );
 
-   // Dans ton .map(j => { ... })
 return `
     <div class="player-card">
         <span class="role-tag-new">${j.role}</span>
@@ -1111,9 +1252,7 @@ return `
     };
 
     
-// --- GESTION DU PROFIL ET CONNEXION ---
 
-// 1. Inscription ou Mise à jour
 window.validerJoueur = async () => {
     const btn = document.getElementById('btn-action-profil');
     const p = document.getElementById('p_pseudo').value.trim();
@@ -1121,21 +1260,16 @@ window.validerJoueur = async () => {
     const l = document.getElementById('p_lvl').value;
     const r = document.getElementById('p_role').value;
     
-    // NOUVEAU : Récupération séparée
     const indicatif = document.getElementById('p_indicatif').value;
     const numero = document.getElementById('p_wa').value.trim();
     const w = indicatif + numero; 
 
     if(!p || !l || !numero) return alert("Veuillez remplir tous les champs (Pseudo, Niveau, WhatsApp) !");
-    
-    // ... reste de ta fonction (upload image, insert/update supabase, etc.)
-
-
+ 
     try {
         const savedProfile = JSON.parse(localStorage.getItem('monProfilFF'));
         let finalUrl = savedProfile ? savedProfile.photo_url : "";
 
-        // Gestion de l'image si une nouvelle est choisie
         if (f) {
             const fileName = `${Date.now()}_${p}.jpg`;
             const { data: uploadData, error: uploadError } = await supabase.storage.from('avatars_joueurs').upload(fileName, f);
@@ -1147,12 +1281,12 @@ window.validerJoueur = async () => {
         const profilData = { pseudo: p, role: r, level: l, whatsapp: w, photo_url: finalUrl };
 
         if (savedProfile && savedProfile.id) {
-            // MODE MODIFICATION
+    
             const { error } = await supabase.from('joueurs').update(profilData).eq('id', savedProfile.id);
             if(error) throw error;
             alert("✅ Profil mis à jour avec succès !");
         } else {
-            // MODE CRÉATION
+            
             if(!f) { btn.disabled = false; btn.innerText="CRÉER MON PROFIL"; return alert("Photo requise !"); }
             const { data, error } = await supabase.from('joueurs').insert([profilData]).select();
             if(error) throw error;
@@ -1170,7 +1304,7 @@ window.validerJoueur = async () => {
     }
 };
 
-// 2. Fonction de Connexion
+
 window.connexionRapide = async () => {
     const pseudo = prompt("Entrez votre Pseudo exact :");
     const tel = prompt("Entrez votre numéro WhatsApp utilisé (ex: 225012345678) :"); // Précise le format
@@ -1196,7 +1330,6 @@ window.connexionRapide = async () => {
     }
 };
 
-// 3. Affichage de la page de profil personnelle
 window.checkMyProfile = () => {
     const savedProfile = localStorage.getItem('monProfilFF');
     const sectionInscrip = document.getElementById('section-enregistrement');
@@ -1226,7 +1359,6 @@ window.checkMyProfile = () => {
     }
 };
 
-// 4. Préparer le formulaire pour modifier
 window.preparerModification = () => {
     const p = JSON.parse(localStorage.getItem('monProfilFF'));
     document.getElementById('section-enregistrement').style.display = 'block';
@@ -1241,6 +1373,7 @@ window.preparerModification = () => {
     document.getElementById('titre-formulaire').innerText = "MODIFIER MON PROFIL";
     document.getElementById('btn-action-profil').innerText = "ENREGISTRER LES MODIFICATIONS";
     document.getElementById('lien-connexion').style.display = "none";
+    document.getElementById('p_photo').required = false;
 };
 
 window.deconnexion = () => {
@@ -1250,9 +1383,8 @@ window.deconnexion = () => {
     }
 };
 
-// Appeler checkMyProfile au chargement
 document.addEventListener('DOMContentLoaded', checkMyProfile);
-    // --- 3. GESTION DES GUILDES ---
+    
     window.validerGuilde = async () => {
         const n = document.getElementById('g_nom').value;
         const c = document.getElementById('g_chef').value;
@@ -1267,8 +1399,6 @@ document.addEventListener('DOMContentLoaded', checkMyProfile);
         } catch (err) { alert(err.message); }
     };
 
-// Remplace ton ancienne fonction chargerGuildes par celle-ci :
-
 async function chargerGuildes() {
     const div = document.getElementById('listeGuildes');
     if(!div) return;
@@ -1277,7 +1407,7 @@ async function chargerGuildes() {
     
     if(data) {
         div.innerHTML = data.map(g => {
-            // Construction du message avec le nom du chef
+            
             const msgRejoindre = encodeURIComponent(
                 `👋 *SALUT ${g.chef.toUpperCase()} !*\n\n` +
                 `🛡️ Je suis intéressé par votre guilde *${g.nom}* vue sur FF ESPORT-CI.\n\n` +
@@ -1307,7 +1437,6 @@ async function chargerGuildes() {
         }).join('');
     }
 }
-    // --- 4. TOURNOIS ---
     window.validerTournoi = () => {
         const t = document.getElementById('t_nom_tournoi').value;
         const e = document.getElementById('t_equipe').value;
@@ -1321,7 +1450,6 @@ async function chargerGuildes() {
         window.open(`https://wa.me/2250161912755?text=${msg}`, '_blank');
     };
 
-    // Lancement au démarrage
     document.addEventListener('DOMContentLoaded', () => {
         showPage('page-accueil');
     });
@@ -1336,9 +1464,9 @@ window.ouvrirDefi = async (nomCible, waCible) => {
     document.getElementById('target_guilde_display').innerText = "Adversaire : " + nomCible;
     const select = document.getElementById('ma_guilde_select');
     
-    const { data } = await supabase.from('guildes').select('nom'); // ICI : On sélectionne la colonne 'nom'
+    const { data } = await supabase.from('guildes').select('nom'); 
     if(data) {
-        // ICI : On utilise g.nom au lieu de g.nom_guilde
+      
         select.innerHTML = data.map(g => `<option value="${g.nom}">${g.nom}</option>`).join('');
     }
     
@@ -1352,7 +1480,6 @@ window.envoyerDefi = () => {
     
     if(!date || !heure) return alert("⚠️ Précise la date et l'heure du défi !");
     
-    // Ton message avec le formatage WhatsApp (* pour le gras)
     const message = encodeURIComponent(
         `🔥 *DÉFI FF ESPORT-CI* 🔥\n\n` +
         `⚔️ *Ma Guilde :* ${maGuilde}\n` +
@@ -1361,11 +1488,9 @@ window.envoyerDefi = () => {
         `⏰ *Heure :* ${heure}\n\n` +
         `*Acceptez-vous le combat ? Est-ce que la date et l'heure vous conviennent ?*`
     );
-    
-    // Ouvre WhatsApp avec le message prêt
+        
     window.open(`https://wa.me/${guildeCibleWhatsApp}?text=${message}`, '_blank');
     
-    // Ferme la fenêtre de défi après l'envoi
     document.getElementById('modalDefi').style.display = 'none';
 };
 
@@ -1379,14 +1504,12 @@ window.partagerProfil = (pseudo, role) => {
             text: texte,
             url: url,
         }).catch(console.error);
-    } else {
-        // Fallback si le navigateur ne supporte pas le partage (copie le lien)
+    } else {  
         navigator.clipboard.writeText(`${texte} ${url}`);
         alert("Lien de partage copié ! Partage-le sur ton statut WhatsApp. 🚀");
     }
 };
 
-// Ajoute des écouteurs sur les inputs
 document.getElementById('p_pseudo').addEventListener('input', updatePreview);
 document.getElementById('p_lvl').addEventListener('input', updatePreview);
 document.getElementById('p_role').addEventListener('change', updatePreview);
@@ -1395,34 +1518,46 @@ function updatePreview() {
     const pseudo = document.getElementById('p_pseudo').value || "TON PSEUDO";
     const lvl = document.getElementById('p_lvl').value || "0";
     const role = document.getElementById('p_role').value;
-    
-    document.getElementById('card-preview').innerHTML = `
-        <div class="player-card" style="opacity: 0.7; pointer-events: none;">
+    const photoFile = document.getElementById('p_photo').files[0];
+    const previewContainer = document.getElementById('card-preview');
+
+    // On crée l'aperçu de base
+    let html = `
+        <div class="player-card" style="margin: 0 auto; max-width: 250px; border: 1px solid #333;">
             <span class="role-tag-new">${role}</span>
-            <div style="padding:15px">
-                <h4 style="color:var(--primary);">${pseudo}</h4>
-                <p style="color:var(--gold);">⭐ LVL ${lvl}</p>
+            <div style="width: 100%; height: 140px; overflow: hidden; background: #222;">
+                <img id="img-preview-src" src="https://via.placeholder.com/150?text=PHOTO" style="width:100%; height:100%; object-fit: cover;">
+            </div>
+            <div style="padding:10px; text-align: left;">
+                <h4 style="margin:0; color:var(--primary); text-transform: uppercase; font-size: 14px;">${pseudo}</h4>
+                <p style="color:var(--gold); font-weight: bold; margin: 5px 0; font-size: 12px;">⭐ LVL ${lvl}</p>
             </div>
         </div>
     `;
-}
 
+    previewContainer.innerHTML = html;
+
+    // Si une photo est choisie, on l'affiche dans l'aperçu
+    if (photoFile) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('img-preview-src').src = e.target.result;
+        };
+        reader.readAsDataURL(photoFile);
+    }
+}
 window.checkMyProfile = () => {
     const savedProfile = localStorage.getItem('monProfilFF');
     const sectionEnregistrement = document.getElementById('section-enregistrement');
     const sectionEspacePerso = document.getElementById('mon-espace-perso');
 
     if (savedProfile) {
-        // L'UTILISATEUR EST DÉJÀ INSCRIT
         const p = JSON.parse(savedProfile);
         
-        // On cache le formulaire d'inscription
         sectionEnregistrement.style.display = 'none'; 
         
-        // On affiche l'espace profil
         sectionEspacePerso.style.display = 'block';
         
-        // On remplit les infos du joueur
         sectionEspacePerso.innerHTML = `
             <h2 style="text-align:center;">MON PROFIL</h2>
             <div class="box" style="border-top: 4px solid var(--primary); text-align:center;">
@@ -1438,7 +1573,6 @@ window.checkMyProfile = () => {
             </div>
         `;
     } else {
-        // L'UTILISATEUR N'EST PAS INSCRIT
         sectionEnregistrement.style.display = 'block';
         sectionEspacePerso.style.display = 'none';
     }
@@ -1447,7 +1581,7 @@ window.checkMyProfile = () => {
 window.supprimerMonProfil = () => {
     if(confirm("Veux-tu vraiment supprimer ton profil de cet appareil ? (Il restera visible dans la liste publique)")) {
         localStorage.removeItem('monProfilFF');
-        location.reload(); // Recharge pour réafficher le formulaire vide
+        location.reload(); 
     }
 };
 
@@ -1477,11 +1611,10 @@ window.recupererAncienProfil = async () => {
 };
 
 let deferredPrompt;
+
 window.addEventListener('beforeinstallprompt', (e) => {
-    // 1. Empêcher l'affichage automatique
     e.preventDefault();
     
-    // 2. Vérifier si on est sur mobile ET si l'utilisateur n'a pas déjà refusé aujourd'hui
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     const isDismissed = localStorage.getItem('installDismissed');
 
@@ -1491,10 +1624,10 @@ window.addEventListener('beforeinstallprompt', (e) => {
     }
 });
 
-// Bouton "Plus tard" : on cache et on enregistre le refus
+
 document.getElementById('btn-close-install').addEventListener('click', () => {
     document.getElementById('install-banner').style.display = 'none';
-    // On se souvient du refus pour ne plus l'afficher pendant cette session
+ 
     localStorage.setItem('installDismissed', 'true');
 });
 
@@ -1512,8 +1645,6 @@ window.voirReglementComplet = () => {
     alert("--- RÈGLEMENT COUPE DES GUILDES CI ---\n\n1. Respect total envers les adversaires.\n2. Utilisation d'émoticônes autorisée mais pas d'insultes.\n3. Logiciels tiers ou triche = Ban définitif de la plateforme.\n4. Les joueurs doivent obligatoirement appartenir à la guilde inscrite.\n\nLe document PDF complet sera bientôt disponible sur le groupe WhatsApp.");
 };
 
-// À l'intérieur de ton <script type="module">
-
 window.validerJoueur = async () => {
     const btn = document.getElementById('btn-action-profil');
     const p = document.getElementById('p_pseudo').value.trim();
@@ -1524,78 +1655,185 @@ window.validerJoueur = async () => {
     const numero = document.getElementById('p_wa').value.trim();
     const w = indicatif + numero;
 
-    if(!p || !l || !numero) {
-        return alert("Veuillez remplir tous les champs !");
+    if(!p || !l || !numero) return alert("Remplis tous les champs !");
+
+    const localData = localStorage.getItem('monProfilFF');
+    const savedProfile = localData ? JSON.parse(localData) : null;
+
+    // --- CAS 1 : MODIFICATION (Envoi vers WhatsApp) ---
+    if (savedProfile) {
+        const message = encodeURIComponent(
+            `📢 *DEMANDE DE MODIFICATION PROFIL*\n\n` +
+            `Ancien Pseudo : ${savedProfile.pseudo}\n` +
+            `---------------------------\n` +
+            `NOUVELLES INFOS :\n` +
+            `🎮 Pseudo : ${p}\n` +
+            `⭐ Niveau : ${l}\n` +
+            `⚔️ Rôle : ${r}\n` +
+            `📱 WhatsApp : ${w}\n\n` +
+            `*Admin, merci de mettre à jour mes infos !* 🔥`
+        );
+        
+        window.open(`https://wa.me/2250161912755?text=${message}`, '_blank');
+        alert("Ta demande de modification a été envoyée à l'admin !");
+        return; // On arrête ici pour la modification
     }
-    
+
+    // --- CAS 2 : INSCRIPTION (Ancien modèle Supabase) ---
     btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Traitement...';
+    btn.innerHTML = "Inscription...";
 
     try {
-        const savedProfile = JSON.parse(localStorage.getItem('monProfilFF'));
-        let finalUrl = savedProfile ? savedProfile.photo_url : "";
+        if(!f) throw new Error("Photo requise pour l'inscription !");
 
-        // GESTION DE L'IMAGE (Correction du nom de fichier pour les caractères spéciaux)
-        if (f) {
-            const fileExtension = f.name.split('.').pop(); 
-            const fileName = `${Date.now()}_avatar.${fileExtension}`; 
+        // Upload de la photo
+        const fileExtension = f.name.split('.').pop();
+        const fileName = `${Date.now()}_${p}.${fileExtension}`;
+        const { error: upErr } = await supabase.storage.from('avatars_joueurs').upload(fileName, f);
+        if (upErr) throw upErr;
 
-            const { data: uploadData, error: uploadError } = await supabase.storage
-                .from('avatars_joueurs')
-                .upload(fileName, f);
+        const { data: urlData } = supabase.storage.from('avatars_joueurs').getPublicUrl(fileName);
+        const finalUrl = urlData.publicUrl;
 
-            if (uploadError) throw uploadError;
+        const profilData = { pseudo: p, role: r, level: l, whatsapp: w, photo_url: finalUrl };
 
-            const { data: urlData } = supabase.storage
-                .from('avatars_joueurs')
-                .getPublicUrl(fileName);
-            
-            finalUrl = urlData.publicUrl;
-        }
+        // Insertion dans Supabase
+        const { data, error } = await supabase.from('joueurs').insert([profilData]).select();
+        if (error) throw error;
 
-        const profilData = { 
-            pseudo: p, 
-            role: r, 
-            level: l, 
-            whatsapp: w, 
-            photo_url: finalUrl 
-        };
+        localStorage.setItem('monProfilFF', JSON.stringify(data[0]));
+        alert("🚀 Bienvenue ! Ton profil est créé.");
+        location.reload();
 
-        if (savedProfile && savedProfile.id) {
-            // Mise à jour
-            const { error } = await supabase
-                .from('joueurs')
-                .update(profilData)
-                .eq('id', savedProfile.id);
-            if(error) throw error;
-            alert("✅ Profil mis à jour !");
-        } else {
-            // Création
-            if(!f) { 
-                btn.disabled = false; 
-                btn.innerText="CRÉER MON PROFIL"; 
-                return alert("Photo du lobby requise !"); 
-            }
-            const { data, error } = await supabase
-                .from('joueurs')
-                .insert([profilData])
-                .select();
-            if(error) throw error;
-            profilData.id = data[0].id;
-            alert("🚀 Bienvenue dans l'élite !");
-        }
-
-        // Sauvegarde locale et actualisation
-        localStorage.setItem('monProfilFF', JSON.stringify(profilData));
-        location.reload(); 
-
-    } catch (err) { 
-        console.error("Erreur détaillée:", err);
-        alert("Erreur : " + err.message); 
+    } catch (err) {
+        alert("Erreur : " + err.message);
         btn.disabled = false;
-        btn.innerText = "RÉESSAYER";
+        btn.innerText = "Réessayer";
     }
 };
+
+window.deconnexion = () => {
+    if(confirm("Voulez-vous vous déconnecter ?")) {
+        localStorage.removeItem('monProfilFF');
+        location.reload();
+    }
+};
+
+window.connexionRapide = async () => {
+    const pseudo = prompt("Entre ton Pseudo FF (exactement comme lors de l'inscription) :");
+    const tel = prompt("Entre ton numéro WhatsApp (ex: 2250102030405) :");
+
+    if(!pseudo || !tel) return;
+
+    const { data, error } = await supabase
+        .from('joueurs')
+        .select('*')
+        .eq('pseudo', pseudo)
+        .eq('whatsapp', tel.trim())
+        .single();
+
+    if (data) {
+        localStorage.setItem('monProfilFF', JSON.stringify(data));
+        alert("🔓 Heureux de vous revoir " + data.pseudo + " !");
+        location.reload();
+    } else {
+        alert("❌ Aucun compte trouvé. Vérifiez le pseudo et le numéro (avec l'indicatif).");
+    }
+};
+
+// ... tes autres fonctions au-dessus (validerJoueur, checkMyProfile, etc.)
+
+// --- SECTION ÉCOUTEURS D'ÉVÉNEMENTS (À METTRE ICI) ---
+document.addEventListener('DOMContentLoaded', () => {
+    // On affiche la page d'accueil au chargement
+    showPage('page-accueil');
+    
+    // On active la surveillance du formulaire pour la preview
+    const fieldPseudo = document.getElementById('p_pseudo');
+    const fieldLvl = document.getElementById('p_lvl');
+    const fieldRole = document.getElementById('p_role');
+    const fieldPhoto = document.getElementById('p_photo');
+
+    if(fieldPseudo) fieldPseudo.addEventListener('input', updatePreview);
+    if(fieldLvl) fieldLvl.addEventListener('input', updatePreview);
+    if(fieldRole) fieldRole.addEventListener('change', updatePreview);
+    if(fieldPhoto) fieldPhoto.addEventListener('change', updatePreview);
+});
+
+// C'est la toute fin de ton fichier
+
+// Fonction pour mettre à jour l'annonce du tournoi
+window.majAnnonceTournoi = async () => {
+    const banner = document.getElementById('texte-tournoi');
+    
+    // METHODE SIMPLE : Tu modifies le texte directement ici entre les guillemets
+    // Plus tard, on pourra connecter ça à Supabase si tu veux le faire à distance
+    const message = "🔥 GRAND GvG : Samedi 12 Avril à 20h00 ! Inscrivez vos guildes.";
+    
+    if(banner) {
+        banner.innerText = message;
+    }
+};
+
+// Appelle la fonction au chargement
+document.addEventListener('DOMContentLoaded', () => {
+    majAnnonceTournoi();
+});
+
+window.chargerMAJ = () => {
+        const container = document.getElementById('liste-maj');
+        if (!container) return;
+
+        const updates = [
+            {
+                date: "06 Avril 2026",
+                version: "V2.0 - MODE PRO 🚀",
+                items: [
+                     { t: "🏆 CLASH OF GUILDS", d: "Lancement de la 1ère édition ! 4v4 strict, Full Mobile, Skill pur (Pas de skins d'armes)." },
+                { t: "⚔️ DÉFIS GvG OFFICIELS", d: "Générez vos fiches de match et défiez les chefs de guilde directement via le site." },
+                { t: "👤 ESPACE PERSO SÉCURISÉ", d: "Système de connexion/déconnexion. Ton profil est lié à ton Pseudo + WhatsApp." },
+                { t: "⚡ SYMBOLES SPÉCIAUX", d: "Support total des caractères spéciaux (〆, ⚡, 个, 亗...) dans les pseudos." },
+                { t: "🔍 RECRUTEMENT SMART", d: "Filtres par rôles (Sniper, Rusher, etc.) et bouton de partage direct vers WhatsApp." },
+                { t: "📲 INSTALLATION PWA", d: "Installe FF ESPORT-CI comme une application sur ton écran d'accueil." },
+                { t: "🎨 DESIGN NEON GLOW", d: "Nouvelle interface sombre avec effets lumineux gaming." }
+                ]
+            }
+        ];
+
+        container.innerHTML = updates.map(up => `
+            <div style="background:#111; border-left:4px solid var(--primary); padding:15px; margin-bottom:15px; border-radius:8px;">
+                <h4 style="color:var(--primary); margin:0;">${up.version} - ${up.date}</h4>
+                ${up.items.map(i => `<p style="margin:5px 0; color:#ccc;"><strong>${i.t} :</strong> ${i.d}</p>`).join('')}
+            </div>
+        `).join('');
+    };
+
+    // 2. FORCER LE CHARGEMENT DÈS QUE LA PAGE EST PRÊTE
+    document.addEventListener('DOMContentLoaded', () => {
+        window.chargerMAJ();
+    });
+
+    // 3. Assurer que le menu fonctionne toujours
+    window.showPage = (id) => {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        const target = document.getElementById(id);
+        if (target) {
+            target.classList.add('active');
+            window.scrollTo(0, 0);
+        }
+        document.getElementById('sidebar').classList.remove('active');
+    };
+// À mettre dans ta fonction showPage existante
+function showPage(id) {
+    // ... ton code pour masquer les pages ...
+    
+    if(id === 'page-maj') {
+        window.chargerMAJ(); // Déclenche le remplissage des cartes
+    }
+}
+
+
 </script>
+
 </body>
 </html>
