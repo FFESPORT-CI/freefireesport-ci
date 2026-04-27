@@ -1,10 +1,11 @@
 {
-  "name": "FF ESPORT-CI",
+  "name": "Free Fire Côte d'Ivoire",
   "short_name": "FFESCI",
-  "start_url": "index.html",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
-  "theme_color": "#ff6600",
+  "theme_color": "#ffbb00",
+  "description": "Communauté Free Fire Côte d'Ivoire",
   "icons": [
     {
       "src": "ffesci.png",

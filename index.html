@@ -1,2105 +1,769 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head> 
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FREE FIRE ESPORT-CI | Rejoingnez la team 225</title>
+    <title>FREE FIRE CÔTE D'IVOIRE</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" type="image/png" href="https://hxdpeqfcefhrfonegtok.supabase.co/storage/v1/object/public/assets/ffesci.png">
+    
+   <link rel="stylesheet" href="style.css">
+   <link rel="manifest" href="manifest.json">
 
-<meta property="og:title" content="FREE FIRE ESPORT-CI">
-<meta property="og:description" content="La plateforme officielle de recrutement et tournois Free Fire en Côte d'Ivoire.">
-<meta property="og:image" content="https://hxdpeqfcefhrfonegtok.supabase.co/storage/v1/object/public/assets/ffesci.png">
-<meta property="og:url" content="https://ffesport-ci.github.io/freefireesport-ci/">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#ffbb00">
 
-<link rel="manifest" href="manifest.json">
+<!-- iPhone / Apple PWA -->
+<link rel="apple-touch-icon" href="ffesci.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-title" content="FF ESPORT-CI">
-<link rel="apple-touch-icon" href="ffesci.png">
 
- <style>
+<meta name="description" content="Free Fire Côte d'Ivoire - Communauté, tournois et guildes FFESCI">
+<meta name="keywords" content="Free Fire CI, FFESCI, tournoi free fire, guilde CI">
 
-    .page {
-        display: none !important;
-        padding-top: 20px;
-    }
-
-    .page.active {
-        display: block !important;
-    }
-
-   :root { 
-        --primary: #ff6600; 
-        --secondary: #25D366; 
-        --dark: #0d0d0d; 
-        --card: #1a1a1a; 
-        --gold: #FFD700; 
-        --sidebar-width: 220px; 
-    }
-    
-    body { 
-    margin: 0; 
-    font-family: 'Segoe UI', sans-serif; 
-    background: var(--dark); 
-    color: white; 
-    overflow-x: hidden; 
-    scroll-behavior: smooth; 
-    display: flex; 
-    flex-direction: column;
-    min-height: 100vh; 
-}
-
-    nav { 
-        background: #111; 
-        padding: 20px 0; 
-        position: fixed; 
-        height: 100vh; 
-        width: var(--sidebar-width); 
-        top: 0; 
-        left: 0;
-        display: flex; 
-        flex-direction: column;
-        z-index: 1000; 
-        border-right: 2px solid var(--primary); 
-        box-sizing: border-box; 
-    }
-    
-    nav a { 
-        color: #bbb; 
-        text-decoration: none; 
-        font-size: 13px; 
-        font-weight: bold;
-        text-transform: uppercase;
-        cursor: pointer; 
-        transition: 0.3s; 
-        padding: 15px 20px;
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        border-bottom: 1px solid #1a1a1a;
-    }
-    
-    nav a i { 
-        width: 20px; 
-        text-align: center; 
-        font-size: 1.2em;
-        color: var(--primary);
-    }
-
-    nav a:hover, nav a.active { 
-        color: white; 
-        background: rgba(255,102,0,0.1); 
-        border-left: 4px solid var(--primary);
-    }
-
-    .page { 
-        flex: 1;
-        margin-left: var(--sidebar-width); 
-        display: none; 
-        padding: 40px 30px; 
-        min-height: 100vh; 
-        box-sizing: border-box; 
-        animation: fadeIn 0.4s ease; 
-    }
-    .page.active { display: block; }
-
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    #page-accueil { 
-        background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('hero_freefire_ci.jpeg') no-repeat center center; 
-        background-size: cover; display: none; flex-direction: column; justify-content: center; align-items: center; text-align: center;
-    }
-    #page-accueil.active { display: flex; }
-    #page-accueil h1 { font-size: clamp(1.5em, 5vw, 3em); margin: 0; font-weight: 900; color: var(--primary); text-transform: uppercase; }
-    .container { max-width: 900px; margin: 0 auto; }
-    .box { background: var(--card); padding: 25px; margin: 20px 0; border-radius: 15px; border: 1px solid #333; }
-    button { background: var(--primary); border: none; font-weight: 900; cursor: pointer; text-transform: uppercase; color: white; padding: 12px; border-radius: 8px; }
-    .btn-wa { background: var(--secondary) !important; }
-  footer { 
-    text-align: center; 
-    padding: 20px; 
-    color: #444; 
-    font-size: 11px; 
-    margin-left: var(--sidebar-width); 
-    background: #0a0a0a; 
-    border-top: 1px solid #1a1a1a;
-    width: auto; 
-}
-
-.menu-toggle {
-    display: none;
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    background: var(--primary);
-    color: white;
-    width: 45px;
-    height: 45px;
-    border-radius: 8px;
-   
-    justify-content: center;
-    align-items: center;
-    z-index: 2001; 
-    cursor: pointer;
-    box-shadow: 0 0 15px rgba(255,102,0,0.4);
-    font-size: 1.5em;
-    border: none; 
-}
-
-@media (max-width: 850px) {
-    .menu-toggle { 
-        display: flex; 
-    } 
-}
-
-@media (max-width: 850px) {
-    .menu-toggle { 
-        display: flex; /* Affiche le bouton burger */
-    } 
-
-    nav {
-        left: auto !important; /* Annule le positionnement à gauche */
-        right: -100%; /* Cache le menu à DROITE */
-        width: 280px !important;
-        height: 100vh !important;
-        transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        background: #111;
-        position: fixed;
-        padding-top: 80px;
-        border-left: 2px solid var(--primary); /* Bordure à gauche du menu */
-        border-right: none !important;
-    }
-
-    /* Cette classe sera ajoutée par ton JavaScript */
-    nav.open {
-        right: 0 !important; 
-        left: auto !important;
-    }
-
-    .page { 
-        margin-left: 0 !important; 
-        width: 100% !important; 
-        padding: 80px 15px 20px 15px !important;
-    }
-
-    footer {
-        margin-left: 0 !important;
-    }
-}
-  
-    .but-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-
-    .player-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-
-    #page-recrutement div[style*="grid"] {
-        grid-template-columns: 1fr !important;
-    }
-
-    h1 {
-        font-size: 1.5em;
-    }
-
-    h2 {
-        font-size: 1.5em;
-    }
-
-
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: var(--sidebar-width);
-    height: 100vh;
-    background: linear-gradient(180deg, #ff6600, #000);
-    opacity: 0.1;
-    z-index: 0;
-}
-
-.player-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.player-card {
-    background: var(--card);
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid #333;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-    position: relative;
-}
-
-.player-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--primary);
-}
-
-.player-banner {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-}
-
-.role-tag {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: var(--primary);
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 10px;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-input, select {
-    background: #222;
-    border: 1px solid #444;
-    color: white;
-    padding: 12px;
-    border-radius: 8px;
-    width: 100%;
-    box-sizing: border-box;
-    margin-bottom: 15px;
-    outline: none;
-    transition: 0.3s;
-}
-
-input:focus, select:focus {
-    border-color: var(--primary);
-    background: #2a2a2a;
-}
-
-.input-group {
-    position: relative;
-    margin-bottom: 15px;
-}
-
-.input-group i {
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--primary);
-}
-
-.input-group input {
-    padding-left: 45px;
-}
-
-.but-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    margin-top: 40px;
-}
-
-.but-card {
-    background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
-    border: 1px solid #333;
-    padding: 40px 20px;
-    border-radius: 20px;
-    text-align: center;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    position: relative;
-    overflow: hidden;
-}
-
-.but-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--primary);
-    box-shadow: 0 10px 30px rgba(255, 102, 0, 0.2);
-}
-
-.but-card i {
-    color: var(--primary);
-    margin-bottom: 20px;
-    filter: drop-shadow(0 0 10px rgba(255, 102, 0, 0.5));
-}
-
-.but-card h3 {
-    font-size: 1.4em;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.but-card p {
-    color: #888;
-    font-size: 0.95em;
-    line-height: 1.6;
-}
-
-.but-card::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 3px;
-    background: var(--primary);
-    transition: width 0.3s;
-}
-
-.but-card:hover::after {
-    width: 100%;
-}
-
-#listeGuildes {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-}
-
-button:disabled {
-    background: #555 !important;
-    cursor: not-allowed;
-    opacity: 0.8;
-}
-
-.fa-spin {
-    margin-right: 10px;
-}
-
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: var(--sidebar-width);
-    height: 100vh;
-    background: linear-gradient(180deg, #ff6600, #000);
-    opacity: 0.1;
-    z-index: 0;
-    pointer-events: none;
-}
-
-@media (max-width: 850px) {
-    body::before {
-        display: none;
-    }
-}
-body { font-family: 'Orbitron', sans-serif !important; }
-    .btn-wa, button { font-family: 'Orbitron', sans-serif !important; letter-spacing: 1px; }
-
-    .btn-rejoindre {
-        background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-        color: white !important;
-        text-decoration: none !important;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 8px;
-        font-weight: bold;
-        transition: 0.3s;
-        border: none;
-        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
-    }
-
-    .btn-rejoindre:hover {
-        transform: translateY(-2px);
-        filter: brightness(1.1);
-        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-    }
-
-    .btn-defier {
-        background: linear-gradient(135deg, var(--primary) 0%, #cc5200 100%);
-        color: white;
-        border: none;
-        border-radius: 8px;
-        font-weight: bold;
-        transition: 0.3s;
-        cursor: pointer;
-    }
-    
-    .btn-defier:hover {
-        transform: translateY(-2px);
-        filter: brightness(1.1);
-    }
-
-    .btn-recruter {
-        background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-        color: white !important;
-        text-decoration: none !important;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 8px;
-        font-weight: bold;
-        transition: 0.3s;
-        border: none;
-        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.2);
-        font-family: 'Orbitron', sans-serif;
-    }
-
-    .btn-recruter:hover {
-        transform: translateY(-2px);
-        filter: brightness(1.1);
-        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-    }
-
-    .role-tag-new {
-        background: var(--primary);
-        color: white;
-        padding: 4px 10px;
-        border-radius: 4px;
-        font-size: 10px;
-        font-weight: bold;
-        text-transform: uppercase;
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        z-index: 10;
-    }
-
-.box, .player-card {
-    transition: all 0.4s ease;
-    border: 1px solid #333 !important;
-}
-
-.box:hover, .player-card:hover {
-    border-color: var(--primary) !important;
-    box-shadow: 0 0 15px rgba(255, 102, 0, 0.3); 
-    transform: translateY(-5px);
-}
-
-
-.btn-share {
-    background: transparent;
-    border: 1px solid #444;
-    color: #888;
-    padding: 8px;
-    border-radius: 5px;
-    font-size: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.btn-share:hover {
-    border-color: var(--gold);
-    color: var(--gold);
-}
-.player-card, .box {
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    border: 1px solid #333 !important;
-}
-
-.player-card:hover, .box:hover {
-    border-color: var(--primary) !important;
-    box-shadow: 0 0 15px rgba(255, 102, 0, 0.4);
-    transform: translateY(-5px);
-}
-
-.btn-share {
-    background: rgba(255,255,255,0.05);
-    border: none;
-    color: #888;
-    cursor: pointer;
-    padding: 5px 10px;
-    border-radius: 5px;
-}
-
-.btn-share:hover {
-    color: var(--gold);
-}
-
-#install-banner {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #1a1a1a; 
-    border-top: 2px solid var(--primary);
-    padding: 15px;
-    z-index: 10000;
-    box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
-}
-
-.install-flex {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-.tournoi-exclusif {
-    max-width: 600px;
-    margin: 20px auto;
-    border: 1px solid var(--primary) !important;
-    background: linear-gradient(145deg, #111, #000);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.8), inset 0 0 20px rgba(255, 102, 0, 0.1);
-}
-
-.status-badge {
-    position: absolute;
-    top: 20px;
-    right: -35px;
-    background: var(--gold);
-    color: black;
-    padding: 5px 40px;
-    transform: rotate(45deg);
-    font-size: 10px;
-    font-weight: 900;
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
-}
-
-.tournoi-header h3 {
-    letter-spacing: 1px;
-    background: linear-gradient(to bottom, #fff, #888);
-    -webkit-backgroundclip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.rules-box {
-    background: rgba(0, 0, 0, 0.5);
-    padding: 15px;
-    border-radius: 8px;
-    border: 1px solid #222;
-}
-
-.rules-box p {
-    font-size: 12px;
-    margin-bottom: 10px;
-    color: #eee;
-}
-
-.rules-box i {
-    color: var(--primary);
-    margin-right: 8px;
-}
-
-
-.rules-scroll-box::-webkit-scrollbar {
-    width: 5px;
-}
-.rules-scroll-box::-webkit-scrollbar-track {
-    background: #111;
-}
-.rules-scroll-box::-webkit-scrollbar-thumb {
-    background: var(--primary);
-    border-radius: 10px;
-}
-.rules-scroll-box p {
-    margin-bottom: 12px;
-    border-left: 2px solid var(--primary);
-    padding-left: 10px;
-}
-
-#card-preview {
-    margin-top: 15px;
-    padding: 10px;
-    background: rgba(0,0,0,0.2);
-    border-radius: 10px;
-    text-align: center;
-}
-
-
-#annonce-flash {
-    animation: pulse-border 2s infinite;
-}
-
-@keyframes pulse-border {
-    0% { box-shadow: 0 4px 15px rgba(255, 75, 43, 0.3); }
-    50% { box-shadow: 0 4px 25px rgba(255, 75, 43, 0.6); }
-    100% { box-shadow: 0 4px 15px rgba(255, 75, 43, 0.3); }
-}
-
-.news-ticker {
-    width: 100%;
-    background: #ff4b2b; /* Orange/Rouge Esport */
-    color: white;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    white-space: nowrap;
-    position: relative;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-    font-family: 'Oswald', sans-serif;
-    border-bottom: 2px solid #fff;
-}
-
-.ticker-wrap {
-    display: inline-block;
-    padding-left: 100%;
-    animation: ticker 25s linear infinite;
-}
-
-.ticker-item {
-    display: inline-block;
-    padding: 0 50px;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-@keyframes ticker {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
-}
-
-/* Pause au survol pour que les gens puissent lire tranquillement */
-.news-ticker:hover .ticker-wrap {
-    animation-play-state: paused;
-}
-
-#liste-maj ul {
-    list-style-type: '👉 ';
-}
-
-#liste-maj li {
-    margin-bottom: 5px;
-}
-
-.box {
-    background: #1a1a1a;
-    padding: 15px;
-    border-radius: 8px;
-    transition: transform 0.2s;
-}
-
-.box:hover {
-    transform: scale(1.01);
-}
-
-/* Style général de la page MAJ */
-.maj-card {
-    background: #111;
-    border: 1px solid #333;
-    border-radius: 15px;
-    margin-bottom: 25px;
-    overflow: hidden;
-}
-
-.maj-card.major {
-    border: 1px solid var(--primary);
-    box-shadow: 0 0 15px rgba(255, 75, 43, 0.2);
-}
-
-.maj-header {
-    background: #1a1a1a;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #333;
-}
-
-.maj-badge {
-    background: var(--primary);
-    color: white;
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.maj-date {
-    color: #666;
-    font-size: 12px;
-}
-
-.maj-content {
-    padding: 15px;
-}
-
-.maj-item {
-    margin-bottom: 15px;
-    padding-left: 10px;
-    border-left: 2px solid #333;
-}
-
-.maj-item strong {
-    color: var(--gold);
-    display: block;
-    margin-bottom: 4px;
-    font-size: 14px;
-}
-
-.maj-item p {
-    margin: 0;
-    color: #bbb;
-    font-size: 13px;
-    line-height: 1.4;
-}
-
-.maj-card.major .maj-item {
-    border-left: 2px solid var(--primary);
-}
-
-:root {
-    --primary: #ff4b2b; /* Rouge Gaming */
-    --gold: #ffcc00;
-    --dark: #0a0a0a;
-}
-
-.text-glow {
-    color: var(--primary);
-    text-shadow: 0 0 10px rgba(255, 75, 43, 0.7);
-}
-
-.hero-gaming {
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('ton-fond-freefire.jpg');
-    background-size: cover;
-    padding: 60px 20px;
-    border-radius: 20px;
-    border: 1px solid #333;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.badge-live {
-    background: red;
-    display: inline-block;
-    padding: 5px 15px;
-    border-radius: 5px;
-    font-size: 12px;
-    font-weight: bold;
-    animation: blink 1s infinite;
-}
-
-@keyframes blink { 50% { opacity: 0.5; } }
-
-.btn-main {
-    background: var(--primary);
-    box-shadow: 0 0 20px rgba(255, 75, 43, 0.4);
-    border: none;
-    padding: 15px 30px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.btn-main:hover { transform: scale(1.05); }
-
-.quick-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.stat-item {
-    background: #111;
-    padding: 15px;
-    border-radius: 10px;
-    text-align: center;
-    border-bottom: 3px solid var(--primary);
-}
-
-.btn-main {
-    transition: all 0.3s ease; /* Transition fluide */
-    cursor: pointer;
-    border: none;
-    outline: none;
-}
-
-.btn-main:hover {
-    transform: scale(1.05); /* Légère augmentation */
-    box-shadow: 0 0 15px var(--primary); /* Effet néon */
-    filter: brightness(1.2); /* Éclaircissement */
-}
-
-/* Classe pour les éléments qui doivent apparaître */
-.reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease-out;
-}
-
-/* Classe ajoutée par le JS quand l'élément est visible */
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.card {
-    background: #111;
-    border: 1px solid #222;
-    transition: border 0.3s ease;
-}
-
-.card:hover {
-    border: 1px solid var(--primary);
-    box-shadow: inset 0 0 10px rgba(255,255,255,0.05);
-}
-
-@media (max-width: 768px) {
-    /* Le conteneur du menu */
-    .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%; /* Caché complètement à droite */
-        width: 250px; /* Largeur fixe du menu */
-        height: 100%;
-        background-color: #111; /* Couleur de ton menu */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        transition: right 0.4s ease-in-out; /* L'animation vient de la droite */
-        z-index: 999;
-    }
-
-    /* La classe qui déclenche l'ouverture */
-    .nav-links.active {
-        right: 0; /* Revient à sa position visible */
-    }
-}
-
-@media (max-width: 768px) {
-    .burger {
-        position: fixed;
-        right: 20px; /* Écart par rapport au bord droit */
-        top: 20px;
-        z-index: 1000;
-        cursor: pointer;
-    }
-}
-
-/* Le voile noir */
-.menu-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Noir transparent */
-    backdrop-filter: blur(3px); /* Flou optionnel */
-    z-index: 998; /* Juste en dessous du menu (999) */
-    display: none; /* Caché par défaut */
-}
-
-/* On l'affiche quand le menu est ouvert */
-.menu-overlay.active {
-    display: block;
-}
-
-html, body {
-    max-width: 100%;
-    overflow-x: hidden; /* Empêche le défilement horizontal */
-    position: relative;
-}
-
-img, table, div {
-    max-width: 100%;
-    box-sizing: border-box; /* Force le calcul propre des bordures */
-}
-
-</style>
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<meta property="og:title" content="Free Fire Côte d'Ivoire">
+<meta property="og:image" content="ffesci.png">
+<meta property="og:type" content="website">
+<meta property="og:description" content="Communauté Free Fire Côte d'Ivoire">
 </head>
+
+<link rel="icon" href="ffesci.png">
+
 <body>
 
-<div class="menu-toggle" onclick="window.toggleMenu()">
-    <i class="fas fa-bars"></i>
+    <div id="loadingScreen" class="loading-screen">
+    <div class="loader-box">
+        <div class="loader-ring"></div>
+        <p>CHARGEMENT...</p>
+    </div>
 </div>
 
-<nav id="sidebar">
-   <div style="text-align: center; padding: 20px 0; border-bottom: 1px solid #333; margin-bottom: 10px;">
-       <h3 style="color: var(--primary); font-size: 14px; letter-spacing: 1px; margin:0;">FF ESPORT CI</h3>
-   </div>
-   <a onclick="showPage('page-accueil')" id="nav-accueil"><i class="fas fa-home"></i> Accueil</a>
-   <a onclick="showPage('page-but')"><i class="fas fa-bullseye"></i> Notre Vision</a>
-   <a onclick="showPage('page-commu')"><i class="fas fa-users"></i> Communauté</a>
-   <a onclick="showPage('page-guildes')"><i class="fas fa-shield-alt"></i> Guildes</a>
-   <a onclick="showPage('page-liste-joueurs')"><i class="fas fa-search"></i> Recruter</a>
-   <a onclick="showPage('page-recrutement')"><i class="fas fa-user-plus"></i> Profil</a>
-   <a onclick="showPage('page-tournois')"><i class="fas fa-trophy"></i> Tournois</a>
-   <a onclick="showPage('page-sponsors')"><i class="fas fa-handshake"></i> Partenaires</a>
-   <a onclick="showPage('page-support')"><i class="fas fa-headset"></i> Support Technique</a>
-   <a onclick="showPage('page-maj')"><i class="fas fa-tools"></i> Mises à Jour</a>
-</nav>
+  <div id="introScreen">
+    <div class="intro-box">
+        <img src="ffesci.png" class="intro-logo" alt="FFESCI">
+        <h1 class="intro-text">BIENVENU SUR FF CÔTE D'IVOIRE 🇨🇮</h1>
+        <p class="boot-text">SYSTEM BOOTING... FREE FIRE CI ONLINE</p>
+    </div>
+</div>
+   
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-area" onclick="showPage('page-accueil')">
+                <img src="ffesci.png" alt="FFESCI">
+                <span class="logo-text">FREE FIRE <span class="text-primary"> CÔTE D'IVOIRE</span></span>
+            </div>
 
-<section id="page-accueil" class="page active">
-<div class="news-ticker">
+            <nav class="desktop-nav">
+                <div class="nav-item">
+                    <a onclick="showPage('page-accueil')" id="nav-accueil"><i class="fas fa-home"></i> Accueil</a>
+                </div>
+                
+                <div class="nav-item dropdown">
+                    <a>E-Sport <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a onclick="showPage('page-tournoi')"><i class="fas fa-trophy"></i> Tournois</a>
+                        <a onclick="showPage('page-but')"><i class="fas fa-bullseye"></i> Notre Vision</a>
+                        <a onclick="showPage('page-maj')"><i class="fas fa-tools"></i> Mises à Jour</a>
+                    </div>
+                </div>
 
-    <div class="ticker-wrap">
+                <div class="nav-item dropdown">
+                    <a>Communauté <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a onclick="showPage('page-commu')"><i class="fas fa-users"></i> Communauté</a>
+                        <a onclick="showPage('page-reglement')"><i class="fas fa-gavel"></i> Règlement</a>
+                        <a onclick="showPage('page-guildes')"><i class="fas fa-shield-alt"></i> Guildes</a>
+                        <a onclick="showPage('page-liste-joueurs')"><i class="fas fa-search"></i> Recruter</a>
+                        <a onclick="showPage('page-profil')"><i class="fas fa-user-plus"></i> Profil</a>
+                        <a onclick="showPage('page-actu')"><i class="fas fa-newspaper"></i> Actualités</a>
+                    </div>
+                </div>
 
-        <div class="ticker-item">
-
-            🏆 **CLASH OF GUILDS :** Les inscriptions ouvriront bientôt ! Plus d'infos dans l'onglet **TOURNOI**. 🔥
-
+                <div class="nav-item"><a onclick="showPage('page-sponsors')">Partenaires</a></div>
+                <div class="nav-item"><a onclick="showPage('page-support')">Support</a></div>
+            </nav>
         </div>
 
-        <div class="ticker-item">
+</div>
 
-            🏆 **CLASH OF GUILDS :** Les inscriptions ouvriront bientôt ! Plus d'infos dans l'onglet **TOURNOI**. 🔥
+<div id="mobileMenu" class="mobile-menu">
 
+    <div class="mobile-header">
+        <img src="ffesci.png" class="mobile-logo">
+        <span>FF CÔTE D’IVOIRE</span>
+        <i class="fas fa-times" onclick="toggleMenu()"></i>
+    </div>
+
+    <!-- ACCUEIL -->
+    <div class="mobile-section">
+        <div class="mobile-title" onclick="toggleSubMenu(this)">
+            <i class="fas fa-home"></i> Accueil
         </div>
+        <div class="mobile-sub">
+            <a onclick="go('page-accueil')">🏠 Home</a>
+        </div>
+    </div>
 
+    <!-- E-SPORT -->
+    <div class="mobile-section">
+        <div class="mobile-title" onclick="toggleSubMenu(this)">
+            <i class="fas fa-gamepad"></i> E-Sport
+        </div>
+        <div class="mobile-sub">
+            <a onclick="go('page-tournoi')">🏆 Tournois</a>
+            <a onclick="go('page-but')">🎯 Vision</a>
+            <a onclick="go('page-maj')">🛠️ Mises à jour</a>
+        </div>
+    </div>
+
+    <!-- COMMUNAUTE -->
+    <div class="mobile-section">
+        <div class="mobile-title" onclick="toggleSubMenu(this)">
+            <i class="fas fa-users"></i> Communauté
+        </div>
+        <div class="mobile-sub">
+            <a onclick="go('page-commu')">💬 Communauté</a>
+            <a onclick="go('page-reglement')">⚖️ Règlement</a>
+            <a onclick="go('page-guildes')">🛡️ Guildes</a>
+            <a onclick="go('page-liste-joueurs')">🔎 Recruter</a>
+            <a onclick="go('page-profil')">👤 Profil</a>
+            <a onclick="go('page-actu')">📰 Actualités</a>
+        </div>
+    </div>
+
+    <!-- AUTRES -->
+    <div class="mobile-section">
+        <div class="mobile-title" onclick="go('page-sponsors')">
+            <i class="fas fa-handshake"></i> Partenaires
+        </div>
+    </div>
+
+    <div class="mobile-section">
+        <div class="mobile-title" onclick="go('page-support')">
+            <i class="fas fa-headset"></i> Support
+        </div>
     </div>
 
 </div>
+
+    </header>
+
+ <main id="main-content">
+    
+<section id="page-accueil" class="page active">
     <div class="hero-gaming">
+
+        <div class="hero-overlay"></div>
+
+        <!-- 🔥 IMAGE AJOUTÉE -->
+        <div class="hero-image">
+            <img src="hero_freefire_ci.jpeg" alt="FFESCI">
+        </div>
+
         <div class="hero-content">
-            <div class="badge-live">LIVE CÔTE D'IVOIRE 🇨🇮</div>
-            <h1>FREE FIRE <span class="text-glow">ESPORT-CI</span></h1>
-            <p>La plateforme n°1 des soldats ivoiriens. Entrez dans la légende.</p>
-            
+            <div class="badge-live animate-pulse">LIVE CÔTE D'IVOIRE 🇨🇮</div>
+            <h1 class="font-orbitron">FREE FIRE <span class="text-glow"> CÔTE D'IVOIRE</span></h1>
+            <p class="hero-lead">La plateforme n°1 des soldats ivoiriens. Entrez dans la légende.</p>
+
             <div class="hero-btns">
-                <button onclick="showPage('page-tournois')" class="btn-main">🏆 REJOINDRE LE TOURNOI</button>
-                <button onclick="showPage('page-commu')" class="btn-sub">💬 LA COMMUNAUTÉ</button>
+                <button onclick="showPage('page-but')" class="btn-main">
+                    <i class="fas fa-eye"></i> NOTRE VISION
+                </button>
+                <button onclick="showPage('page-commu')" class="btn-sub">
+                    <i class="fas fa-comments"></i> LA COMMUNAUTÉ
+                </button>
             </div>
         </div>
-    </div>
 
-    <div class="quick-stats">
-        <div class="stat-item"><strong>50+</strong><span>Joueurs</span></div>
-        <div class="stat-item"><strong>20+</strong><span>Guildes</span></div>
-        <div class="stat-item"><strong>15M</strong><span>Cashprize</span></div>
+        <div class="scroll-indicator">
+            <span>EXPLORER</span>
+            <div class="mouse"></div>
+        </div>
+
     </div>
 </section>
 
 <section id="page-but" class="page">
+        <div class="vision-bg-overlay"></div> 
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="section-header-gaming">
+                <h2 class="text-glow-orange">NOTRE VISION</h2>
+                <div class="header-bar"></div>
+                <p>Nous bâtissons l'avenir du gaming en Côte d'Ivoire.</p>
+            </div>
+            <div class="but-grid">
+                <div class="but-card">
+                    <div class="card-glow-effect"></div>
+                    <i class="fas fa-trophy"></i>
+                    <h3>Compétition</h3>
+                    <p>Organisation de tournois réguliers avec des cashprizes garantis pour récompenser le talent ivoirien.</p>
+                </div>
+                <div class="but-card">
+                    <div class="card-glow-effect"></div>
+                    <i class="fas fa-users-cog"></i>
+                    <h3>Structure</h3>
+                    <p>Accompagner les guildes pour passer du stade d'amateur à une organisation e-sport professionnelle.</p>
+                </div>
+                <div class="but-card">
+                    <div class="card-glow-effect"></div>
+                    <i class="fas fa-broadcast-tower"></i>
+                    <h3>Visibilité</h3>
+                    <p>Diffusion des matchs et mise en avant des meilleurs joueurs sur nos réseaux pour attirer les recruteurs.</p>
+                </div>
+            </div>
+        </div>
+</section>
+
+<section id="page-commu" class="page">
     <div class="container">
-        <div style="text-align: center; margin-bottom: 50px;">
-            <h2 style="color:var(--primary); font-size: 3em; margin-bottom: 10px;">NOTRE VISION</h2>
-            <div style="width: 80px; height: 4px; background: var(--primary); margin: 0 auto;"></div>
-            <p style="margin-top: 20px; color: #bbb;">Nous bâtissons l'avenir du gaming en Côte d'Ivoire.</p>
+        <div class="section-header-gaming">
+            <h2 class="text-glow-green">REJOINS LA COMMUNAUTÉ</h2>
+            <div class="header-bar green-bar"></div>
+            <p>Connecte-toi avec l'élite des soldats ivoiriens.</p>
+        </div>
+
+        <div class="social-hero-card">
+            <div class="wa-glow"></div>
+            <div class="social-content">
+                <div class="wa-icon-container animate-bounce-slow">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <h3 class="font-orbitron">GROUPE OFFICIEL WHATSAPP</h3>
+                <p>
+                    Ne manque aucune info sur les tournois, reçois les codes de salles en exclusivité 
+                    et discute avec les meilleurs joueurs de CI.
+                </p>
+                <button onclick="window.open('https://chat.whatsapp.com/KUm4uoqUBgD78Bh3onKOCi')" class="btn-whatsapp-premium">
+                    <span>REJOINDRE LE GROUPE</span>
+                    <i class="fas fa-external-link-alt"></i>
+                </button>
+            </div>
         </div>
 
         <div class="but-grid">
-            <div class="but-card">
-                <i class="fas fa-trophy fa-4x"></i>
-                <h3>Compétition</h3>
-                <p>Organisation de tournois réguliers avec des cashprizes garantis pour récompenser le talent ivoirien.</p>
+            <div class="but-card commu-card">
+                <i class="fas fa-comments"></i>
+                <h4 class="font-orbitron">Discussions</h4>
+                <p>Partage tes meilleurs clips, tes configurations et tes astuces avec la communauté.</p>
             </div>
             
-            <div class="but-card">
-                <i class="fas fa-users-cog fa-4x"></i>
-                <h3>Structure</h3>
-                <p>Accompagner les guildes pour passer du stade d'amateur à une organisation e-sport professionnelle.</p>
+            <div class="but-card commu-card">
+                <i class="fas fa-handshake"></i>
+                <h4 class="font-orbitron">Recrutement Express</h4>
+                <p>Trouve une guilde ou complète ton équipe pour les tournois en quelques minutes.</p>
             </div>
-            
-            <div class="but-card">
-                <i class="fas fa-broadcast-tower fa-4x"></i>
-                <h3>Visibilité</h3>
-                <p>Diffusion des matchs et mise en avant des meilleurs joueurs sur nos réseaux pour attirer les recruteurs.</p>
+        </div>
+    </div>
+</section>
+
+<section id="page-tournoi" class="page">
+    <div class="container">
+        <div class="box" style="padding: 0; overflow: hidden; border: 2px solid var(--primary); background: #000; border-radius:15px; margin-bottom:20px;">
+            <img src="elitecup.png" alt="Elite Cup S1" style="width: 100%; height: auto; display: block;">
+            <div style="background: var(--primary); color: #000; text-align: center; padding: 10px; font-weight: bold; font-family: 'Orbitron';">
+                48 PLACES DISPONIBLES
             </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+            <div class="box">
+                <h3 class="font-orbitron"><i class="fas fa-trophy text-primary"></i> RÉCOMPENSES</h3>
+                <ul style="list-style: none; padding: 0; margin-top: 15px; line-height: 2;">
+                    <li>🥇 1er : 21 500 FCFA</li>
+                    <li>🥈 2e : 9 500 FCFA</li>
+                    <li>🥉 3e : 5 500 FCFA</li>
+                </ul>
+            </div>
+
+           <div class="box" style="border:1px solid var(--primary); padding:15px; border-radius:10px; background:#111;">
+
+    <h3>⚔️ INSCRIPTION TOURNOI</h3>
+
+    <p style="color:#ccc;">
+        💰 Frais de participation : <strong>1000 FCFA</strong><br>
+        📌 Paiement obligatoire avant validation<br>
+        ⚠️ Aucun remboursement<br>
+        🏆 Places limitées
+    </p>
+
+    <hr style="margin:10px 0; border-color:#333;">
+
+    <input id="tournoi_pseudo" placeholder="Ton pseudo Free Fire" style="margin-bottom:10px;">
+    <input id="tournoi_uid" placeholder="Ton UID Free Fire" style="margin-bottom:10px;">
+
+    <button onclick="inscriptionWhatsApp()" style="
+        width:100%;
+        background:#25D366;
+        color:#fff;
+        padding:12px;
+        border:none;
+        border-radius:8px;
+        font-weight:bold;
+        cursor:pointer;">
+        📲 S’INSCRIRE VIA WHATSAPP
+    </button>
+
+</div>
+
         </div>
     </div>
 </section>
 
 <section id="page-guildes" class="page">
     <div class="container">
-        <h2 style="text-align:center;">RÉPERTOIRE DES GUILDES</h2>
-        <div class="box" style="margin-bottom: 30px;">
-            <h3>ENREGISTRER MA GUILDE</h3>
-            <div class="input-group">
-                <i class="fas fa-shield-alt"></i>
-                <input type="text" id="g_nom" placeholder="Nom de la Guilde">
-            </div>
-            <div class="input-group">
-                <i class="fas fa-user-tie"></i>
-                <input type="text" id="g_chef" placeholder="Nom du Chef">
-            </div>
-            <div style="display: flex; gap: 5px; margin-bottom: 15px;">
-               <select id="g_pays" style="flex: 0.4; padding: 10px; border-radius: 8px; background: #222; color: white; border: 1px solid #333;">
-    <option value="225">🇨🇮 +225</option>
-    <option value="221">🇸🇳 +221</option>
-    <option value="223">🇲🇱 +223</option>
-    <option value="226">🇧🇫 +226</option>
-    <option value="224">🇬🇳 +224</option>
-    <option value="237">🇨🇲 +237</option>
-    <option value="241">🇬🇦 +241</option>
-    <option value="229">🇧🇯 +229</option>
-    <option value="228">🇹🇬 +228</option>
-    <option value="242">🇨🇬 +242</option>
-    <option value="243">🇨🇩 +243</option>
-    <option value="212">🇲🇦 +212</option>
-    <option value="216">🇹🇳 +216</option>
-    <option value="213">🇩🇿 +213</option>
-    <option value="227">🇳🇪 +227</option>
-    <option value="235">🇹🇩 +235</option>
-    <option value="261">🇲🇬 +261</option>
-    <option value="33">🇫🇷 +33</option>
-    <option value="1">🇺🇸 +1</option>
-</select>
-                <input type="number" id="g_wa" placeholder="WhatsApp Chef" style="flex: 1; margin-bottom: 0;">
-            </div>
-            <button onclick="validerGuilde()" style="width:100%;">CERTIFIER MA GUILDE</button>
+        <div class="section-header-gaming">
+            <h2 class="text-glow-gold"><i class="fas fa-trophy"></i> RÉPERTOIRE DES GUILDES</h2>
+            <div class="header-bar gold-bar"></div>
+            <p>L'annuaire officiel des forces spéciales de Côte d'Ivoire.</p>
         </div>
 
-        <div id="listeGuildes"></div>
-    </div>
-</section>
-
-<section id="page-recrutement" class="page">
-    <div class="container">
-        <div id="section-enregistrement">
-            <h2 id="titre-formulaire" style="text-align:center;">REJOINDRE L'ÉLITE</h2>
-            <div class="box">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-                    <input type="text" id="p_pseudo" placeholder="Pseudo exact">
-                    
-                    <select id="p_role">
-                        <option value="Fusilier">🔫 Fusilier</option>
-                        <option value="Rusher">⚔️ Rusher</option>
-                        <option value="Sniper">🎯 Sniper</option>
-                        <option value="Support">🛡️ Support</option>
-                        <option value="Bombardier">💣 Bombardier</option>
-                    </select>
-
-                    <input type="number" id="p_lvl" placeholder="Niveau (Ex: 70)">
-
-                    <div style="display: flex; gap: 5px;">
-                        <select id="p_indicatif" style="flex: 0.4; background: #222; color: white; border: 1px solid #333; border-radius: 8px; padding: 10px;">
-                               <option value="225">🇨🇮 +225</option>
-    <option value="221">🇸🇳 +221</option>
-    <option value="223">🇲🇱 +223</option>
-    <option value="226">🇧🇫 +226</option>
-    <option value="224">🇬🇳 +224</option>
-    <option value="237">🇨🇲 +237</option>
-    <option value="241">🇬🇦 +241</option>
-    <option value="229">🇧🇯 +229</option>
-    <option value="228">🇹🇬 +228</option>
-    <option value="242">🇨🇬 +242</option>
-    <option value="243">🇨🇩 +243</option>
-    <option value="212">🇲🇦 +212</option>
-    <option value="216">🇹🇳 +216</option>
-    <option value="213">🇩🇿 +213</option>
-    <option value="227">🇳🇪 +227</option>
-    <option value="235">🇹🇩 +235</option>
-    <option value="261">🇲🇬 +261</option>
-    <option value="33">🇫🇷 +33</option>
-    <option value="1">🇺🇸 +1</option>
-                        </select>
-                        <input type="number" id="p_wa" placeholder="WhatsApp" style="flex: 1;">
-                    </div>
-                </div>
-
-                <label style="margin-top:10px; display:block; font-size: 14px; color: #bbb;">Photo du compte (Screenshot Lobby)</label>
-                <input type="file" id="p_photo" accept="image/*">
-                
-                <button id="btn-action-profil" onclick="validerJoueur()" style="width:100%; margin-top:15px">CRÉER MON PROFIL</button>
-                
-                <p id="lien-connexion" style="text-align:center; font-size:14px; margin-top:20px; color:#888;">
-                    Déjà inscrit ? <a href="javascript:void(0)" onclick="connexionRapide()" style="color:var(--primary); font-weight:bold;">Se connecter ici</a>
-                </p>
+        <div class="registration-card">
+            <div class="card-header-simple">
+                <i class="fas fa-plus-circle"></i>
+                <h3 class="font-orbitron">ENREGISTRER MA GUILDE</h3>
             </div>
-        </div>
-
-        <div id="mon-espace-perso" style="display:none;">
-            </div>
-    </div>
-</section>
-
-<section id="page-tournois" class="page">
-    <div class="container">
-        <h2 style="text-align:center; color:var(--primary); letter-spacing: 2px;">CLASH OF GUILDS</h2>
-        
-        <div class="box tournoi-exclusif">
-            <div class="status-badge">1ST EDITION</div>
             
-            <div class="tournoi-header">
-                <i class="fas fa-trophy" style="font-size: 50px; color: var(--gold); margin-bottom: 15px; filter: drop-shadow(0 0 10px rgba(255,215,0,0.5));"></i>
-                <h3 style="font-size: 28px; text-transform: uppercase;">Clash of Guilds</h3>
-                <p style="color:var(--primary); font-style: italic;">"Le combat pour la suprématie nationale"</p>
-            </div>
-
-            <div class="tournoi-details-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; text-align: center;">
-                <div style="background: #222; padding: 10px; border-radius: 5px;">
-                    <span style="display:block; font-size: 10px; color: #888;">CAPACITÉS</span>
-                    <strong style="color: #00ff00;">ACTIVÉES ✅</strong>
+            <div class="form-grid">
+                <div class="input-group-premium">
+                    <i class="fas fa-shield-alt"></i>
+                    <input type="text" id="g_nom" placeholder="Nom de la Guilde">
                 </div>
-                <div style="background: #222; padding: 10px; border-radius: 5px;">
-                    <span style="display:block; font-size: 10px; color: #888;">SKINS ARMES</span>
-                    <strong style="color: #ff0000;">DÉSACTIVÉS ❌</strong>
+                <div class="input-group-premium">
+                    <i class="fas fa-user-tie"></i>
+                    <input type="text" id="g_chef" placeholder="Nom du Chef (IGN)">
                 </div>
             </div>
 
-            <div class="tournoi-infos" style="margin-top: 25px;">
-                <h4 style="border-bottom: 1px solid var(--primary); padding-bottom: 5px;">
-                    <i class="fas fa-scroll"></i> RÈGLEMENT DU TOURNOI
-                </h4>
-                
-                <div class="rules-scroll-box" style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; font-size: 13px; line-height: 1.6; max-height: 300px; overflow-y: auto; border: 1px solid #333;">
-                    <p><strong>1. ÉLIGIBILITÉ :</strong> Guilde en région CI, Chef Ivoirien. Une grande partie de l'équipe doit résider en Côte d'Ivoire.</p>
-                    <p><strong>2. CLASSEMENT :</strong> Seules les guildes du <strong>Top 100 Guerre des Guildes</strong> sont acceptées.</p>
-                    <p><strong>3. PARTICIPATION :</strong> Des frais d'inscription (participation) seront fixés et obligatoires pour valider l'entrée.</p>
-                    <p><strong>4. DISCIPLINE :</strong> Émotes strictement <strong>INTERDITES</strong> pendant tout le match. Validation du score obligatoire avant de sortir.</p>
-                    <p><strong>5. ANTI-TRICHE :</strong> 100% Mobile (Pas d'émulateur). <strong>Comptes Proxy/Moddés INTERDITS</strong>. Ban définitif en cas de fraude.</p>
+            <div class="form-row-wa">
+                <select id="g_pays" class="select-premium">
+              <option value="225">🇨🇮 +225</option>
+    <option value="221">🇸🇳 +221</option>
+    <option value="223">🇲🇱 +223</option>
+    <option value="226">🇧🇫 +226</option>
+    <option value="224">🇬🇳 +224</option>
+    <option value="237">🇨🇲 +237</option>
+    <option value="241">🇬🇦 +241</option>
+    <option value="229">🇧🇯 +229</option>
+    <option value="228">🇹🇬 +228</option>
+    <option value="242">🇨🇬 +242</option>
+    <option value="243">🇨🇩 +243</option>
+    <option value="212">🇲🇦 +212</option>
+    <option value="216">🇹🇳 +216</option>
+    <option value="213">🇩🇿 +213</option>
+    <option value="227">🇳🇪 +227</option>
+    <option value="235">🇹🇩 +235</option>
+    <option value="261">🇲🇬 +261</option>
+    <option value="33">🇫🇷 +33</option>
+    <option value="1">🇺🇸 +1</option>
+                </select>
+                <div class="input-group-premium wa-input">
+                    <i class="fab fa-whatsapp"></i>
+                    <input type="number" id="g_wa" placeholder="Numéro WhatsApp">
                 </div>
             </div>
 
-            <div style="margin-top: 25px;">
-                <button disabled style="width:100%; padding: 18px; background: linear-gradient(45deg, #111, #222); color: #666; border: 1px dashed var(--primary); border-radius: 8px; font-weight: bold; cursor: not-allowed; display: flex; align-items: center; justify-content: center; gap: 10px;">
-                    <i class="fas fa-lock"></i> 
-                    <span>INSCRIPTIONS BIENTÔT OUVERTES</span>
-                </button>
-                <p style="text-align: center; color: var(--gold); font-size: 11px; margin-top: 10px; font-weight: bold;">
-                    REJOIGNEZ LE GROUPE WHATSAPP POUR L'ANNONCE DU TARIF
-                </p>
-            </div>
+            <button onclick="validerGuilde()" class="btn-certify">
+                <i class="fas fa-certificate"></i> CERTIFIER MA GUILDE
+            </button>
         </div>
+
+        <div class="list-section-header">
+            <h3 class="font-orbitron">GUILDES CERTIFIÉES</h3>
+            <div class="small-bar"></div>
+        </div>
+        
+        <div id="listeGuildes" class="guildes-display-grid">
+            </div>
+    </div>
+</section>
+
+<section id="page-liste-joueurs" class="page">
+    <div class="container" style="text-align:center; padding:60px;">
+        <h2>🚧 MAINTENANCE</h2>
+        <p>Le système de recrutement est temporairement indisponible.</p>
+    </div>
+</section>
+
+<section id="page-actu" class="page">
+    <div class="container">
+        <div class="section-header-gaming">
+            <h2 class="text-glow">COMMUNIQUÉS OFFICIELS</h2>
+            <div class="header-bar"></div>
+            <p>Les dernières nouvelles du front ivoirien.</p>
+        </div>
+
+        <div id="news-container" class="news-grid"></div>
     </div>
 </section>
 
 <section id="page-sponsors" class="page">
     <div class="container">
-        <div class="sponsor-hero" style="background:#111; padding:40px; border-radius:20px; text-align:center; border:1px solid var(--gold);">
-            <h2 style="color:var(--gold);">Salut ! Vous voulez toucher la jeunesse connectée en Côte d'Ivoire ? FREE FIRE E-SPORT CI est le portail de référence pour les compétiteurs ivoiriens (Guildes, Pros, Tournois). Nous vous proposons de devenir sponsor officiel de nos prochains événements pour booster votre visibilité auprès de milliers de joueurs passionnés. On en discute sur WhatsApp ? Merci !"</h2>
-            <button onclick="window.open('https://wa.me/2250161912755')" style="background:var(--gold); color:black; width:200px;">CONTACTER</button>
-        </div>
-    </div>
-</section>
-
-<section id="page-liste-joueurs" class="page">
-    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
-        <h2 style="margin: 0;">TALENTS DISPONIBLES</h2>
-        <span id="compteur-joueurs" style="background: var(--primary); color: white; padding: 2px 10px; border-radius: 20px; font-size: 0.8em; font-weight: bold; display: none;">0</span>
-    </div>
-
-    <div style="display: flex; gap: 10px; flex-wrap: wrap; background: var(--card); padding: 15px; border-radius: 12px; border: 1px solid #333; margin-bottom: 20px;">
-        <div style="flex: 1; min-width: 150px;">
-            <label style="font-size: 11px; color: var(--primary); font-weight: bold; text-transform: uppercase;">Filtrer par Rôle</label>
-            <select id="filter-role" onchange="appliquerFiltres()" style="margin-bottom: 0; margin-top: 5px;">
-                <option value="Tous">Tous les rôles</option>
-                <option value="Rusher">Rusher</option>
-                <option value="Sniper">Sniper</option>
-                <option value="Support">Support</option>
-                <option value="Bombardier">Bombardier</option>
-                <option value="Fusilier">Fusilier</option>
-            </select>
-        </div>
-        <div style="flex: 1; min-width: 150px;">
-            <label style="font-size: 11px; color: var(--primary); font-weight: bold; text-transform: uppercase;">Niveau Minimum</label>
-            <input type="number" id="filter-level" oninput="appliquerFiltres()" placeholder="Ex: 60" style="margin-bottom: 0; margin-top: 5px;">
-        </div>
-    </div>
-
-    <div id="loader-joueurs" style="text-align: center; padding: 40px; display: none;">
-        <i class="fas fa-spinner fa-spin" style="font-size: 2.5em; color: var(--primary);"></i>
-        <p style="margin-top: 15px; color: #aaa; font-size: 0.9em;">Analyse de la base de données...</p>
-    </div>
-
-    <div id="listeJoueursPublique" class="player-grid"></div>
-</section>
-
-<section id="page-commu" class="page">
-    <div class="container">
-        <h2 style="text-align:center; color: var(--secondary); font-size: 2.5em;">REJOINS LA COMMUNAUTÉ</h2>
-        <div class="box" style="text-align: center; border-color: var(--secondary);">
-            <i class="fab fa-whatsapp fa-5x" style="color: var(--secondary); margin-bottom: 20px;"></i>
-            <h3>GROUPE OFFICIEL WHATSAPP</h3>
-            <p style="color: #bbb; line-height: 1.6;">
-                Ne manque aucune info sur les tournois et discute avec les meilleurs joueurs de CI.
-            </p>
-            <br>
-            <button onclick="window.open('https://chat.whatsapp.com/KUm4uoqUBgD78Bh3onKOCi')" class="btn-wa" style="width: auto; padding: 15px 40px; border-radius: 50px; font-size: 1.2em;">
-                REJOINDRE LE GROUPE
-            </button>
+        <div class="section-header-gaming">
+            <h2 class="text-glow-gold">DEVENEZ PARTENAIRE</h2>
+            <div class="header-bar gold-bar"></div>
+            <p>Rejoignez l'écosystème E-sport n°1 en Côte d'Ivoire et connectez votre marque à une communauté ultra-engagée.</p>
         </div>
 
-        <div class="but-grid">
-            <div class="but-card">
-                <i class="fas fa-comments fa-2x" style="color: var(--secondary);"></i>
-                <h4>Discussions</h4>
-                <p>Partage tes meilleurs clips et astuces.</p>
-            </div>
-            <div class="but-card">
-                <i class="fas fa-handshake fa-2x" style="color: var(--secondary);"></i>
-                <h4>Recrutement Express</h4>
-                <p>Trouve une guilde en 2 minutes.</p>
-            </div>
-        </div>
-    </div> </section>
-
-
-<section id="page-maj" class="page">
-    <div class="container" style="padding: 20px;">
-        <h2 style="text-align: center; color: var(--primary);">🛠️ JOURNAL DES MISES À JOUR</h2>
-        <p style="text-align: center; color: #888; font-size: 14px;">Suivez l'évolution de la plateforme FF ESPORT-CI</p>
-
-        <div id="liste-maj" style="margin-top: 20px;">
-            </div>
-    </div>
-</section>
-
-<div id="page-support" class="page">
-    <div class="container" style="text-align: center;">
-        <div class="box" style="border-top: 4px solid var(--primary);">
-            <i class="fas fa-headset" style="font-size: 3em; color: var(--primary); margin-bottom: 20px;"></i>
-            <h2 style="color: var(--primary);">BESOIN D'AIDE ?</h2>
-            <p style="color: #bbb; line-height: 1.6;">
-                Un problème avec ton inscription ? Ta guilde n'apparaît pas ? <br>
-                Le support technique FF ESPORT-CI est là pour toi.
-            </p>
-            
-            <div style="margin: 30px 0; padding: 25px; background: rgba(255,102,0,0.05); border-radius: 15px; border: 1px dashed var(--primary);">
-                <h3 style="margin-top: 0; color: white;">Assistance Directe</h3>
-                <p style="font-size: 0.9em; color: #888; margin-bottom: 20px;">Clique sur le bouton ci-dessous pour discuter avec un technicien.</p>
-                
-                <span id="compteur-joueurs">0</span> <div id="loader-joueurs">...</div>   <div id="listeGuildes"></div>        <a id="link-support" href="https://wa.me/2250718767611?text=..." target="_blank">
-    <button class="btn-wa">CONTACTER LE SUPPORT</button>
-</a>
+        <div class="grid-layout-premium">
+            <div class="box sponsor-card-new">
+                <div class="icon-circle"><i class="fas fa-trophy"></i></div>
+                <h3 class="font-orbitron">Sponsor Tournoi</h3>
+                <p>Votre logo sur l'affiche officielle, le stream en direct et les trophées du Clash of Guilds.</p>
+                <ul class="benefit-list">
+                    <li><i class="fas fa-check-circle"></i> Visibilité Stream</li>
+                    <li><i class="fas fa-check-circle"></i> Logo sur Trophée</li>
+                    <li><i class="fas fa-check-circle"></i> Interview Sponsor</li>
+                </ul>
             </div>
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 30px;">
-                <div style="background: #111; padding: 15px; border-radius: 10px; border: 1px solid #222;">
-                    <i class="fas fa-bolt" style="color: var(--gold); font-size: 1.5em;"></i>
-                    <p style="font-size: 0.8em; margin-top: 10px; font-weight: bold;">RÉPONSE RAPIDE</p>
+            <div class="box sponsor-card-new active-gold">
+                <div class="card-tag">RECOMMANDÉ</div>
+                <div class="icon-circle"><i class="fas fa-bullhorn"></i></div>
+                <h3 class="font-orbitron">Partenaire Digital</h3>
+                <p>Publicité exclusive sur notre site web et nos réseaux sociaux (TikTok / WhatsApp).</p>
+                <ul class="benefit-list">
+                    <li><i class="fas fa-check-circle"></i> Bannière Site Web</li>
+                    <li><i class="fas fa-check-circle"></i> Post Réseaux Sociaux</li>
+                    <li><i class="fas fa-check-circle"></i> Notification Push</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="contact-pro-box-premium">
+            <div class="contact-flex">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope-open-text"></i>
                 </div>
-                <div style="background: #111; padding: 15px; border-radius: 10px; border: 1px solid #222;">
-                    <i class="fas fa-lock" style="color: var(--gold); font-size: 1.5em;"></i>
-                    <p style="font-size: 0.8em; margin-top: 10px; font-weight: bold;">SÉCURITÉ & COMPTE</p>
+                <div class="contact-text">
+                    <h4 class="font-orbitron">Besoin d'un devis sur mesure ?</h4>
+                    <p>Discutons de votre stratégie marketing et de vos objectifs de visibilité.</p>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="modalDefi" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:1000; padding:20px; box-sizing:border-box;">
-    <div class="box" style="max-width:400px; margin: 40px auto; border: 1px solid var(--primary);">
-        <h3 style="color:var(--primary); text-align:center;">LANCER UN DÉFI</h3>
-        <p id="target_guilde_display" style="text-align:center; font-weight:bold;"></p>
-        
-        <label>Ta Guilde (déjà enregistrée) :</label>
-        <select id="ma_guilde_select" style="width:100%; margin-bottom:15px; padding:10px; background:#222; color:white; border:1px solid #444;"></select>
-        
-        <label>Date du match :</label>
-        <input type="date" id="date_match" style="width:100%; margin-bottom:15px;">
-        
-        <label>Heure du match :</label>
-        <input type="time" id="heure_match" style="width:100%; margin-bottom:15px;">
-        
-        <div style="display:flex; gap:10px;">
-            <button onclick="envoyerDefi()" style="flex:1;">ENVOYER LE DÉFI</button>
-            <button onclick="document.getElementById('modalDefi').style.display='none'" style="flex:1; background:#444;">ANNULER</button>
-        </div>
-    </div>
-</div>
-
-<div id="install-banner" style="display:none; position:fixed; bottom:20px; left:20px; right:20px; background:var(--primary); color:white; padding:15px; border-radius:10px; z-index:9999; text-align:center;">
-    <p style="margin:0 0 10px 0; font-weight:bold;">Installe l'app FF ESPORT-CI !</p>
-    <button id="btn-install" style="background:white; color:black; border:none; padding:10px 20px; border-radius:5px;">INSTALLER MAINTENANT</button>
-</div>
-
-<div id="install-banner">
-    <div class="install-flex">
-        <div style="display: flex; align-items: center; gap: 10px;">
-            <img src="ffesci.png" width="30" height="30" style="border-radius: 5px;">
-            <span style="font-size: 13px; color: white;">Installer l'App FFESCI ?</span>
-        </div>
-        <div style="display: flex; gap: 10px;">
-            <button id="btn-close-install" style="background:transparent; color:#888; border:none; font-size:12px;">Plus tard</button>
-            <button id="btn-install" style="background:var(--primary); color:white; border:none; padding: 8px 15px; border-radius: 5px; font-size:12px; font-weight:bold;">INSTALLER</button>
-        </div>
-    </div>
-</div>
-
-<div id="card-preview">
-   </div>
-
-<footer>
-    <div style="margin-bottom: 15px;">
-        <img src="ffesci.png" alt="FF ESPORT-CI" style="height: 40px; filter: grayscale(1); opacity: 0.5;">
-    </div>
-    <p style="margin: 5px 0;">© 2025-2026 FREE FIRE ESPORT CÔTE D'IVOIRE - Tous droits réservés</p>
-    <p style="color: #666; font-style: italic;">Plateforme indépendante dédiée à la promotion de l'e-sport ivoirien.</p>
-    <div style="margin-top: 15px; font-size: 1.2em; display: flex; justify-content: center; gap: 20px;">
-        <a href="#" style="color: #444;"><i class="fab fa-facebook"></i></a>
-        <a href="#" style="color: #444;"><i class="fab fa-instagram"></i></a>
-        <a href="#" style="color: #444;"><i class="fab fa-tiktok"></i></a>
-    </div>
-
-</footer>
-
-<script type="module">
-    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
-    
-    const supabase = createClient("https://hxdpeqfcefhrfonegtok.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh4ZHBlcWZjZWZocmZvbmVndG9rIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMDc4OTMsImV4cCI6MjA4OTU4Mzg5M30.i_c9zU6sABenDuHZtwK4ZQ9KWDOJh7QB07GezDIkWqM");
-
-    let tousLesJoueurs = [];
-
-    window.toggleMenu = () => {
-        const sidebar = document.getElementById('sidebar');
-        if (sidebar) sidebar.classList.toggle('open');
-    };
-
-    window.showPage = (id) => {
-        const sidebar = document.getElementById('sidebar');
-        if (sidebar) sidebar.classList.remove('open');
-
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        const target = document.getElementById(id);
-        if (target) {
-            target.classList.add('active');
-         
-            if(id === 'page-liste-joueurs') chargerDonnees();
-            if(id === 'page-guildes') chargerGuildes(); 
-        }
-
-        window.scrollTo(0,0);
-
-        if(id === 'page-recrutement') checkMyProfile(); 
-
-    };
-  
-    async function chargerDonnees() {
-        const pc = document.getElementById('listeJoueursPublique');
-        const loader = document.getElementById('loader-joueurs');
-        const compteur = document.getElementById('compteur-joueurs');
-        
-        if(loader) loader.style.display = 'block';
-        if(pc) pc.innerHTML = "";
-
-        const { data, error } = await supabase.from('joueurs').select('*');
-        
-        if(loader) loader.style.display = 'none';
-
-        if (error) {
-            if(pc) pc.innerHTML = `<p style='color:red;'>Erreur : ${error.message}</p>`;
-            return;
-        }
-
-        tousLesJoueurs = data || [];
-        if(compteur) {
-            compteur.innerText = tousLesJoueurs.length;
-            compteur.style.display = 'inline-block';
-        }
-        afficherListe(tousLesJoueurs);
-    }
-
-   function afficherListe(joueurs) {
-    const pc = document.getElementById('listeJoueursPublique');
-    if (!pc) return;
-    
-    if (joueurs.length === 0) {
-        pc.innerHTML = "<p style='text-align:center; color:#666; grid-column: 1/-1;'>Aucun soldat trouvé pour le moment.</p>";
-        return;
-    }
-
-   pc.innerHTML = joueurs.map(j => {
-    const waClean = j.whatsapp.replace(/\s/g, '');
-    
-    const msg = encodeURIComponent(
-        `👋 *SALUT ${j.pseudo.toUpperCase()} !*\n\n` +
-        `📢 J'ai vu ton profil de *${j.role}* (Niveau *${j.level}*) sur la plateforme *FF ESPORT-CI*.\n\n` +
-        `⚔️ Ta manière de jouer nous intéresse énormément. Serais-tu disponible pour passer un test de recrutement ou discuter d'une intégration dans notre guilde ?\n\n` +
-        `*Dans l'attente de ta réponse !* 🔥`
-    );
-
-return `
-    <div class="player-card">
-        <span class="role-tag-new">${j.role}</span>
-        
-        <div style="width: 100%; height: 160px; overflow: hidden; background: #222;">
-            <img src="${j.photo_url}" style="width:100%; height:100%; object-fit: cover;">
-        </div>
-
-        <div style="padding:15px">
-            <div style="display: flex; justify-content: space-between; align-items: start;">
-                <h4 style="margin:0; color:var(--primary); text-transform: uppercase;">${j.pseudo}</h4>
-                <button onclick="partagerProfil('${j.pseudo}', '${j.role}')" class="btn-share">
-                    <i class="fas fa-share-alt"></i>
+                <button onclick="window.open('https://wa.me/2250161912755')" class="btn-sponsor-gold">
+                    <i class="fab fa-whatsapp"></i> CONTACTER LE STAFF
                 </button>
             </div>
-            
-            <p style="color:var(--gold); font-weight: bold; margin: 10px 0;">⭐ LVL ${j.level}</p>
-
-            <a href="https://wa.me/${waClean}?text=${msg}" target="_blank" class="btn-recruter" style="padding:12px; font-size: 11px;">
-               🔫 RECRUTER CE JOUEUR
-            </a>
         </div>
     </div>
+</section>
 
-    `;
-}).join('');
-}
+<section id="page-support" class="page">
+    <div class="container">
+        <div class="section-header-gaming">
+            <h2 class="text-glow">SUPPORT TECHNIQUE</h2>
+            <div class="header-bar"></div>
+            <p>Une question ? Un bug ? Nos techniciens sont en ligne.</p>
+        </div>
 
-    window.appliquerFiltres = () => {
-        const roleFiltre = document.getElementById('filter-role').value.toLowerCase();
-        const niveauFiltre = parseInt(document.getElementById('filter-level').value) || 0;
-
-        const filtres = tousLesJoueurs.filter(j => {
-            const matchRole = (roleFiltre === "tous" || j.role.toLowerCase() === roleFiltre);
-            const matchNiveau = (parseInt(j.level) >= niveauFiltre);
-            return matchRole && matchNiveau;
-        });
-        afficherListe(filtres);
-    };
-
-    
-
-window.validerJoueur = async () => {
-    const btn = document.getElementById('btn-action-profil');
-    const p = document.getElementById('p_pseudo').value.trim();
-    const f = document.getElementById('p_photo').files[0];
-    const l = document.getElementById('p_lvl').value;
-    const r = document.getElementById('p_role').value;
-    
-    const indicatif = document.getElementById('p_indicatif').value;
-    const numero = document.getElementById('p_wa').value.trim();
-    const w = indicatif + numero; 
-
-    if(!p || !l || !numero) return alert("Veuillez remplir tous les champs (Pseudo, Niveau, WhatsApp) !");
- 
-    try {
-        const savedProfile = JSON.parse(localStorage.getItem('monProfilFF'));
-        let finalUrl = savedProfile ? savedProfile.photo_url : "";
-
-        if (f) {
-            const fileName = `${Date.now()}_${p}.jpg`;
-            const { data: uploadData, error: uploadError } = await supabase.storage.from('avatars_joueurs').upload(fileName, f);
-            if (uploadError) throw uploadError;
-            const { data: urlData } = supabase.storage.from('avatars_joueurs').getPublicUrl(fileName);
-            finalUrl = urlData.publicUrl;
-        }
-
-        const profilData = { pseudo: p, role: r, level: l, whatsapp: w, photo_url: finalUrl };
-
-        if (savedProfile && savedProfile.id) {
-    
-            const { error } = await supabase.from('joueurs').update(profilData).eq('id', savedProfile.id);
-            if(error) throw error;
-            alert("✅ Profil mis à jour avec succès !");
-        } else {
-            
-            if(!f) { btn.disabled = false; btn.innerText="CRÉER MON PROFIL"; return alert("Photo requise !"); }
-            const { data, error } = await supabase.from('joueurs').insert([profilData]).select();
-            if(error) throw error;
-            profilData.id = data[0].id;
-            alert("🚀 Bienvenue dans l'élite ! Profil créé.");
-        }
-
-        localStorage.setItem('monProfilFF', JSON.stringify(profilData));
-        location.reload(); 
-
-    } catch (err) { 
-        alert("Erreur: " + err.message); 
-        btn.disabled = false;
-        btn.innerText = "Réessayer";
-    }
-};
-
-
-window.connexionRapide = async () => {
-    const pseudo = prompt("Entrez votre Pseudo exact :");
-    const tel = prompt("Entrez votre numéro WhatsApp utilisé (ex: 225012345678) :"); // Précise le format
-
-    if(!pseudo || !tel) return;
-
-    // Supabase va chercher la correspondance exacte
-    const { data, error } = await supabase
-        .from('joueurs')
-        .select('*')
-        .eq('pseudo', pseudo)
-        .eq('whatsapp', tel.trim())
-        .single();
-    
-    
-
-    if (data) {
-        localStorage.setItem('monProfilFF', JSON.stringify(data));
-        alert("🔓 Connexion réussie !");
-        location.reload();
-    } else {
-        alert("❌ Aucun compte trouvé avec ces informations.");
-    }
-};
-
-window.checkMyProfile = () => {
-    const savedProfile = localStorage.getItem('monProfilFF');
-    const sectionInscrip = document.getElementById('section-enregistrement');
-    const sectionEspace = document.getElementById('mon-espace-perso');
-
-    if (savedProfile) {
-        const p = JSON.parse(savedProfile);
-        sectionInscrip.style.display = 'none';
-        sectionEspace.style.display = 'block';
-
-        sectionEspace.innerHTML = `
-            <h2 style="text-align:center;">MON PROFIL JOUEUR</h2>
-            <div class="box" style="border-color: var(--primary); text-align:center;">
-                <img src="${p.photo_url}" style="width:120px; height:120px; border-radius:50%; object-fit:cover; border:3px solid var(--primary); margin-bottom:15px;">
-                <h3 style="font-size:24px; margin:0;">${p.pseudo}</h3>
-                <p style="color:var(--gold); font-weight:bold;">${p.role.toUpperCase()} | LVL ${p.level}</p>
-                <p style="color:#888; font-size:14px;"><i class="fab fa-whatsapp"></i> ${p.whatsapp}</p>
-                
-                <hr style="border:0; border-top:1px solid #333; margin:20px 0;">
-                
-                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
-                    <button onclick="preparerModification()" style="background:#333; font-size:14px;">✍️ MODIFIER</button>
-                    <button onclick="deconnexion()" style="background:transparent; border:1px solid #444; color:#888; font-size:14px;">🚪 QUITTER</button>
-                </div>
+        <div class="support-card-premium">
+            <div class="support-icon-wrapper">
+                <div class="radar-ping"></div>
+                <i class="fas fa-headset"></i>
             </div>
-        `;
-    }
-};
-
-window.preparerModification = () => {
-    const p = JSON.parse(localStorage.getItem('monProfilFF'));
-    document.getElementById('section-enregistrement').style.display = 'block';
-    document.getElementById('mon-espace-perso').style.display = 'none';
-    
-    // Remplissage auto
-    document.getElementById('p_pseudo').value = p.pseudo;
-    document.getElementById('p_lvl').value = p.level;
-    document.getElementById('p_role').value = p.role;
-    document.getElementById('p_wa').value = p.whatsapp;
-    
-    document.getElementById('titre-formulaire').innerText = "MODIFIER MON PROFIL";
-    document.getElementById('btn-action-profil').innerText = "ENREGISTRER LES MODIFICATIONS";
-    document.getElementById('lien-connexion').style.display = "none";
-    document.getElementById('p_photo').required = false;
-};
-
-window.deconnexion = () => {
-    if(confirm("Se déconnecter ?")) {
-        localStorage.removeItem('monProfilFF');
-        location.reload();
-    }
-};
-
-document.addEventListener('DOMContentLoaded', checkMyProfile);
-    
-    window.validerGuilde = async () => {
-        const n = document.getElementById('g_nom').value;
-        const c = document.getElementById('g_chef').value;
-        const w = document.getElementById('g_pays').value + document.getElementById('g_wa').value.replace(/\s/g, '');
-
-        if(!n || !c) return alert("Infos manquantes !");
-
-        try {
-           const { error } = await supabase.from('guildes').insert([{ nom: n, chef: c, whatsapp: w }]);
-            alert("Guilde certifiée avec succès !");
-            chargerGuildes();
-        } catch (err) { alert(err.message); }
-    };
-
-async function chargerGuildes() {
-    const div = document.getElementById('listeGuildes');
-    if(!div) return;
-    
-    const { data } = await supabase.from('guildes').select('*');
-    
-    if(data) {
-        div.innerHTML = data.map(g => {
             
-            const msgRejoindre = encodeURIComponent(
-                `👋 *SALUT ${g.chef.toUpperCase()} !*\n\n` +
-                `🛡️ Je suis intéressé par votre guilde *${g.nom}* vue sur FF ESPORT-CI.\n\n` +
-                `J'aimerais savoir si vous recrutez actuellement. Serait-il possible d'en discuter pour une éventuelle intégration ?\n\n` +
-                `*Merci d'avance !* 🔥`
-            );
+            <h3 class="font-orbitron">BESOIN D'AIDE ?</h3>
+            <p class="support-text">
+                Un problème avec ton inscription ? Ta guilde n'apparaît pas ? <br>
+                Le support technique <strong>FF ESPORT-CI</strong> intervient en moins de 24h.
+            </p>
 
-            return `
-            <div class="box" style="margin-bottom:20px; border: 1px solid #333; background: #111; padding: 20px; border-radius: 15px;">
-                <h4 style="margin:0 0 15px 0; color:var(--primary); font-size: 1.3em; letter-spacing: 1px;">${g.nom}</h4>
+            <div class="support-action-box">
+                <h4 class="font-orbitron">ASSISTANCE DIRECTE</h4>
+                <p>Discute instantanément avec un administrateur sur WhatsApp.</p>
                 
-                <div style="margin-bottom: 20px;">
-                   <span style="color: #888; font-size: 0.8em; text-transform: uppercase;">Leader</span><br>
-                   <strong style="color: #fff; font-size: 1.1em;">👑 ${g.chef}</strong>
+                <div class="support-stats" style="display:none;">
+                    <span id="compteur-joueurs-support">0</span> 
+                    <div id="loader-joueurs">...</div>
+                    <div id="listeGuildesSupport"></div>
                 </div>
-                
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-                    <a href="https://wa.me/${g.whatsapp}?text=${msgRejoindre}" target="_blank" class="btn-rejoindre" style="padding: 12px; font-size: 11px;">
-                       🤝 REJOINDRE
-                    </a>
-                    
-                    <button onclick="ouvrirDefi('${g.nom}', '${g.whatsapp}')" class="btn-defier" style="padding: 12px; font-size: 11px;">
-                       ⚔️ DÉFIER
-                    </button>
-                </div>
-            </div>`;
-        }).join('');
-    }
-}
-    window.validerTournoi = () => {
-        const t = document.getElementById('t_nom_tournoi').value;
-        const e = document.getElementById('t_equipe').value;
-        const c = document.getElementById('t_chef').value;
-        const p = document.getElementById('t_pays').value;
-        const w = document.getElementById('t_whatsapp').value;
 
-        if (!e || !c || !w) return alert("Champs obligatoires !");
-
-        const msg = encodeURIComponent(`🏆 INSCRIPTION TOURNOI\n\nTournoi: ${t}\nÉquipe: ${e}\nChef: ${c}\nWhatsApp: ${p}${w}`);
-        window.open(`https://wa.me/2250161912755?text=${msg}`, '_blank');
-    };
-
-    document.addEventListener('DOMContentLoaded', () => {
-        showPage('page-accueil');
-    });
-
-    let guildeCibleNom = "";
-let guildeCibleWhatsApp = "";
-
-window.ouvrirDefi = async (nomCible, waCible) => {
-    guildeCibleNom = nomCible;
-    guildeCibleWhatsApp = waCible;
-    
-    document.getElementById('target_guilde_display').innerText = "Adversaire : " + nomCible;
-    const select = document.getElementById('ma_guilde_select');
-    
-    const { data } = await supabase.from('guildes').select('nom'); 
-    if(data) {
-      
-        select.innerHTML = data.map(g => `<option value="${g.nom}">${g.nom}</option>`).join('');
-    }
-    
-    document.getElementById('modalDefi').style.display = 'block';
-};
-
-window.envoyerDefi = () => {
-    const maGuilde = document.getElementById('ma_guilde_select').value;
-    const date = document.getElementById('date_match').value;
-    const heure = document.getElementById('heure_match').value;
-    
-    if(!date || !heure) return alert("⚠️ Précise la date et l'heure du défi !");
-    
-    const message = encodeURIComponent(
-        `🔥 *DÉFI FF ESPORT-CI* 🔥\n\n` +
-        `⚔️ *Ma Guilde :* ${maGuilde}\n` +
-        `🎯 *Défie votre Guilde :* ${guildeCibleNom} dans un GvG\n` +
-        `📅 *Date :* ${date}\n` +
-        `⏰ *Heure :* ${heure}\n\n` +
-        `*Acceptez-vous le combat ? Est-ce que la date et l'heure vous conviennent ?*`
-    );
-        
-    window.open(`https://wa.me/${guildeCibleWhatsApp}?text=${message}`, '_blank');
-    
-    document.getElementById('modalDefi').style.display = 'none';
-};
-
-window.partagerProfil = (pseudo, role) => {
-    const texte = `Regarde le profil de ${pseudo} (${role}) sur FF ESPORT-CI ! 🔥 La plateforme des meilleurs joueurs de Côte d'Ivoire.`;
-    const url = window.location.href;
-
-    if (navigator.share) {
-        navigator.share({
-            title: 'FF ESPORT-CI',
-            text: texte,
-            url: url,
-        }).catch(console.error);
-    } else {  
-        navigator.clipboard.writeText(`${texte} ${url}`);
-        alert("Lien de partage copié ! Partage-le sur ton statut WhatsApp. 🚀");
-    }
-};
-
-document.getElementById('p_pseudo').addEventListener('input', updatePreview);
-document.getElementById('p_lvl').addEventListener('input', updatePreview);
-document.getElementById('p_role').addEventListener('change', updatePreview);
-
-function updatePreview() {
-    const pseudo = document.getElementById('p_pseudo').value || "TON PSEUDO";
-    const lvl = document.getElementById('p_lvl').value || "0";
-    const role = document.getElementById('p_role').value;
-    const photoFile = document.getElementById('p_photo').files[0];
-    const previewContainer = document.getElementById('card-preview');
-
-    // On crée l'aperçu de base
-    let html = `
-        <div class="player-card" style="margin: 0 auto; max-width: 250px; border: 1px solid #333;">
-            <span class="role-tag-new">${role}</span>
-            <div style="width: 100%; height: 140px; overflow: hidden; background: #222;">
-                <img id="img-preview-src" src="https://via.placeholder.com/150?text=PHOTO" style="width:100%; height:100%; object-fit: cover;">
+                <a id="link-support" href="https://wa.me/2250173661277?text=Bonjour, j'ai besoin d'aide sur le site FFESCI" target="_blank" class="btn-support-glow">
+                    <i class="fab fa-whatsapp"></i> CONTACTER LE SUPPORT
+                </a>
             </div>
-            <div style="padding:10px; text-align: left;">
-                <h4 style="margin:0; color:var(--primary); text-transform: uppercase; font-size: 14px;">${pseudo}</h4>
-                <p style="color:var(--gold); font-weight: bold; margin: 5px 0; font-size: 12px;">⭐ LVL ${lvl}</p>
+
+            <div class="support-features">
+                <div class="feature-item">
+                    <i class="fas fa-bolt"></i>
+                    <span>RÉPONSE RAPIDE</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-lock"></i>
+                    <span>SÉCURITÉ COMPTE</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>ANTI-FRAUDE</span>
+                </div>
             </div>
         </div>
-    `;
+    </div>
+</section>
 
-    previewContainer.innerHTML = html;
+<section id="page-maj" class="page">
+    <div class="container">
 
-    // Si une photo est choisie, on l'affiche dans l'aperçu
-    if (photoFile) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            document.getElementById('img-preview-src').src = e.target.result;
-        };
-        reader.readAsDataURL(photoFile);
-    }
-}
-window.checkMyProfile = () => {
-    const savedProfile = localStorage.getItem('monProfilFF');
-    const sectionEnregistrement = document.getElementById('section-enregistrement');
-    const sectionEspacePerso = document.getElementById('mon-espace-perso');
+        <div class="section-header-gaming">
+            <h2 class="text-glow">🛠️ MISES À JOUR OFFICIELLES</h2>
+            <div class="header-bar"></div>
+            <p>Suivez toutes les évolutions de la plateforme FF-CI.</p>
+        </div>
 
-    if (savedProfile) {
-        const p = JSON.parse(savedProfile);
-        
-        sectionEnregistrement.style.display = 'none'; 
-        
-        sectionEspacePerso.style.display = 'block';
-        
-        sectionEspacePerso.innerHTML = `
-            <h2 style="text-align:center;">MON PROFIL</h2>
-            <div class="box" style="border-top: 4px solid var(--primary); text-align:center;">
-                <img src="${p.photo_url}" style="width:110px; height:110px; border-radius:50%; object-fit:cover; border:3px solid var(--primary); margin-bottom:15px;">
-                <h3 style="font-size:22px; margin:0;">${p.pseudo}</h3>
-                <p style="color:var(--gold); font-weight:bold; margin:5px 0;">${p.role} | LVL ${p.level}</p>
-                <p style="color:#888; font-size:13px;"><i class="fab fa-whatsapp"></i> +${p.whatsapp}</p>
+        <!-- UPDATE 1 -->
+        <div class="update-card">
+            <h3>🔥 NOUVEAU SYSTÈME DE PROFIL</h3>
+            <span class="update-tag">A VENIR</span>
+            <p>
+                Un nouveau système de profil arrive avec <strong>connexion Google</strong> intégrée.
+                Chaque joueur pourra créer un profil automatique, sécurisé et unique.
+            </p>
+            <ul>
+                <li>✔ Connexion Google simplifiée</li>
+                <li>✔ Création automatique du profil joueur</li>
+                <li>✔ Sauvegarde des stats et du rôle</li>
+                <li>✔ Sécurité renforcée des comptes</li>
+            </ul>
+        </div>
+
+        <!-- UPDATE 2 -->
+        <div class="update-card">
+            <h3>⚔️ NOUVEL ONGLET : RECRUTEMENT AMÉLIORÉ</h3>
+            <span class="update-tag">A VENIR</span>
+            <p>
+                Le système de recrutement devient plus rapide et plus intelligent pour les guildes.
+            </p>
+            <ul>
+                <li>✔ Filtrage des joueurs par niveau et rôle</li>
+                <li>✔ Profil joueur plus détaillé</li>
+                <li>✔ Mise en relation directe avec les guildes</li>
+            </ul>
+        </div>
+
+        <!-- UPDATE 3 -->
+        <div class="update-card">
+            <h3>📢 NOUVELLE INTERFACE ANNONCES</h3>
+            <span class="update-tag">NOUVEAU</span>
+            <p>
+                Les annonces de tournois et événements deviennent plus visibles et interactives.
+            </p>
+            <ul>
+                <li>✔ Cards dynamiques avec images</li>
+                <li>✔ Accès direct WhatsApp</li>
+                <li>✔ Informations détaillées des tournois</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+<section id="page-reglement" class="page">
+    <div class="container">
+        <div class="section-header-gaming">
+            <h2 class="text-glow">CRITÈRES D'ADMISSION</h2>
+            <div class="header-bar"></div>
+            <p>Vérifiez votre éligibilité pour rejoindre l'élite de l'E-sport Ivoirien.</p>
+        </div>
+
+        <div class="eligibility-grid">
+            
+            <div class="eligibility-col">
+                <h3 class="font-orbitron"><i class="fas fa-users"></i> ACCÈS COMMUNAUTÉ</h3>
+                <p class="subtitle">Pour être membre, vous devez remplir au moins UN de ces critères :</p>
                 
-                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-top:20px;">
-                    <button onclick="preparerModification()" style="background:#333; font-size:13px;">✍️ MODIFIER</button>
-                    <button onclick="deconnexion()" style="background:transparent; border:1px solid #444; color:#888; font-size:13px;">🚪 QUITTER</button>
+                <div class="check-box">
+                    <div class="check-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Appartenir à une <strong>Guilde Ivoirienne</strong> enregistrée.</span>
+                    </div>
+                    <div class="check-item">
+                        <i class="fas fa-crosshairs"></i>
+                        <span>Être <strong>classé en Côte d'Ivoire</strong> (Top Global Armes).</span>
+                    </div>
+                    <div class="check-item">
+                        <i class="fas fa-passport"></i>
+                        <span>Être <strong>Ivoirien</strong> (de père ou de mère).</span>
+                    </div>
+                    <div class="check-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span><strong>Vivre</strong> actuellement en Côte d'Ivoire.</span>
+                    </div>
                 </div>
             </div>
-        `;
-    } else {
-        sectionEnregistrement.style.display = 'block';
-        sectionEspacePerso.style.display = 'none';
-    }
-};
 
-window.supprimerMonProfil = () => {
-    if(confirm("Veux-tu vraiment supprimer ton profil de cet appareil ? (Il restera visible dans la liste publique)")) {
-        localStorage.removeItem('monProfilFF');
-        location.reload(); 
-    }
-};
-
-window.recupererAncienProfil = async () => {
-    const pseudoCherche = prompt("Entre ton Pseudo exactement comme à l'inscription:");
-    if (!pseudoCherche) return;
-    
-    const waCherche = prompt("Entre ton numéro WhatsApp lié au profil (ex: +225...):");
-    if (!waCherche) return;
-
-    // On cherche dans la base de données le profil qui correspond au pseudo ET au WhatsApp
-    const { data, error } = await supabase
-        .from('joueurs')
-        .select('*')
-        .eq('pseudo', pseudoCherche)
-        .eq('whatsapp', waCherche) // <--- C'est ici la sécurité !
-        .single();
-
-    if (error || !data) {
-        alert("❌ Erreur : Le pseudo ou le numéro WhatsApp ne correspond pas.");
-    } else {
-        // Le joueur a le bon pseudo ET le bon numéro, on lui rend l'accès
-        localStorage.setItem('monProfilFF', JSON.stringify(data));
-        alert("✅ Profil récupéré avec succès !");
-        checkMyProfile();
-    }
-};
-
-let deferredPrompt;
-
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    const isDismissed = localStorage.getItem('installDismissed');
-
-    if (isMobile && !isDismissed) {
-        deferredPrompt = e;
-        document.getElementById('install-banner').style.display = 'block';
-    }
-});
-
-
-document.getElementById('btn-close-install').addEventListener('click', () => {
-    document.getElementById('install-banner').style.display = 'none';
- 
-    localStorage.setItem('installDismissed', 'true');
-});
-
-document.getElementById('btn-install').addEventListener('click', () => {
-    if (deferredPrompt) {
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choiceResult) => {
-            document.getElementById('install-banner').style.display = 'none';
-            deferredPrompt = null;
-        });
-    }
-});
-
-window.voirReglementComplet = () => {
-    alert("--- RÈGLEMENT COUPE DES GUILDES CI ---\n\n1. Respect total envers les adversaires.\n2. Utilisation d'émoticônes autorisée mais pas d'insultes.\n3. Logiciels tiers ou triche = Ban définitif de la plateforme.\n4. Les joueurs doivent obligatoirement appartenir à la guilde inscrite.\n\nLe document PDF complet sera bientôt disponible sur le groupe WhatsApp.");
-};
-
-window.validerJoueur = async () => {
-    const btn = document.getElementById('btn-action-profil');
-    const p = document.getElementById('p_pseudo').value.trim();
-    const f = document.getElementById('p_photo').files[0];
-    const l = document.getElementById('p_lvl').value;
-    const r = document.getElementById('p_role').value;
-    const indicatif = document.getElementById('p_indicatif').value;
-    const numero = document.getElementById('p_wa').value.trim();
-    const w = indicatif + numero;
-
-    if(!p || !l || !numero) return alert("Remplis tous les champs !");
-
-    const localData = localStorage.getItem('monProfilFF');
-    const savedProfile = localData ? JSON.parse(localData) : null;
-
-    // --- CAS 1 : MODIFICATION (Envoi vers WhatsApp) ---
-    if (savedProfile) {
-        const message = encodeURIComponent(
-            `📢 *DEMANDE DE MODIFICATION PROFIL*\n\n` +
-            `Ancien Pseudo : ${savedProfile.pseudo}\n` +
-            `---------------------------\n` +
-            `NOUVELLES INFOS :\n` +
-            `🎮 Pseudo : ${p}\n` +
-            `⭐ Niveau : ${l}\n` +
-            `⚔️ Rôle : ${r}\n` +
-            `📱 WhatsApp : ${w}\n\n` +
-            `*Admin, merci de mettre à jour mes infos !* 🔥`
-        );
-        
-        window.open(`https://wa.me/2250161912755?text=${message}`, '_blank');
-        alert("Ta demande de modification a été envoyée à l'admin !");
-        return; // On arrête ici pour la modification
-    }
-
-    // --- CAS 2 : INSCRIPTION (Ancien modèle Supabase) ---
-    btn.disabled = true;
-    btn.innerHTML = "Inscription...";
-
-    try {
-        if(!f) throw new Error("Photo requise pour l'inscription !");
-
-        // Upload de la photo
-        const fileExtension = f.name.split('.').pop();
-        const fileName = `${Date.now()}_${p}.${fileExtension}`;
-        const { error: upErr } = await supabase.storage.from('avatars_joueurs').upload(fileName, f);
-        if (upErr) throw upErr;
-
-        const { data: urlData } = supabase.storage.from('avatars_joueurs').getPublicUrl(fileName);
-        const finalUrl = urlData.publicUrl;
-
-        const profilData = { pseudo: p, role: r, level: l, whatsapp: w, photo_url: finalUrl };
-
-        // Insertion dans Supabase
-        const { data, error } = await supabase.from('joueurs').insert([profilData]).select();
-        if (error) throw error;
-
-        localStorage.setItem('monProfilFF', JSON.stringify(data[0]));
-        alert("🚀 Bienvenue ! Ton profil est créé.");
-        location.reload();
-
-    } catch (err) {
-        alert("Erreur : " + err.message);
-        btn.disabled = false;
-        btn.innerText = "Réessayer";
-    }
-};
-
-window.deconnexion = () => {
-    if(confirm("Voulez-vous vous déconnecter ?")) {
-        localStorage.removeItem('monProfilFF');
-        location.reload();
-    }
-};
-
-window.connexionRapide = async () => {
-    const pseudo = prompt("Entre ton Pseudo FF (exactement comme lors de l'inscription) :");
-    const tel = prompt("Entre ton numéro WhatsApp (ex: 2250102030405) :");
-
-    if(!pseudo || !tel) return;
-
-    const { data, error } = await supabase
-        .from('joueurs')
-        .select('*')
-        .eq('pseudo', pseudo)
-        .eq('whatsapp', tel.trim())
-        .single();
-
-    if (data) {
-        localStorage.setItem('monProfilFF', JSON.stringify(data));
-        alert("🔓 Heureux de vous revoir " + data.pseudo + " !");
-        location.reload();
-    } else {
-        alert("❌ Aucun compte trouvé. Vérifiez le pseudo et le numéro (avec l'indicatif).");
-    }
-};
-
-// ... tes autres fonctions au-dessus (validerJoueur, checkMyProfile, etc.)
-
-// --- SECTION ÉCOUTEURS D'ÉVÉNEMENTS (À METTRE ICI) ---
-document.addEventListener('DOMContentLoaded', () => {
-    // On affiche la page d'accueil au chargement
-    showPage('page-accueil');
-    
-    // On active la surveillance du formulaire pour la preview
-    const fieldPseudo = document.getElementById('p_pseudo');
-    const fieldLvl = document.getElementById('p_lvl');
-    const fieldRole = document.getElementById('p_role');
-    const fieldPhoto = document.getElementById('p_photo');
-
-    if(fieldPseudo) fieldPseudo.addEventListener('input', updatePreview);
-    if(fieldLvl) fieldLvl.addEventListener('input', updatePreview);
-    if(fieldRole) fieldRole.addEventListener('change', updatePreview);
-    if(fieldPhoto) fieldPhoto.addEventListener('change', updatePreview);
-});
-
-// C'est la toute fin de ton fichier
-
-// Fonction pour mettre à jour l'annonce du tournoi
-window.majAnnonceTournoi = async () => {
-    const banner = document.getElementById('texte-tournoi');
-    
-    // METHODE SIMPLE : Tu modifies le texte directement ici entre les guillemets
-    // Plus tard, on pourra connecter ça à Supabase si tu veux le faire à distance
-    const message = "🔥 GRAND GvG : Samedi 12 Avril à 20h00 ! Inscrivez vos guildes.";
-    
-    if(banner) {
-        banner.innerText = message;
-    }
-};
-
-// Appelle la fonction au chargement
-document.addEventListener('DOMContentLoaded', () => {
-    majAnnonceTournoi();
-});
-
-window.chargerMAJ = () => {
-        const container = document.getElementById('liste-maj');
-        if (!container) return;
-
-        const updates = [
-            {
-                date: "06 Avril 2026",
-                version: "V2.0 - MODE PRO 🚀",
-                items: [
-                     { t: "🏆 CLASH OF GUILDS", d: "Lancement de la 1ère édition ! 4v4 strict, Full Mobile, Skill pur (Pas de skins d'armes)." },
-                { t: "⚔️ DÉFIS GvG OFFICIELS", d: "Générez vos fiches de match et défiez les chefs de guilde directement via le site." },
-                { t: "👤 ESPACE PERSO SÉCURISÉ", d: "Système de connexion/déconnexion. Ton profil est lié à ton Pseudo + WhatsApp." },
-                { t: "⚡ SYMBOLES SPÉCIAUX", d: "Support total des caractères spéciaux (〆, ⚡, 个, 亗...) dans les pseudos." },
-                { t: "🔍 RECRUTEMENT SMART", d: "Filtres par rôles (Sniper, Rusher, etc.) et bouton de partage direct vers WhatsApp." },
-                { t: "📲 INSTALLATION PWA", d: "Installe FF ESPORT-CI comme une application sur ton écran d'accueil." },
-                { t: "🎨 DESIGN NEON GLOW", d: "Nouvelle interface sombre avec effets lumineux gaming." }
-                ]
-            }
-        ];
-
-        container.innerHTML = updates.map(up => `
-            <div style="background:#111; border-left:4px solid var(--primary); padding:15px; margin-bottom:15px; border-radius:8px;">
-                <h4 style="color:var(--primary); margin:0;">${up.version} - ${up.date}</h4>
-                ${up.items.map(i => `<p style="margin:5px 0; color:#ccc;"><strong>${i.t} :</strong> ${i.d}</p>`).join('')}
+            <div class="eligibility-col">
+                <h3 class="font-orbitron"><i class="fas fa-trophy"></i> ACCÈS TOURNOIS</h3>
+                <p class="subtitle">Conditions obligatoires pour l'inscription :</p>
+                
+                <div class="check-box tournament-rules">
+                    <div class="check-item">
+                        <i class="fas fa-user-check"></i>
+                        <span>Avoir un <strong>Profil Joueur</strong> vérifié sur le site.</span>
+                    </div>
+                    <div class="check-item red">
+                        <i class="fas fa-ban"></i>
+                        <span>Aucun antécédent de <strong>Triche ou Hack</strong>.</span>
+                    </div>
+                    <div class="check-item">
+                        <i class="fas fa-id-card"></i>
+                        <span>Utiliser son <strong>Main Account</strong> (Compte principal).</span>
+                    </div>
+                    <div class="check-item">
+                        <i class="fas fa-handshake"></i>
+                        <span>Respecter le <strong>Fair-play</strong> avant, pendant et après le match.</span>
+                    </div>
+                </div>
             </div>
-        `).join('');
-    };
 
-    // 2. FORCER LE CHARGEMENT DÈS QUE LA PAGE EST PRÊTE
-    document.addEventListener('DOMContentLoaded', () => {
-        window.chargerMAJ();
-    });
+        </div>
 
-    // 3. Assurer que le menu fonctionne toujours
-    window.showPage = (id) => {
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        const target = document.getElementById(id);
-        if (target) {
-            target.classList.add('active');
-            window.scrollTo(0, 0);
-        }
-        document.getElementById('sidebar').classList.remove('active');
-    };
-// À mettre dans ta fonction showPage existante
-function showPage(id) {
-    // ... ton code pour masquer les pages ...
+        <div class="reglement-footer">
+            <p><i class="fas fa-info-circle"></i> Des preuves (screenshots ou documents) peuvent être demandées par le staff en cas de litige.</p>
+        </div>
+    </div>
+</section>
+
+<div id="modalDefi" class="modal-overlay">
+    <div class="modal-card">
+        <div class="modal-header-cyber">
+            <div class="header-content">
+                <i class="fas fa-bolt"></i>
+                <h3>LANCER UN DÉFI</h3>
+            </div>
+            <button class="close-cyber" onclick="document.getElementById('modalDefi').style.display='none'">&times;</button>
+        </div>
+
+        <div class="modal-inner">
+            <div class="versus-container">
+                <span class="vs-label">ADVERSAIRE À ABATTRE</span>
+                <div class="vs-name" id="target_guilde_display">NOM GUILDE</div>
+            </div>
+
+            <div class="form-cyber">
+                <div class="input-block">
+                    <label><i class="fas fa-shield-alt"></i> TA GUILDE</label>
+                    <select id="ma_guilde_select"></select>
+                </div>
+<div class="input-block">
+    <label><i class="fas fa-gamepad"></i> MODE DE JEU</label>
+    <select id="mode_match">
+        <option value="CS MODE (4vs4)">CS MODE (4vs4)</option>
+        <option value="HEADSHOT ONLY">HEADSHOT ONLY</option>
+        <option value="CRAFTLAND">CRAFTLAND</option>
+    </select>
+</div>
+                <div class="input-row">
+                    <div class="input-block">
+                        <label><i class="fas fa-calendar-day"></i> DATE</label>
+                        <input type="date" id="date_match">
+                    </div>
+                    <div class="input-block">
+                        <label><i class="fas fa-clock"></i> HEURE</label>
+                        <input type="time" id="heure_match">
+                    </div>
+                </div>
+
+                <button onclick="envoyerDefi()" class="btn-launch-defi">
+                    <span>TRANSMETTRE LE DÉFI</span>
+                    <i class="fab fa-whatsapp"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section id="page-profil" class="page">
+    <div class="container" style="text-align:center; padding:60px;">
+        <h2>🚧 MAINTENANCE</h2>
+        <p>Le système de profil est temporairement indisponible.</p>
+    </div>
+</section>
+</main>
+
+<footer class="main-footer">
+    <div class="footer-wave"></div> <div class="container footer-grid">
+        <div class="footer-column brand-col">
+            <h3 class="font-orbitron">FREE FIRE <span class="text-primary">CI</span></h3>
+            <p>La plus grande communauté de guerriers en Côte d'Ivoire. Rejoignez l'élite, entrez dans la légende.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="https://chat.whatsapp.com/KUm4uoqUBgD78Bh3onKOCi" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-column">
+            <h4>Navigation</h4>
+            <ul>
+                <li><a onclick="showPage('page-accueil')"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+              <li><a href="#" onclick="showPage('page-tournoi')"><i class="fas fa-trophy"></i> TOURNOIS</a></li>
+                <li><a onclick="showPage('page-but')"><i class="fas fa-chevron-right"></i> Notre Vision</a></li>
+                <li><a onclick="showPage('page-profil')"><i class="fas fa-chevron-right"></i> Mon Profil</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-column">
+            <h4>Support</h4>
+            <ul>
+                <li><a onclick="showPage('page-support')"><i class="fas fa-chevron-right"></i> Aide Technique</a></li>
+                <li><a onclick="showPage('page-maj')"><i class="fas fa-chevron-right"></i> Mises à jour</a></li>
+                <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Business</a></li>
+            </ul>
+        </div>
+    </div>
     
-    if(id === 'page-maj') {
-        window.chargerMAJ(); // Déclenche le remplissage des cartes
-    }
+    <div class="footer-bottom">
+        <div class="container">
+            <p>&copy; 2026 <span class="text-primary font-orbitron">FREE FIRE CI</span> - Plateforme non-officielle de fans.</p>
+        </div>
+    </div>
+</footer>
+
+<script type="module" src="script.js"></script>
+
+<div id="toast-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"></div>
+
+<style>
+.cyber-toast {
+    background: #000;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    padding: 15px 25px;
+    margin-top: 10px;
+    border-radius: 5px;
+    font-family: 'Orbitron', sans-serif;
+    box-shadow: 0 0 15px rgba(255, 187, 0, 0.3);
+    animation: slideIn 0.3s ease-out;
 }
+@keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+</style>
 
+<div class="bottom-nav">
 
-document.addEventListener('DOMContentLoaded', () => {
-    // On charge les joueurs dès que la page est prête
-    chargerDonnees(); 
-    // On charge les guildes
-    chargerGuildes();
-});
+    <a onclick="showPage('page-accueil')" class="nav-item">
+        <i class="fas fa-home"></i>
+        <span>Accueil</span>
+    </a>
 
-window.addEventListener('scroll', () => {
-    const reveals = document.querySelectorAll('.reveal');
-    reveals.forEach(el => {
-        const windowHeight = window.innerHeight;
-        const elementTop = el.getBoundingClientRect().top;
-        if (elementTop < windowHeight - 100) {
-            el.classList.add('active');
-        }
-    });
-});
+    <a onclick="showPage('page-tournoi')" class="nav-item">
+        <i class="fas fa-trophy"></i>
+        <span>Tournois</span>
+    </a>
 
-const burger = document.querySelector('.burger');
-const nav = document.querySelector('.nav-links');
-const navItems = document.querySelectorAll('.nav-links li');
+    <a onclick="showPage('page-guildes')" class="nav-item">
+        <i class="fas fa-shield-alt"></i>
+        <span>Guildes</span>
+    </a>
 
-burger.addEventListener('click', () => {
-    // Ouvre/Ferme le menu
-    nav.classList.toggle('active');
-    
-    // Animation du burger (pour qu'il se transforme en X)
-    burger.classList.toggle('toggle');
-});
+    <a onclick="showPage('page-commu')" class="nav-item">
+        <i class="fas fa-users"></i>
+        <span>Comm</span>
+    </a>
 
-// Fermer le menu automatiquement quand on clique sur un lien
-navItems.forEach(link => {
-    link.addEventListener('click', () => {
-        nav.classList.remove('active');
-        burger.classList.remove('toggle');
-    });
-});
+    <a onclick="showPage('page-support')" class="nav-item">
+        <i class="fas fa-headset"></i>
+        <span>Support</span>
+    </a>
 
-// Fermer le menu au clic à l'extérieur
-document.addEventListener('click', (event) => {
-    const navbar = document.querySelector('nav');
-    const menuBtn = document.querySelector('.menu-toggle');
-
-    // On vérifie si le menu est ouvert
-    if (navbar.classList.contains('open')) {
-        // Si le clic n'est PAS sur le nav et PAS sur le bouton burger
-        if (!navbar.contains(event.target) && !menuBtn.contains(event.target)) {
-            navbar.classList.remove('open');
-            
-            // On remet l'icône burger (si tu as l'icône qui change)
-            const icon = menuBtn.querySelector('i');
-            if (icon) {
-                icon.classList.replace('fa-times', 'fa-bars');
-            }
-        }
-    }
-});
-
-// Crée l'overlay dynamiquement s'il n'existe pas dans ton HTML
-if (!document.querySelector('.menu-overlay')) {
-    const overlay = document.createElement('div');
-    overlay.className = 'menu-overlay';
-    document.body.appendChild(overlay);
-}
-
-const overlay = document.querySelector('.menu-overlay');
-
-menuBtn.addEventListener('click', () => {
-    navbar.classList.toggle('open');
-    overlay.classList.toggle('active'); // Affiche/Cache le voile
-});
-
-// Fermer en cliquant sur le voile
-overlay.addEventListener('click', () => {
-    navbar.classList.remove('open');
-    overlay.classList.remove('active');
-    menuBtn.querySelector('i').classList.replace('fa-times', 'fa-bars');
-});
-
-</script>
+</div>
 
 </body>
 </html>
