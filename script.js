@@ -861,33 +861,44 @@ document.addEventListener('DOMContentLoaded', async () => {
     chargerStats();
     chargerJoueurs();
 
-    // Gérer le retour OAuth Google (callback)
-    const { data: { session } } = await supabase.auth.getSession();
+    // Détecter si on revient d'un callback OAuth (le hash contient access_token)
+    const hash = window.location.hash;
+    const isOAuthCallback = hash.includes('access_token=');
 
-    if (session) {
-        // Utilisateur connecté — vérifie si profil existe
-        const { data: profil } = await supabase
-            .from('joueurs')
-            .select('id_user')
-            .eq('id_user', session.user.id)
-            .single();
+    if (isOAuthCallback) {
+        // Nettoyer l'URL immédiatement
+        history.replaceState(null, '', window.location.pathname);
 
-        if (profil) {
-            // Profil existant → page profil
-            showPage('page-profil');
-            verifierSession();
+        // Attendre que Supabase traite le token
+        await new Promise(resolve => setTimeout(resolve, 800));
+
+        const { data: { session } } = await supabase.auth.getSession();
+
+        if (session) {
+            const { data: profil } = await supabase
+                .from('joueurs')
+                .select('id_user')
+                .eq('id_user', session.user.id)
+                .single();
+
+            if (profil) {
+                showPage('page-profil');
+                verifierSession();
+            } else {
+                showPage('page-create-profil');
+                window._profilActuel = null;
+            }
         } else {
-            // Pas de profil → créer le profil
-            showPage('page-create-profil');
-            window._profilActuel = null;
+            afficherNotif("⚠ Erreur de connexion, réessaie !");
+            showPage('page-accueil');
         }
         return;
     }
 
-    // Gérer le hash URL (navigation directe)
-    const hash = window.location.hash.replace('#', '');
-    if (hash) {
-        showPage(hash);
+    // Navigation normale via hash
+    const pageHash = hash.replace('#', '');
+    if (pageHash && document.getElementById(pageHash)) {
+        showPage(pageHash);
     } else {
         showPage('page-accueil');
     }
