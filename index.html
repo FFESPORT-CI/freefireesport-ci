@@ -21,6 +21,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Teko:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <script src="maintenance.js"></script>
 </head>
 <body>
 
@@ -71,7 +72,6 @@
                 <div class="dropdown-panel">
                     <a onclick="showPage('page-commu')"><i class="fas fa-comments"></i> Communauté</a>
                     <a onclick="showPage('page-guildes')"><i class="fas fa-shield-alt"></i> Guildes</a>
-                    <a onclick="showPage('page-joueurs')"><i class="fas fa-users"></i> Joueurs</a>
                     <a onclick="showPage('page-actu')"><i class="fas fa-newspaper"></i> Actualités</a>
                     <a onclick="showPage('page-reglement')"><i class="fas fa-gavel"></i> Règlement</a>
                 </div>
@@ -81,9 +81,6 @@
             </a>
             <a onclick="showPage('page-support')" class="nav-link" data-page="page-support">
                 <i class="fas fa-headset"></i> SUPPORT
-            </a>
-            <a onclick="showPage('page-profil')" class="nav-link nav-profil-btn" data-page="page-profil">
-                <i class="fas fa-user-circle"></i> MON PROFIL
             </a>
         </nav>
 
@@ -128,7 +125,6 @@
                 <div class="mobile-acc-body">
                     <a onclick="go('page-commu')"><i class="fas fa-comments"></i> Communauté</a>
                     <a onclick="go('page-guildes')"><i class="fas fa-shield-alt"></i> Guildes</a>
-                    <a onclick="go('page-joueurs')"><i class="fas fa-users"></i> Joueurs</a>
                     <a onclick="go('page-actu')"><i class="fas fa-newspaper"></i> Actualités</a>
                     <a onclick="go('page-reglement')"><i class="fas fa-gavel"></i> Règlement</a>
                 </div>
@@ -139,9 +135,6 @@
             </a>
             <a class="mobile-nav-item" onclick="go('page-support')">
                 <i class="fas fa-headset"></i> <span>Support</span>
-            </a>
-            <a class="mobile-nav-item mobile-profil-btn" onclick="go('page-profil')">
-                <i class="fas fa-user-circle"></i> <span>Mon Profil</span>
             </a>
         </div>
 
@@ -741,19 +734,64 @@
 </section>
 
 
-<!-- ===== PAGE LISTE JOUEURS ===== -->
+<!-- ===== PAGE LISTE JOUEURS (EN CONSTRUCTION) ===== -->
 <section id="page-joueurs" class="page">
     <div class="page-header">
         <div class="page-header-inner">
             <div class="page-breadcrumb">// COMMUNAUTÉ / JOUEURS</div>
             <h2 class="page-title">LISTE DES <span>SOLDATS</span></h2>
-            <p class="page-desc">Tous les joueurs enregistrés sur la plateforme.</p>
         </div>
     </div>
-
     <div class="container">
-        <!-- Toolbar filtres -->
-        <div class="joueurs-toolbar">
+        <div class="coming-soon-box">
+            <div class="csb-icon"><i class="fas fa-tools"></i></div>
+            <div class="csb-badge">// EN DÉPLOIEMENT</div>
+            <h3>SECTION EN CONSTRUCTION</h3>
+            <p>L'annuaire des joueurs est en cours de déploiement. Revenez bientôt, soldat.</p>
+            <button class="btn-ghost" onclick="showPage('page-accueil')">
+                <i class="fas fa-arrow-left"></i> RETOUR À L'ACCUEIL
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PAGE PROFIL (EN CONSTRUCTION) ===== -->
+<section id="page-profil" class="page">
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="page-breadcrumb">// MON PROFIL</div>
+            <h2 class="page-title">DOSSIER <span>SOLDAT</span></h2>
+        </div>
+    </div>
+    <div class="container">
+        <div class="coming-soon-box">
+            <div class="csb-icon"><i class="fas fa-user-cog"></i></div>
+            <div class="csb-badge">// EN DÉPLOIEMENT</div>
+            <h3>SECTION EN CONSTRUCTION</h3>
+            <p>Le système de profil joueur est en cours de déploiement. Revenez bientôt, soldat.</p>
+            <button class="btn-ghost" onclick="showPage('page-accueil')">
+                <i class="fas fa-arrow-left"></i> RETOUR À L'ACCUEIL
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PAGE CRÉER PROFIL (EN CONSTRUCTION) ===== -->
+<section id="page-create-profil" class="page">
+    <div class="container">
+        <div class="coming-soon-box">
+            <div class="csb-icon"><i class="fas fa-tools"></i></div>
+            <div class="csb-badge">// EN DÉPLOIEMENT</div>
+            <h3>SECTION EN CONSTRUCTION</h3>
+            <p>Revenez bientôt.</p>
+            <button class="btn-ghost" onclick="showPage('page-accueil')">
+                <i class="fas fa-arrow-left"></i> RETOUR
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PAGE SPONSORS ===== -->
             <div class="toolbar-left">
                 <span class="toolbar-count">
                     <span id="compteur-joueurs">0</span> JOUEURS
@@ -796,244 +834,6 @@
         </div>
     </div>
 </section>
-
-<!-- ===== PAGE PROFIL (connecté) ===== -->
-<section id="page-profil" class="page">
-    <div class="page-header">
-        <div class="page-header-inner">
-            <div class="page-breadcrumb">// MON PROFIL</div>
-            <h2 class="page-title">DOSSIER <span>SOLDAT</span></h2>
-            <p class="page-desc">Ton identité sur la plateforme FF ESPORT-CI.</p>
-        </div>
-    </div>
-    <div class="container">
-        <!-- État : non connecté -->
-        <div id="profil-non-connecte" class="auth-wall">
-            <div class="auth-wall-icon"><i class="fas fa-user-lock"></i></div>
-            <h3>ACCÈS RESTREINT</h3>
-            <p>Connecte-toi avec Google pour accéder à ton profil soldat.</p>
-            <button class="btn-google" onclick="connexionGoogle()">
-                <i class="fab fa-google"></i> CONNEXION AVEC GOOGLE
-            </button>
-        </div>
-
-        <!-- État : connecté mais pas de profil -->
-        <div id="profil-creer" style="display:none;">
-            <div class="auth-wall">
-                <div class="auth-wall-icon"><i class="fas fa-id-card"></i></div>
-                <h3>CRÉE TON PROFIL</h3>
-                <p>Tu es connecté mais tu n'as pas encore de profil soldat.</p>
-                <button class="btn-primary" onclick="showPage('page-create-profil')">
-                    <i class="fas fa-plus"></i> CRÉER MON PROFIL
-                </button>
-            </div>
-        </div>
-
-        <!-- État : profil existant -->
-        <div id="profil-affiche" style="display:none;">
-            <div class="profil-card">
-                <div class="profil-card-header">
-                    <div class="profil-avatar-wrap">
-                        <img id="profil-photo" src="" alt="Avatar" class="profil-avatar"
-                            onerror="this.src='https://ui-avatars.com/api/?name=FF&background=00d4ff&color=050810&size=128'">
-                        <div class="profil-avatar-ring"></div>
-                    </div>
-                    <div class="profil-header-info">
-                        <div class="profil-badge-wrap">
-                            <span class="profil-badge" id="profil-role-badge">RÔLE</span>
-                        </div>
-                        <h2 class="profil-pseudo" id="profil-pseudo">—</h2>
-                        <p class="profil-uid"><i class="fas fa-id-badge"></i> UID : <span id="profil-uid">—</span></p>
-                    </div>
-                    <button class="btn-ghost btn-sm profil-edit-btn" onclick="showPage('page-create-profil')">
-                        <i class="fas fa-pen"></i> MODIFIER
-                    </button>
-                </div>
-
-                <div class="profil-stats-row">
-                    <div class="profil-stat">
-                        <span class="ps-label">NIVEAU</span>
-                        <span class="ps-value" id="profil-niveau">—</span>
-                    </div>
-                    <div class="profil-stat-divider"></div>
-                    <div class="profil-stat">
-                        <span class="ps-label">GUILDE</span>
-                        <span class="ps-value" id="profil-guilde">—</span>
-                    </div>
-                    <div class="profil-stat-divider"></div>
-                    <div class="profil-stat">
-                        <span class="ps-label">RÔLE</span>
-                        <span class="ps-value" id="profil-role">—</span>
-                    </div>
-                </div>
-
-                <!-- BIO -->
-                <div class="profil-bio-section" id="profil-bio-section">
-                    <div class="profil-bio-label"><i class="fas fa-quote-left"></i> BIO</div>
-                    <p class="profil-bio-text" id="profil-bio">—</p>
-                </div>
-
-                <div class="profil-actions">
-                    <a id="profil-wa-btn" href="#" target="_blank" class="btn-primary">
-                        <i class="fab fa-whatsapp"></i> MON WHATSAPP
-                    </a>
-                    <button class="btn-ghost" onclick="deconnexion()">
-                        <i class="fas fa-sign-out-alt"></i> DÉCONNEXION
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ===== PAGE CRÉER / MODIFIER PROFIL ===== -->
-<section id="page-create-profil" class="page">
-    <div class="page-header">
-        <div class="page-header-inner">
-            <div class="page-breadcrumb">// MON PROFIL / CONFIGURATION</div>
-            <h2 class="page-title">CONFIGURER MON <span>PROFIL</span></h2>
-            <p class="page-desc">Remplis tes informations pour rejoindre l'annuaire des soldats.</p>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="form-card form-card-lg">
-
-            <!-- Wizard progress -->
-            <div class="wizard-header">
-                <div class="wizard-steps">
-                    <div class="wiz-step active" id="wiz-s1">
-                        <div class="wiz-step-dot">1</div>
-                        <span>IDENTITÉ</span>
-                    </div>
-                    <div class="wiz-step-line"></div>
-                    <div class="wiz-step" id="wiz-s2">
-                        <div class="wiz-step-dot">2</div>
-                        <span>GUILDE & RÔLE</span>
-                    </div>
-                    <div class="wiz-step-line"></div>
-                    <div class="wiz-step" id="wiz-s3">
-                        <div class="wiz-step-dot">3</div>
-                        <span>CONTACT</span>
-                    </div>
-                </div>
-                <div class="wizard-bar-wrap">
-                    <div class="wizard-bar" id="wiz-bar" style="width:25%"></div>
-                </div>
-            </div>
-
-            <!-- ÉTAPE 1 : Identité -->
-            <div id="step1" class="wiz-body">
-                <div class="form-section-title"><i class="fas fa-user"></i> IDENTITÉ IN-GAME</div>
-                <div class="form-grid">
-                    <div class="form-field">
-                        <label><i class="fas fa-user"></i> PSEUDO FREE FIRE</label>
-                        <input type="text" id="p-pseudo" placeholder="Ton pseudo exact">
-                    </div>
-                    <div class="form-field">
-                        <label><i class="fas fa-id-badge"></i> UID</label>
-                        <input type="text" id="p-uid" placeholder="Ton UID">
-                    </div>
-                </div>
-                <div class="form-field">
-                    <label><i class="fas fa-star"></i> NIVEAU</label>
-                    <input type="number" id="p-niveau" placeholder="Ex: 64" min="1" max="100">
-                </div>
-                <div class="form-actions">
-                    <button class="btn-ghost" onclick="showPage('page-profil')">
-                        <i class="fas fa-arrow-left"></i> RETOUR
-                    </button>
-                    <button class="btn-primary" onclick="nextStep()">
-                        SUIVANT <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- ÉTAPE 2 : Guilde & Rôle -->
-            <div id="step2" class="wiz-body" style="display:none;">
-                <div class="form-section-title"><i class="fas fa-shield-alt"></i> GUILDE & RÔLE</div>
-                <div class="form-field">
-                    <label><i class="fas fa-shield-alt"></i> TA GUILDE</label>
-                    <select id="p-guilde-select">
-                        <option value="">— Sans guilde —</option>
-                    </select>
-                </div>
-                <div class="form-field">
-                    <label><i class="fas fa-crosshairs"></i> TON RÔLE</label>
-                    <div class="role-picker" id="rolePicker">
-                        <div class="role-option" data-role="Sniper" onclick="selectRole(this)">
-                            <span class="role-icon">🎯</span>
-                            <span>Sniper</span>
-                        </div>
-                        <div class="role-option" data-role="Rusher" onclick="selectRole(this)">
-                            <span class="role-icon">⚡</span>
-                            <span>Rusher</span>
-                        </div>
-                        <div class="role-option" data-role="Support" onclick="selectRole(this)">
-                            <span class="role-icon">🛡️</span>
-                            <span>Support</span>
-                        </div>
-                        <div class="role-option" data-role="Flex" onclick="selectRole(this)">
-                            <span class="role-icon">🔄</span>
-                            <span>Flex</span>
-                        </div>
-                        <div class="role-option" data-role="Bombardier" onclick="selectRole(this)">
-                            <span class="role-icon">💣</span>
-                            <span>Bombardier</span>
-                        </div>
-                        <div class="role-option" data-role="Fusilier" onclick="selectRole(this)">
-                            <span class="role-icon">🔫</span>
-                            <span>Fusilier</span>
-                        </div>
-                    </div>
-                    <input type="hidden" id="p-role">
-                </div>
-                <div class="form-actions">
-                    <button class="btn-ghost" onclick="prevStep()">
-                        <i class="fas fa-arrow-left"></i> PRÉCÉDENT
-                    </button>
-                    <button class="btn-primary" onclick="nextStep()">
-                        SUIVANT <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- ÉTAPE 3 : Contact -->
-            <div id="step3" class="wiz-body" style="display:none;">
-                <div class="form-section-title"><i class="fab fa-whatsapp"></i> CONTACT & BIO</div>
-                <div class="form-field">
-                    <label><i class="fab fa-whatsapp"></i> NUMÉRO WHATSAPP</label>
-                    <div class="phone-input-wrap">
-                        <select id="p-pays">
-                            <option value="225">🇨🇮 +225</option>
-                            <option value="221">🇸🇳 +221</option>
-                            <option value="223">🇲🇱 +223</option>
-                            <option value="226">🇧🇫 +226</option>
-                            <option value="228">🇹🇬 +228</option>
-                            <option value="229">🇧🇯 +229</option>
-                        </select>
-                        <input type="tel" id="p-phone" placeholder="07 XX XX XX XX">
-                    </div>
-                </div>
-                <div class="form-field">
-                    <label><i class="fas fa-quote-left"></i> BIO (optionnel)</label>
-                    <textarea id="p-bio" placeholder="Présente-toi en quelques mots... (ex: Sniper Heroic, j'aime le CS mode et les défis)" rows="3"></textarea>
-                    <span class="field-hint">Max 200 caractères</span>
-                </div>
-                <div class="form-actions">
-                    <button class="btn-ghost" onclick="prevStep()">
-                        <i class="fas fa-arrow-left"></i> PRÉCÉDENT
-                    </button>
-                    <button class="btn-primary" onclick="createProfile()">
-                        <i class="fas fa-check"></i> VALIDER MON PROFIL
-                    </button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
 </main>
 
 <!-- MODAL DÉFI -->

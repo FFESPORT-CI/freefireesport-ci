@@ -2885,6 +2885,52 @@ input, select, textarea {
     margin-top: 8px;
 }
 
+/* ===== COMING SOON ===== */
+.coming-soon-box {
+    text-align: center;
+    padding: 80px 40px;
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.csb-icon {
+    font-size: 48px;
+    color: var(--border-strong);
+    margin-bottom: 16px;
+    animation: csb-pulse 2s ease-in-out infinite;
+}
+
+@keyframes csb-pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+}
+
+.csb-badge {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.coming-soon-box h3 {
+    font-family: var(--font-display);
+    font-size: 28px;
+    color: white;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+}
+
+.coming-soon-box p {
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 28px;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 992px) {
     .desktop-nav { display: none; }
