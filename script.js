@@ -819,6 +819,30 @@ document.addEventListener('click', (e) => {
     if (modalInviter && e.target === modalInviter) fermerModalInviter();
 });
 
+// ===== ÉCOUTER LES CHANGEMENTS DE SESSION =====
+supabase.auth.onAuthStateChange(async (event, session) => {
+    if (event === 'SIGNED_IN' && session) {
+        // Vérifie si profil existe
+        const { data: profil } = await supabase
+            .from('joueurs')
+            .select('id_user')
+            .eq('id_user', session.user.id)
+            .single();
+
+        if (profil) {
+            showPage('page-profil');
+            verifierSession();
+        } else {
+            showPage('page-create-profil');
+            window._profilActuel = null;
+        }
+    }
+
+    if (event === 'SIGNED_OUT') {
+        showPage('page-accueil');
+    }
+});
+
 // ===== SERVICE WORKER (PWA) =====
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("sw.js")
@@ -827,7 +851,7 @@ if ("serviceWorker" in navigator) {
 }
 
 // ===== INITIALISATION =====
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     // Intro
     lancerIntro();
 
@@ -836,7 +860,29 @@ document.addEventListener('DOMContentLoaded', () => {
     chargerGuildes();
     chargerStats();
     chargerJoueurs();
-    verifierSession();
+
+    // Gérer le retour OAuth Google (callback)
+    const { data: { session } } = await supabase.auth.getSession();
+
+    if (session) {
+        // Utilisateur connecté — vérifie si profil existe
+        const { data: profil } = await supabase
+            .from('joueurs')
+            .select('id_user')
+            .eq('id_user', session.user.id)
+            .single();
+
+        if (profil) {
+            // Profil existant → page profil
+            showPage('page-profil');
+            verifierSession();
+        } else {
+            // Pas de profil → créer le profil
+            showPage('page-create-profil');
+            window._profilActuel = null;
+        }
+        return;
+    }
 
     // Gérer le hash URL (navigation directe)
     const hash = window.location.hash.replace('#', '');
@@ -845,4 +891,6 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         showPage('page-accueil');
     }
+
+    verifierSession();
 });
