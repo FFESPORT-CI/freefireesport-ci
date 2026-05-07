@@ -376,17 +376,28 @@ window.inscriptionTournoi = () => {
 
 // ===== CONNEXION GOOGLE =====
 window.connexionGoogle = async () => {
-    const { error } = await supabase.auth.signInWithOAuth({
+    afficherNotif("⏳ Redirection vers Google...");
+
+    const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
-        options: { redirectTo: window.location.href }
+        options: {
+            redirectTo: window.location.href.split('#')[0], // URL propre sans hash
+            queryParams: {
+                prompt: 'select_account' // Force la sélection du compte Google
+            }
+        }
     });
-    if (error) afficherNotif("❌ Erreur connexion : " + error.message);
+
+    if (error) {
+        console.error("Erreur OAuth:", error);
+        afficherNotif("❌ Erreur : " + error.message);
+    }
 };
 
 window.deconnexion = async () => {
     await supabase.auth.signOut();
     afficherNotif("👋 Déconnecté !");
-    showPage('page-profil');
+    showPage('page-accueil');
     verifierSession();
 };
 
@@ -820,9 +831,16 @@ document.addEventListener('click', (e) => {
 });
 
 // ===== ÉCOUTER LES CHANGEMENTS DE SESSION =====
+let sessionInitialized = false;
+
 supabase.auth.onAuthStateChange(async (event, session) => {
+    // Ignorer le premier déclenchement automatique au chargement
+    if (!sessionInitialized) {
+        sessionInitialized = true;
+        return;
+    }
+
     if (event === 'SIGNED_IN' && session) {
-        // Vérifie si profil existe
         const { data: profil } = await supabase
             .from('joueurs')
             .select('id_user')
@@ -833,9 +851,10 @@ supabase.auth.onAuthStateChange(async (event, session) => {
             showPage('page-profil');
             verifierSession();
         } else {
-            showPage('page-create-profil');
             window._profilActuel = null;
+            showPage('page-create-profil');
         }
+        afficherNotif("✅ Connecté avec succès !");
     }
 
     if (event === 'SIGNED_OUT') {
