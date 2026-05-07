@@ -3,767 +3,1191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FREE FIRE CÔTE D'IVOIRE</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <title>FF ESPORT-CI | Free Fire Côte d'Ivoire</title>
+
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="ffesci.png">
+    <link rel="apple-touch-icon" href="ffesci.png">
+    <meta name="theme-color" content="#00d4ff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description" content="Free Fire Côte d'Ivoire - Communauté, tournois et guildes FFESCI">
+
+    <meta property="og:title" content="FF ESPORT-CI">
+    <meta property="og:description" content="La plateforme n°1 des soldats ivoiriens">
+    <meta property="og:image" content="ffesci.png">
+    <meta property="og:type" content="website">
+
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Teko:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-   <link rel="stylesheet" href="style.css">
-   <link rel="manifest" href="manifest.json">
-
-<meta name="theme-color" content="#ffbb00">
-
-<!-- iPhone / Apple PWA -->
-<link rel="apple-touch-icon" href="ffesci.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-<meta name="description" content="Free Fire Côte d'Ivoire - Communauté, tournois et guildes FFESCI">
-<meta name="keywords" content="Free Fire CI, FFESCI, tournoi free fire, guilde CI">
-
-<meta property="og:title" content="Free Fire Côte d'Ivoire">
-<meta property="og:image" content="ffesci.png">
-<meta property="og:type" content="website">
-<meta property="og:description" content="Communauté Free Fire Côte d'Ivoire">
+    <link rel="stylesheet" href="style.css">
 </head>
-
-<link rel="icon" href="ffesci.png">
-
 <body>
 
-    <div id="loadingScreen" class="loading-screen">
-    <div class="loader-box">
-        <div class="loader-ring"></div>
-        <p>CHARGEMENT...</p>
+<!-- ÉCRAN INTRO -->
+<div id="introScreen">
+    <div class="intro-inner">
+        <div class="intro-grid-lines"></div>
+        <div class="intro-logo-wrap">
+            <img src="ffesci.png" alt="FFESCI" class="intro-logo">
+            <div class="intro-scan"></div>
+        </div>
+        <div class="intro-text-wrap">
+            <p class="intro-codename">// SYSTÈME EN LIGNE</p>
+            <h1 class="intro-title">FF ESPORT<span>-CI</span></h1>
+            <p class="intro-sub">FREE FIRE CÔTE D'IVOIRE 🇨🇮</p>
+            <div class="intro-bar"><div class="intro-progress"></div></div>
+            <p class="intro-loading" id="introStatus">INITIALISATION...</p>
+        </div>
     </div>
 </div>
 
-  <div id="introScreen">
-    <div class="intro-box">
-        <img src="ffesci.png" class="intro-logo" alt="FFESCI">
-        <h1 class="intro-text">BIENVENU SUR FF CÔTE D'IVOIRE 🇨🇮</h1>
-        <p class="boot-text">SYSTEM BOOTING... FREE FIRE CI ONLINE</p>
+<!-- HEADER -->
+<header class="site-header" id="siteHeader">
+    <div class="header-inner">
+
+        <div class="header-logo" onclick="showPage('page-accueil')">
+            <img src="ffesci.png" alt="FFESCI">
+            <div class="logo-text-wrap">
+                <span class="logo-main">FF ESPORT</span>
+                <span class="logo-sub">CÔTE D'IVOIRE</span>
+            </div>
+        </div>
+
+        <nav class="desktop-nav">
+            <a onclick="showPage('page-accueil')" class="nav-link active-link" data-page="page-accueil">
+                <i class="fas fa-home"></i> ACCUEIL
+            </a>
+            <div class="nav-dropdown">
+                <a class="nav-link">E-SPORT <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-panel">
+                    <a onclick="showPage('page-tournoi')"><i class="fas fa-trophy"></i> Tournois</a>
+                    <a onclick="showPage('page-vision')"><i class="fas fa-eye"></i> Vision</a>
+                    <a onclick="showPage('page-maj')"><i class="fas fa-bolt"></i> Mises à jour</a>
+                </div>
+            </div>
+            <div class="nav-dropdown">
+                <a class="nav-link">COMMUNAUTÉ <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-panel">
+                    <a onclick="showPage('page-commu')"><i class="fas fa-comments"></i> Communauté</a>
+                    <a onclick="showPage('page-guildes')"><i class="fas fa-shield-alt"></i> Guildes</a>
+                    <a onclick="showPage('page-joueurs')"><i class="fas fa-users"></i> Joueurs</a>
+                    <a onclick="showPage('page-actu')"><i class="fas fa-newspaper"></i> Actualités</a>
+                    <a onclick="showPage('page-reglement')"><i class="fas fa-gavel"></i> Règlement</a>
+                </div>
+            </div>
+            <a onclick="showPage('page-sponsors')" class="nav-link" data-page="page-sponsors">
+                <i class="fas fa-handshake"></i> PARTENAIRES
+            </a>
+            <a onclick="showPage('page-support')" class="nav-link" data-page="page-support">
+                <i class="fas fa-headset"></i> SUPPORT
+            </a>
+            <a onclick="showPage('page-profil')" class="nav-link nav-profil-btn" data-page="page-profil">
+                <i class="fas fa-user-circle"></i> MON PROFIL
+            </a>
+        </nav>
+
+        <button class="burger-btn" id="burgerBtn" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </button>
+
     </div>
-</div>
-   
-    <header class="main-header">
-        <div class="header-container">
-            <div class="logo-area" onclick="showPage('page-accueil')">
-                <img src="ffesci.png" alt="FFESCI">
-                <span class="logo-text">FREE FIRE <span class="text-primary"> CÔTE D'IVOIRE</span></span>
+</header>
+
+<!-- MENU MOBILE -->
+<div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+        <div class="mobile-menu-header">
+            <img src="ffesci.png" alt="FFESCI">
+            <span>FF ESPORT-CI</span>
+            <button onclick="toggleMenu()"><i class="fas fa-times"></i></button>
+        </div>
+
+        <div class="mobile-nav">
+            <a class="mobile-nav-item" onclick="go('page-accueil')">
+                <i class="fas fa-home"></i> <span>Accueil</span>
+            </a>
+
+            <div class="mobile-accordion">
+                <div class="mobile-acc-title" onclick="toggleAcc(this)">
+                    <span><i class="fas fa-gamepad"></i> E-Sport</span>
+                    <i class="fas fa-chevron-right acc-icon"></i>
+                </div>
+                <div class="mobile-acc-body">
+                    <a onclick="go('page-tournoi')"><i class="fas fa-trophy"></i> Tournois</a>
+                    <a onclick="go('page-vision')"><i class="fas fa-eye"></i> Vision</a>
+                    <a onclick="go('page-maj')"><i class="fas fa-bolt"></i> Mises à jour</a>
+                </div>
             </div>
 
-            <nav class="desktop-nav">
-                <div class="nav-item">
-                    <a onclick="showPage('page-accueil')" id="nav-accueil"><i class="fas fa-home"></i> Accueil</a>
+            <div class="mobile-accordion">
+                <div class="mobile-acc-title" onclick="toggleAcc(this)">
+                    <span><i class="fas fa-users"></i> Communauté</span>
+                    <i class="fas fa-chevron-right acc-icon"></i>
                 </div>
-                
-                <div class="nav-item dropdown">
-                    <a>E-Sport <i class="fas fa-chevron-down"></i></a>
-                    <div class="dropdown-content">
-                        <a onclick="showPage('page-tournoi')"><i class="fas fa-trophy"></i> Tournois</a>
-                        <a onclick="showPage('page-but')"><i class="fas fa-bullseye"></i> Notre Vision</a>
-                        <a onclick="showPage('page-maj')"><i class="fas fa-tools"></i> Mises à Jour</a>
-                    </div>
+                <div class="mobile-acc-body">
+                    <a onclick="go('page-commu')"><i class="fas fa-comments"></i> Communauté</a>
+                    <a onclick="go('page-guildes')"><i class="fas fa-shield-alt"></i> Guildes</a>
+                    <a onclick="go('page-joueurs')"><i class="fas fa-users"></i> Joueurs</a>
+                    <a onclick="go('page-actu')"><i class="fas fa-newspaper"></i> Actualités</a>
+                    <a onclick="go('page-reglement')"><i class="fas fa-gavel"></i> Règlement</a>
                 </div>
+            </div>
 
-                <div class="nav-item dropdown">
-                    <a>Communauté <i class="fas fa-chevron-down"></i></a>
-                    <div class="dropdown-content">
-                        <a onclick="showPage('page-commu')"><i class="fas fa-users"></i> Communauté</a>
-                        <a onclick="showPage('page-reglement')"><i class="fas fa-gavel"></i> Règlement</a>
-                        <a onclick="showPage('page-guildes')"><i class="fas fa-shield-alt"></i> Guildes</a>
-                        <a onclick="showPage('page-liste-joueurs')"><i class="fas fa-search"></i> Recruter</a>
-                        <a onclick="showPage('page-profil')"><i class="fas fa-user-plus"></i> Profil</a>
-                        <a onclick="showPage('page-actu')"><i class="fas fa-newspaper"></i> Actualités</a>
-                    </div>
-                </div>
-
-                <div class="nav-item"><a onclick="showPage('page-sponsors')">Partenaires</a></div>
-                <div class="nav-item"><a onclick="showPage('page-support')">Support</a></div>
-            </nav>
+            <a class="mobile-nav-item" onclick="go('page-sponsors')">
+                <i class="fas fa-handshake"></i> <span>Partenaires</span>
+            </a>
+            <a class="mobile-nav-item" onclick="go('page-support')">
+                <i class="fas fa-headset"></i> <span>Support</span>
+            </a>
+            <a class="mobile-nav-item mobile-profil-btn" onclick="go('page-profil')">
+                <i class="fas fa-user-circle"></i> <span>Mon Profil</span>
+            </a>
         </div>
 
+        <div class="mobile-menu-footer">
+            <p>© 2026 FF ESPORT-CI</p>
+        </div>
+    </div>
 </div>
+<div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
 
-<div id="mobileMenu" class="mobile-menu">
+<!-- MAIN CONTENT -->
+<main id="mainContent">
 
-    <div class="mobile-header">
-        <img src="ffesci.png" class="mobile-logo">
-        <span>FF CÔTE D’IVOIRE</span>
-        <i class="fas fa-times" onclick="toggleMenu()"></i>
-    </div>
-
-    <!-- ACCUEIL -->
-    <div class="mobile-section">
-        <div class="mobile-title" onclick="toggleSubMenu(this)">
-            <i class="fas fa-home"></i> Accueil
-        </div>
-        <div class="mobile-sub">
-            <a onclick="go('page-accueil')">🏠 Home</a>
-        </div>
-    </div>
-
-    <!-- E-SPORT -->
-    <div class="mobile-section">
-        <div class="mobile-title" onclick="toggleSubMenu(this)">
-            <i class="fas fa-gamepad"></i> E-Sport
-        </div>
-        <div class="mobile-sub">
-            <a onclick="go('page-tournoi')">🏆 Tournois</a>
-            <a onclick="go('page-but')">🎯 Vision</a>
-            <a onclick="go('page-maj')">🛠️ Mises à jour</a>
-        </div>
-    </div>
-
-    <!-- COMMUNAUTE -->
-    <div class="mobile-section">
-        <div class="mobile-title" onclick="toggleSubMenu(this)">
-            <i class="fas fa-users"></i> Communauté
-        </div>
-        <div class="mobile-sub">
-            <a onclick="go('page-commu')">💬 Communauté</a>
-            <a onclick="go('page-reglement')">⚖️ Règlement</a>
-            <a onclick="go('page-guildes')">🛡️ Guildes</a>
-            <a onclick="go('page-liste-joueurs')">🔎 Recruter</a>
-            <a onclick="go('page-profil')">👤 Profil</a>
-            <a onclick="go('page-actu')">📰 Actualités</a>
-        </div>
-    </div>
-
-    <!-- AUTRES -->
-    <div class="mobile-section">
-        <div class="mobile-title" onclick="go('page-sponsors')">
-            <i class="fas fa-handshake"></i> Partenaires
-        </div>
-    </div>
-
-    <div class="mobile-section">
-        <div class="mobile-title" onclick="go('page-support')">
-            <i class="fas fa-headset"></i> Support
-        </div>
-    </div>
-
-</div>
-
-    </header>
-
- <main id="main-content">
-    
+<!-- ===== PAGE ACCUEIL ===== -->
 <section id="page-accueil" class="page active">
-    <div class="hero-gaming">
-
-        <div class="hero-overlay"></div>
-
-        <!-- 🔥 IMAGE AJOUTÉE -->
-        <div class="hero-image">
-            <img src="hero_freefire_ci.jpeg" alt="FFESCI">
-        </div>
+    <div class="hero">
+        <div class="hero-grid-bg"></div>
+        <div class="hero-scanlines"></div>
 
         <div class="hero-content">
-            <div class="badge-live animate-pulse">LIVE CÔTE D'IVOIRE 🇨🇮</div>
-            <h1 class="font-orbitron">FREE FIRE <span class="text-glow"> CÔTE D'IVOIRE</span></h1>
-            <p class="hero-lead">La plateforme n°1 des soldats ivoiriens. Entrez dans la légende.</p>
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                OPÉRATION ACTIVE — CÔTE D'IVOIRE 🇨🇮
+            </div>
+            <h1 class="hero-title">
+                FREE FIRE<br>
+                <span class="hero-title-accent">CÔTE D'IVOIRE</span>
+            </h1>
+            <p class="hero-desc">La plateforme n°1 des soldats ivoiriens.<br>Entrez dans la légende.</p>
 
-            <div class="hero-btns">
-                <button onclick="showPage('page-but')" class="btn-main">
-                    <i class="fas fa-eye"></i> NOTRE VISION
+            <div class="hero-actions">
+                <button class="btn-primary" onclick="showPage('page-tournoi')">
+                    <i class="fas fa-trophy"></i> TOURNOIS
                 </button>
-                <button onclick="showPage('page-commu')" class="btn-sub">
-                    <i class="fas fa-comments"></i> LA COMMUNAUTÉ
+                <button class="btn-ghost" onclick="showPage('page-guildes')">
+                    <i class="fas fa-shield-alt"></i> GUILDES
                 </button>
-            </div>
-        </div>
-
-        <div class="scroll-indicator">
-            <span>EXPLORER</span>
-            <div class="mouse"></div>
-        </div>
-
-    </div>
-</section>
-
-<section id="page-but" class="page">
-        <div class="vision-bg-overlay"></div> 
-        <div class="container" style="position: relative; z-index: 2;">
-            <div class="section-header-gaming">
-                <h2 class="text-glow-orange">NOTRE VISION</h2>
-                <div class="header-bar"></div>
-                <p>Nous bâtissons l'avenir du gaming en Côte d'Ivoire.</p>
-            </div>
-            <div class="but-grid">
-                <div class="but-card">
-                    <div class="card-glow-effect"></div>
-                    <i class="fas fa-trophy"></i>
-                    <h3>Compétition</h3>
-                    <p>Organisation de tournois réguliers avec des cashprizes garantis pour récompenser le talent ivoirien.</p>
-                </div>
-                <div class="but-card">
-                    <div class="card-glow-effect"></div>
-                    <i class="fas fa-users-cog"></i>
-                    <h3>Structure</h3>
-                    <p>Accompagner les guildes pour passer du stade d'amateur à une organisation e-sport professionnelle.</p>
-                </div>
-                <div class="but-card">
-                    <div class="card-glow-effect"></div>
-                    <i class="fas fa-broadcast-tower"></i>
-                    <h3>Visibilité</h3>
-                    <p>Diffusion des matchs et mise en avant des meilleurs joueurs sur nos réseaux pour attirer les recruteurs.</p>
-                </div>
-            </div>
-        </div>
-</section>
-
-<section id="page-commu" class="page">
-    <div class="container">
-        <div class="section-header-gaming">
-            <h2 class="text-glow-green">REJOINS LA COMMUNAUTÉ</h2>
-            <div class="header-bar green-bar"></div>
-            <p>Connecte-toi avec l'élite des soldats ivoiriens.</p>
-        </div>
-
-        <div class="social-hero-card">
-            <div class="wa-glow"></div>
-            <div class="social-content">
-                <div class="wa-icon-container animate-bounce-slow">
-                    <i class="fab fa-whatsapp"></i>
-                </div>
-                <h3 class="font-orbitron">GROUPE OFFICIEL WHATSAPP</h3>
-                <p>
-                    Ne manque aucune info sur les tournois, reçois les codes de salles en exclusivité 
-                    et discute avec les meilleurs joueurs de CI.
-                </p>
-                <button onclick="window.open('https://chat.whatsapp.com/KUm4uoqUBgD78Bh3onKOCi')" class="btn-whatsapp-premium">
-                    <span>REJOINDRE LE GROUPE</span>
-                    <i class="fas fa-external-link-alt"></i>
+                <button class="btn-ghost" onclick="showPage('page-commu')">
+                    <i class="fas fa-comments"></i> COMMUNAUTÉ
                 </button>
             </div>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-num" id="statGuildes">--</span>
+                    <span class="stat-label">GUILDES</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-num" id="statJoueurs">--</span>
+                    <span class="stat-label">JOUEURS</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-num">CI</span>
+                    <span class="stat-label">NATION</span>
+                </div>
+            </div>
         </div>
 
-        <div class="but-grid">
-            <div class="but-card commu-card">
-                <i class="fas fa-comments"></i>
-                <h4 class="font-orbitron">Discussions</h4>
-                <p>Partage tes meilleurs clips, tes configurations et tes astuces avec la communauté.</p>
-            </div>
-            
-            <div class="but-card commu-card">
-                <i class="fas fa-handshake"></i>
-                <h4 class="font-orbitron">Recrutement Express</h4>
-                <p>Trouve une guilde ou complète ton équipe pour les tournois en quelques minutes.</p>
-            </div>
+        <div class="hero-decoration">
+            <div class="deco-circle c1"></div>
+            <div class="deco-circle c2"></div>
+            <div class="deco-corner tl"></div>
+            <div class="deco-corner tr"></div>
+            <div class="deco-corner bl"></div>
+            <div class="deco-corner br"></div>
         </div>
     </div>
 </section>
 
+<!-- ===== PAGE TOURNOIS ===== -->
 <section id="page-tournoi" class="page">
-    <div class="container">
-        <div class="box" style="padding: 0; overflow: hidden; border: 2px solid var(--primary); background: #000; border-radius:15px; margin-bottom:20px;">
-            <img src="elitecup.png" alt="Elite Cup S1" style="width: 100%; height: auto; display: block;">
-            <div style="background: var(--primary); color: #000; text-align: center; padding: 10px; font-weight: bold; font-family: 'Orbitron';">
-                48 PLACES DISPONIBLES
-            </div>
-        </div>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
-            <div class="box">
-                <h3 class="font-orbitron"><i class="fas fa-trophy text-primary"></i> RÉCOMPENSES</h3>
-                <ul style="list-style: none; padding: 0; margin-top: 15px; line-height: 2;">
-                    <li>🥇 1er : 21 500 FCFA</li>
-                    <li>🥈 2e : 9 500 FCFA</li>
-                    <li>🥉 3e : 5 500 FCFA</li>
-                </ul>
-            </div>
-
-           <div class="box" style="border:1px solid var(--primary); padding:15px; border-radius:10px; background:#111;">
-
-    <h3>⚔️ INSCRIPTION TOURNOI</h3>
-
-    <p style="color:#ccc;">
-        💰 Frais de participation : <strong>1000 FCFA</strong><br>
-        📌 Paiement obligatoire avant validation<br>
-        ⚠️ Aucun remboursement<br>
-        🏆 Places limitées
-    </p>
-
-    <hr style="margin:10px 0; border-color:#333;">
-
-    <input id="tournoi_pseudo" placeholder="Ton pseudo Free Fire" style="margin-bottom:10px;">
-    <input id="tournoi_uid" placeholder="Ton UID Free Fire" style="margin-bottom:10px;">
-
-    <button onclick="inscriptionWhatsApp()" style="
-        width:100%;
-        background:#25D366;
-        color:#fff;
-        padding:12px;
-        border:none;
-        border-radius:8px;
-        font-weight:bold;
-        cursor:pointer;">
-        📲 S’INSCRIRE VIA WHATSAPP
-    </button>
-
-</div>
-
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="page-breadcrumb">// E-SPORT / TOURNOIS</div>
+            <h2 class="page-title">ZONE DE <span>COMBAT</span></h2>
+            <p class="page-desc">Les meilleurs soldats s'affrontent pour la gloire et les cashprizes.</p>
         </div>
     </div>
-</section>
 
-<section id="page-guildes" class="page">
     <div class="container">
-        <div class="section-header-gaming">
-            <h2 class="text-glow-gold"><i class="fas fa-trophy"></i> RÉPERTOIRE DES GUILDES</h2>
-            <div class="header-bar gold-bar"></div>
-            <p>L'annuaire officiel des forces spéciales de Côte d'Ivoire.</p>
+        <!-- Tournoi actif -->
+        <div class="tournoi-featured">
+            <div class="tf-badge">⚡ TOURNOI ACTIF</div>
+            <div class="tf-body">
+                <div class="tf-info">
+                    <h3>ÉLITE CUP S1</h3>
+                    <p class="tf-type">TOURNOI SOLO</p>
+                    <p class="tf-date"><i class="fas fa-calendar"></i> 15 Mai — 14h00 GMT</p>
+                    <p class="tf-desc">Le plus gros tournoi solo du mois ! 48 soldats sur la ligne de départ.</p>
+                    <div class="tf-details">
+                        <div class="tf-detail-item">
+                            <span class="td-label">CASHPRIZE</span>
+                            <span class="td-value">39.500 FCFA</span>
+                        </div>
+                        <div class="tf-detail-item">
+                            <span class="td-label">PLACES</span>
+                            <span class="td-value">48 / 48</span>
+                        </div>
+                        <div class="tf-detail-item">
+                            <span class="td-label">TICKET</span>
+                            <span class="td-value">1.000 FCFA</span>
+                        </div>
+                    </div>
+                    <button class="btn-primary" onclick="inscriptionTournoi()">
+                        <i class="fab fa-whatsapp"></i> S'INSCRIRE VIA WHATSAPP
+                    </button>
+                </div>
+            </div>
         </div>
 
-        <div class="registration-card">
-            <div class="card-header-simple">
-                <i class="fas fa-plus-circle"></i>
-                <h3 class="font-orbitron">ENREGISTRER MA GUILDE</h3>
-            </div>
-            
+        <!-- Formulaire d'inscription -->
+        <div class="section-title-wrap">
+            <h3 class="section-title">INSCRIPTION RAPIDE</h3>
+        </div>
+        <div class="form-card">
             <div class="form-grid">
-                <div class="input-group-premium">
-                    <i class="fas fa-shield-alt"></i>
-                    <input type="text" id="g_nom" placeholder="Nom de la Guilde">
+                <div class="form-field">
+                    <label><i class="fas fa-user"></i> PSEUDO IN-GAME</label>
+                    <input type="text" id="tournoi_pseudo" placeholder="Ton pseudo Free Fire">
                 </div>
-                <div class="input-group-premium">
-                    <i class="fas fa-user-tie"></i>
-                    <input type="text" id="g_chef" placeholder="Nom du Chef (IGN)">
-                </div>
-            </div>
-
-            <div class="form-row-wa">
-                <select id="g_pays" class="select-premium">
-              <option value="225">🇨🇮 +225</option>
-    <option value="221">🇸🇳 +221</option>
-    <option value="223">🇲🇱 +223</option>
-    <option value="226">🇧🇫 +226</option>
-    <option value="224">🇬🇳 +224</option>
-    <option value="237">🇨🇲 +237</option>
-    <option value="241">🇬🇦 +241</option>
-    <option value="229">🇧🇯 +229</option>
-    <option value="228">🇹🇬 +228</option>
-    <option value="242">🇨🇬 +242</option>
-    <option value="243">🇨🇩 +243</option>
-    <option value="212">🇲🇦 +212</option>
-    <option value="216">🇹🇳 +216</option>
-    <option value="213">🇩🇿 +213</option>
-    <option value="227">🇳🇪 +227</option>
-    <option value="235">🇹🇩 +235</option>
-    <option value="261">🇲🇬 +261</option>
-    <option value="33">🇫🇷 +33</option>
-    <option value="1">🇺🇸 +1</option>
-                </select>
-                <div class="input-group-premium wa-input">
-                    <i class="fab fa-whatsapp"></i>
-                    <input type="number" id="g_wa" placeholder="Numéro WhatsApp">
+                <div class="form-field">
+                    <label><i class="fas fa-id-badge"></i> UID</label>
+                    <input type="text" id="tournoi_uid" placeholder="Ton UID">
                 </div>
             </div>
-
-            <button onclick="validerGuilde()" class="btn-certify">
-                <i class="fas fa-certificate"></i> CERTIFIER MA GUILDE
+            <button class="btn-primary" onclick="inscriptionTournoi()">
+                <i class="fab fa-whatsapp"></i> CONFIRMER L'INSCRIPTION
             </button>
         </div>
 
-        <div class="list-section-header">
-            <h3 class="font-orbitron">GUILDES CERTIFIÉES</h3>
-            <div class="small-bar"></div>
+        <!-- Prochain tournoi -->
+        <div class="section-title-wrap">
+            <h3 class="section-title">À VENIR</h3>
         </div>
-        
-        <div id="listeGuildes" class="guildes-display-grid">
-            </div>
-    </div>
-</section>
-
-<section id="page-liste-joueurs" class="page">
-    <div class="container" style="text-align:center; padding:60px;">
-        <h2>🚧 MAINTENANCE</h2>
-        <p>Le système de recrutement est temporairement indisponible.</p>
-    </div>
-</section>
-
-<section id="page-actu" class="page">
-    <div class="container">
-        <div class="section-header-gaming">
-            <h2 class="text-glow">COMMUNIQUÉS OFFICIELS</h2>
-            <div class="header-bar"></div>
-            <p>Les dernières nouvelles du front ivoirien.</p>
-        </div>
-
-        <div id="news-container" class="news-grid"></div>
-    </div>
-</section>
-
-<section id="page-sponsors" class="page">
-    <div class="container">
-        <div class="section-header-gaming">
-            <h2 class="text-glow-gold">DEVENEZ PARTENAIRE</h2>
-            <div class="header-bar gold-bar"></div>
-            <p>Rejoignez l'écosystème E-sport n°1 en Côte d'Ivoire et connectez votre marque à une communauté ultra-engagée.</p>
-        </div>
-
-        <div class="grid-layout-premium">
-            <div class="box sponsor-card-new">
-                <div class="icon-circle"><i class="fas fa-trophy"></i></div>
-                <h3 class="font-orbitron">Sponsor Tournoi</h3>
-                <p>Votre logo sur l'affiche officielle, le stream en direct et les trophées du Clash of Guilds.</p>
-                <ul class="benefit-list">
-                    <li><i class="fas fa-check-circle"></i> Visibilité Stream</li>
-                    <li><i class="fas fa-check-circle"></i> Logo sur Trophée</li>
-                    <li><i class="fas fa-check-circle"></i> Interview Sponsor</li>
-                </ul>
-            </div>
-
-            <div class="box sponsor-card-new active-gold">
-                <div class="card-tag">RECOMMANDÉ</div>
-                <div class="icon-circle"><i class="fas fa-bullhorn"></i></div>
-                <h3 class="font-orbitron">Partenaire Digital</h3>
-                <p>Publicité exclusive sur notre site web et nos réseaux sociaux (TikTok / WhatsApp).</p>
-                <ul class="benefit-list">
-                    <li><i class="fas fa-check-circle"></i> Bannière Site Web</li>
-                    <li><i class="fas fa-check-circle"></i> Post Réseaux Sociaux</li>
-                    <li><i class="fas fa-check-circle"></i> Notification Push</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="contact-pro-box-premium">
-            <div class="contact-flex">
-                <div class="contact-icon">
-                    <i class="fas fa-envelope-open-text"></i>
+        <div class="tournoi-upcoming">
+            <div class="tu-card">
+                <div class="tu-icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="tu-info">
+                    <h4>COG — CLASH OF GUILDS</h4>
+                    <p>Format 4vs4 Classique · Guildes ivoiriennes</p>
+                    <span class="tu-status">BIENTÔT (VACANCES)</span>
                 </div>
-                <div class="contact-text">
-                    <h4 class="font-orbitron">Besoin d'un devis sur mesure ?</h4>
-                    <p>Discutons de votre stratégie marketing et de vos objectifs de visibilité.</p>
+                <a href="https://chat.whatsapp.com/KUm4uoqUBgD78Bh3onKOCi" target="_blank" class="btn-ghost btn-sm">
+                    <i class="fab fa-whatsapp"></i> REJOINDRE
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PAGE GUILDES ===== -->
+<section id="page-guildes" class="page">
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="page-breadcrumb">// COMMUNAUTÉ / GUILDES</div>
+            <h2 class="page-title">ANNUAIRE DES <span>GUILDES</span></h2>
+            <p class="page-desc">Les guildes certifiées de Côte d'Ivoire. Rejoins ou défie.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="guildes-toolbar">
+            <div class="toolbar-info">
+                <span id="guildes-count">0</span> GUILDES CERTIFIÉES
+            </div>
+            <button class="btn-primary btn-sm" onclick="showPage('page-register-guilde')">
+                <i class="fas fa-plus"></i> ENREGISTRER MA GUILDE
+            </button>
+        </div>
+
+        <div class="guildes-grid" id="listeGuildes">
+            <div class="loading-state">
+                <div class="loading-spinner"></div>
+                <p>CHARGEMENT DES GUILDES...</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PAGE REGISTER GUILDE ===== -->
+<section id="page-register-guilde" class="page">
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="page-breadcrumb">// GUILDES / ENREGISTREMENT</div>
+            <h2 class="page-title">CERTIFIER MA <span>GUILDE</span></h2>
+            <p class="page-desc">Rejoins l'annuaire officiel des guildes ivoiriennes.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="form-card form-card-lg">
+            <div class="form-section-title"><i class="fas fa-shield-alt"></i> INFORMATIONS GUILDE</div>
+            <div class="form-grid">
+                <div class="form-field">
+                    <label><i class="fas fa-tag"></i> NOM DE LA GUILDE</label>
+                    <input type="text" id="g_nom" placeholder="Nom exact dans le jeu">
                 </div>
-                <button onclick="window.open('https://wa.me/2250161912755')" class="btn-sponsor-gold">
-                    <i class="fab fa-whatsapp"></i> CONTACTER LE STAFF
+                <div class="form-field">
+                    <label><i class="fas fa-crown"></i> NOM DU LEADER</label>
+                    <input type="text" id="g_chef" placeholder="Pseudo du leader">
+                </div>
+            </div>
+            <div class="form-field">
+                <label><i class="fab fa-whatsapp"></i> WHATSAPP DU LEADER</label>
+                <div class="phone-input-wrap">
+                    <select id="g_pays">
+                        <option value="225">🇨🇮 +225</option>
+                        <option value="221">🇸🇳 +221</option>
+                        <option value="223">🇲🇱 +223</option>
+                        <option value="226">🇧🇫 +226</option>
+                        <option value="228">🇹🇬 +228</option>
+                        <option value="229">🇧🇯 +229</option>
+                    </select>
+                    <input type="tel" id="g_wa" placeholder="07 XX XX XX XX">
+                </div>
+            </div>
+            <div class="form-actions">
+                <button class="btn-ghost" onclick="showPage('page-guildes')">
+                    <i class="fas fa-arrow-left"></i> RETOUR
+                </button>
+                <button class="btn-primary" onclick="validerGuilde()">
+                    <i class="fas fa-check"></i> CERTIFIER LA GUILDE
                 </button>
             </div>
         </div>
     </div>
 </section>
 
-<section id="page-support" class="page">
-    <div class="container">
-        <div class="section-header-gaming">
-            <h2 class="text-glow">SUPPORT TECHNIQUE</h2>
-            <div class="header-bar"></div>
-            <p>Une question ? Un bug ? Nos techniciens sont en ligne.</p>
+<!-- ===== PAGE ACTUALITÉS ===== -->
+<section id="page-actu" class="page">
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="page-breadcrumb">// COMMUNAUTÉ / ACTUALITÉS</div>
+            <h2 class="page-title">INTEL <span>TERRAIN</span></h2>
+            <p class="page-desc">Toutes les infos de la scène Free Fire ivoirienne.</p>
         </div>
+    </div>
 
-        <div class="support-card-premium">
-            <div class="support-icon-wrapper">
-                <div class="radar-ping"></div>
-                <i class="fas fa-headset"></i>
+    <div class="container">
+        <div class="actu-grid" id="news-container">
+            <!-- Chargé dynamiquement -->
+        </div>
+    </div>
+</section>
+
+<!-- ===== PAGE COMMUNAUTÉ ===== -->
+<section id="page-commu" class="page">
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="page-breadcrumb">// COMMUNAUTÉ</div>
+            <h2 class="page-title">BASE <span>OPÉRATIONNELLE</span></h2>
+            <p class="page-desc">Connecte-toi avec l'élite des soldats ivoiriens.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="commu-grid">
+            <a href="https://chat.whatsapp.com/KUm4uoqUBgD78Bh3onKOCi" target="_blank" class="commu-card">
+                <div class="commu-card-icon whatsapp-icon">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <div class="commu-card-info">
+                    <h4>GROUPE WHATSAPP OFFICIEL</h4>
+                    <p>Rejoins la communauté principale — annonces, tournois, discussions.</p>
+                    <span class="commu-tag">COMMUNAUTÉ OFFICIELLE</span>
+                </div>
+                <i class="fas fa-arrow-right commu-arrow"></i>
+            </a>
+
+            <a href="https://wa.me/2250173661277" target="_blank" class="commu-card">
+                <div class="commu-card-icon contact-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <div class="commu-card-info">
+                    <h4>CONTACTER LE STAFF</h4>
+                    <p>Une question, un problème ? Le staff est disponible directement.</p>
+                    <span class="commu-tag">SUPPORT DIRECT</span>
+                </div>
+                <i class="fas fa-arrow-right commu-arrow"></i>
+            </a>
+
+            <div class="commu-card commu-card-soon">
+                <div class="commu-card-icon discord-icon">
+                    <i class="fab fa-discord"></i>
+                </div>
+                <div class="commu-card-info">
+                    <h4>DISCORD</h4>
+                    <p>Serveur Discord en cours de déploiement. Bientôt disponible.</p>
+                    <span class="commu-tag soon-tag">BIENTÔT</span>
+                </div>
+                <i class="fas fa-lock commu-arrow"></i>
             </div>
-            
-            <h3 class="font-orbitron">BESOIN D'AIDE ?</h3>
-            <p class="support-text">
-                Un problème avec ton inscription ? Ta guilde n'apparaît pas ? <br>
-                Le support technique <strong>FF ESPORT-CI</strong> intervient en moins de 24h.
-            </p>
 
-            <div class="support-action-box">
-                <h4 class="font-orbitron">ASSISTANCE DIRECTE</h4>
-                <p>Discute instantanément avec un administrateur sur WhatsApp.</p>
-                
-                <div class="support-stats" style="display:none;">
-                    <span id="compteur-joueurs-support">0</span> 
-                    <div id="loader-joueurs">...</div>
-                    <div id="listeGuildesSupport"></div>
+            <div class="commu-card commu-card-soon">
+                <div class="commu-card-icon tiktok-icon">
+                    <i class="fab fa-tiktok"></i>
                 </div>
-
-                <a id="link-support" href="https://wa.me/2250173661277?text=Bonjour, j'ai besoin d'aide sur le site FFESCI" target="_blank" class="btn-support-glow">
-                    <i class="fab fa-whatsapp"></i> CONTACTER LE SUPPORT
-                </a>
-            </div>
-
-            <div class="support-features">
-                <div class="feature-item">
-                    <i class="fas fa-bolt"></i>
-                    <span>RÉPONSE RAPIDE</span>
+                <div class="commu-card-info">
+                    <h4>TIKTOK / YOUTUBE</h4>
+                    <p>Highlights, matchs et contenu exclusif en préparation.</p>
+                    <span class="commu-tag soon-tag">EN PRODUCTION</span>
                 </div>
-                <div class="feature-item">
-                    <i class="fas fa-lock"></i>
-                    <span>SÉCURITÉ COMPTE</span>
-                </div>
-                <div class="feature-item">
-                    <i class="fas fa-shield-alt"></i>
-                    <span>ANTI-FRAUDE</span>
-                </div>
+                <i class="fas fa-lock commu-arrow"></i>
             </div>
         </div>
     </div>
 </section>
 
-<section id="page-maj" class="page">
-    <div class="container">
-
-        <div class="section-header-gaming">
-            <h2 class="text-glow">🛠️ MISES À JOUR OFFICIELLES</h2>
-            <div class="header-bar"></div>
-            <p>Suivez toutes les évolutions de la plateforme FF-CI.</p>
-        </div>
-
-        <!-- UPDATE 1 -->
-        <div class="update-card">
-            <h3>🔥 NOUVEAU SYSTÈME DE PROFIL</h3>
-            <span class="update-tag">A VENIR</span>
-            <p>
-                Un nouveau système de profil arrive avec <strong>connexion Google</strong> intégrée.
-                Chaque joueur pourra créer un profil automatique, sécurisé et unique.
-            </p>
-            <ul>
-                <li>✔ Connexion Google simplifiée</li>
-                <li>✔ Création automatique du profil joueur</li>
-                <li>✔ Sauvegarde des stats et du rôle</li>
-                <li>✔ Sécurité renforcée des comptes</li>
-            </ul>
-        </div>
-
-        <!-- UPDATE 2 -->
-        <div class="update-card">
-            <h3>⚔️ NOUVEL ONGLET : RECRUTEMENT AMÉLIORÉ</h3>
-            <span class="update-tag">A VENIR</span>
-            <p>
-                Le système de recrutement devient plus rapide et plus intelligent pour les guildes.
-            </p>
-            <ul>
-                <li>✔ Filtrage des joueurs par niveau et rôle</li>
-                <li>✔ Profil joueur plus détaillé</li>
-                <li>✔ Mise en relation directe avec les guildes</li>
-            </ul>
-        </div>
-
-        <!-- UPDATE 3 -->
-        <div class="update-card">
-            <h3>📢 NOUVELLE INTERFACE ANNONCES</h3>
-            <span class="update-tag">NOUVEAU</span>
-            <p>
-                Les annonces de tournois et événements deviennent plus visibles et interactives.
-            </p>
-            <ul>
-                <li>✔ Cards dynamiques avec images</li>
-                <li>✔ Accès direct WhatsApp</li>
-                <li>✔ Informations détaillées des tournois</li>
-            </ul>
-        </div>
-
-    </div>
-</section>
-
+<!-- ===== PAGE RÈGLEMENT ===== -->
 <section id="page-reglement" class="page">
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="page-breadcrumb">// COMMUNAUTÉ / RÈGLEMENT</div>
+            <h2 class="page-title">CRITÈRES <span>D'ADMISSION</span></h2>
+            <p class="page-desc">Conditions pour rejoindre l'élite de l'E-sport ivoirien.</p>
+        </div>
+    </div>
+
     <div class="container">
-        <div class="section-header-gaming">
-            <h2 class="text-glow">CRITÈRES D'ADMISSION</h2>
-            <div class="header-bar"></div>
-            <p>Vérifiez votre éligibilité pour rejoindre l'élite de l'E-sport Ivoirien.</p>
-        </div>
-
-        <div class="eligibility-grid">
-            
-            <div class="eligibility-col">
-                <h3 class="font-orbitron"><i class="fas fa-users"></i> ACCÈS COMMUNAUTÉ</h3>
-                <p class="subtitle">Pour être membre, vous devez remplir au moins UN de ces critères :</p>
-                
-                <div class="check-box">
-                    <div class="check-item">
-                        <i class="fas fa-shield-alt"></i>
-                        <span>Appartenir à une <strong>Guilde Ivoirienne</strong> enregistrée.</span>
-                    </div>
-                    <div class="check-item">
-                        <i class="fas fa-crosshairs"></i>
-                        <span>Être <strong>classé en Côte d'Ivoire</strong> (Top Global Armes).</span>
-                    </div>
-                    <div class="check-item">
-                        <i class="fas fa-passport"></i>
-                        <span>Être <strong>Ivoirien</strong> (de père ou de mère).</span>
-                    </div>
-                    <div class="check-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span><strong>Vivre</strong> actuellement en Côte d'Ivoire.</span>
-                    </div>
+        <div class="reglement-grid">
+            <div class="reglement-card">
+                <div class="reg-header">
+                    <i class="fas fa-users"></i>
+                    <h3>ACCÈS COMMUNAUTÉ</h3>
                 </div>
+                <p class="reg-intro">Remplir au moins <strong>UN</strong> de ces critères :</p>
+                <ul class="reg-list">
+                    <li><i class="fas fa-check-circle"></i> Appartenir à une <strong>Guilde Ivoirienne</strong> enregistrée</li>
+                    <li><i class="fas fa-check-circle"></i> Être <strong>classé en Côte d'Ivoire</strong> (Top Global Armes)</li>
+                    <li><i class="fas fa-check-circle"></i> Être <strong>Ivoirien</strong> (de père ou de mère)</li>
+                    <li><i class="fas fa-check-circle"></i> <strong>Résider</strong> actuellement en Côte d'Ivoire</li>
+                </ul>
             </div>
 
-            <div class="eligibility-col">
-                <h3 class="font-orbitron"><i class="fas fa-trophy"></i> ACCÈS TOURNOIS</h3>
-                <p class="subtitle">Conditions obligatoires pour l'inscription :</p>
-                
-                <div class="check-box tournament-rules">
-                    <div class="check-item">
-                        <i class="fas fa-user-check"></i>
-                        <span>Avoir un <strong>Profil Joueur</strong> vérifié sur le site.</span>
-                    </div>
-                    <div class="check-item red">
-                        <i class="fas fa-ban"></i>
-                        <span>Aucun antécédent de <strong>Triche ou Hack</strong>.</span>
-                    </div>
-                    <div class="check-item">
-                        <i class="fas fa-id-card"></i>
-                        <span>Utiliser son <strong>Main Account</strong> (Compte principal).</span>
-                    </div>
-                    <div class="check-item">
-                        <i class="fas fa-handshake"></i>
-                        <span>Respecter le <strong>Fair-play</strong> avant, pendant et après le match.</span>
-                    </div>
+            <div class="reglement-card">
+                <div class="reg-header">
+                    <i class="fas fa-trophy"></i>
+                    <h3>ACCÈS TOURNOIS</h3>
                 </div>
+                <p class="reg-intro">Conditions <strong>obligatoires</strong> pour s'inscrire :</p>
+                <ul class="reg-list">
+                    <li><i class="fas fa-check-circle"></i> Avoir un <strong>Profil Joueur</strong> vérifié sur le site</li>
+                    <li><i class="fas fa-times-circle red-icon"></i> Aucun antécédent de <strong>Triche ou Hack</strong></li>
+                    <li><i class="fas fa-check-circle"></i> Utiliser son <strong>Main Account</strong></li>
+                    <li><i class="fas fa-check-circle"></i> Respecter le <strong>Fair-play</strong> avant, pendant, après</li>
+                </ul>
             </div>
-
         </div>
 
-        <div class="reglement-footer">
-            <p><i class="fas fa-info-circle"></i> Des preuves (screenshots ou documents) peuvent être demandées par le staff en cas de litige.</p>
+        <div class="reglement-notice">
+            <i class="fas fa-info-circle"></i>
+            Des preuves (screenshots ou documents) peuvent être demandées par le staff en cas de litige.
         </div>
     </div>
 </section>
 
-<div id="modalDefi" class="modal-overlay">
-    <div class="modal-card">
-        <div class="modal-header-cyber">
-            <div class="header-content">
+<!-- ===== PAGE VISION ===== -->
+<section id="page-vision" class="page">
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="page-breadcrumb">// E-SPORT / VISION</div>
+            <h2 class="page-title">NOTRE <span>MISSION</span></h2>
+            <p class="page-desc">Nous bâtissons l'avenir du gaming en Côte d'Ivoire.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="vision-grid">
+            <div class="vision-card">
+                <div class="vision-icon"><i class="fas fa-trophy"></i></div>
+                <h3>COMPÉTITION</h3>
+                <p>Organisation de tournois réguliers avec des cashprizes garantis pour récompenser le talent ivoirien.</p>
+            </div>
+            <div class="vision-card">
+                <div class="vision-icon"><i class="fas fa-users-cog"></i></div>
+                <h3>STRUCTURE</h3>
+                <p>Accompagner les guildes pour passer du stade d'amateur à une organisation e-sport professionnelle.</p>
+            </div>
+            <div class="vision-card">
+                <div class="vision-icon"><i class="fas fa-broadcast-tower"></i></div>
+                <h3>VISIBILITÉ</h3>
+                <p>Diffusion des matchs et mise en avant des meilleurs joueurs pour attirer les recruteurs.</p>
+            </div>
+            <div class="vision-card">
+                <div class="vision-icon"><i class="fas fa-flag"></i></div>
+                <h3>NATION</h3>
+                <p>Représenter la Côte d'Ivoire dans les compétitions africaines et internationales de Free Fire.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PAGE MISES À JOUR ===== -->
+<section id="page-maj" class="page">
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="page-breadcrumb">// E-SPORT / MISES À JOUR</div>
+            <h2 class="page-title">JOURNAL DES <span>OPÉRATIONS</span></h2>
+            <p class="page-desc">Historique des déploiements et améliorations de la plateforme.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="maj-timeline">
+            <div class="maj-item new">
+                <div class="maj-dot"></div>
+                <div class="maj-content">
+                    <div class="maj-meta">
+                        <span class="maj-tag">NOUVEAU</span>
+                        <span class="maj-date">Mai 2026</span>
+                    </div>
+                    <h4>REFONTE TOTALE DU SITE</h4>
+                    <p>Nouveau design cyber/militaire, code propre, meilleure performance mobile.</p>
+                    <ul>
+                        <li>✔ Nouveau système de navigation</li>
+                        <li>✔ Interface guildes améliorée</li>
+                        <li>✔ Système de défi optimisé</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="maj-item upcoming">
+                <div class="maj-dot"></div>
+                <div class="maj-content">
+                    <div class="maj-meta">
+                        <span class="maj-tag upcoming-tag">À VENIR</span>
+                        <span class="maj-date">Bientôt</span>
+                    </div>
+                    <h4>RECRUTEMENT AMÉLIORÉ</h4>
+                    <p>Le système de recrutement devient plus rapide et plus intelligent.</p>
+                    <ul>
+                        <li>✔ Filtrage par niveau et rôle</li>
+                        <li>✔ Profil joueur détaillé</li>
+                        <li>✔ Mise en relation directe</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="maj-item upcoming">
+                <div class="maj-dot"></div>
+                <div class="maj-content">
+                    <div class="maj-meta">
+                        <span class="maj-tag upcoming-tag">À VENIR</span>
+                        <span class="maj-date">Bientôt</span>
+                    </div>
+                    <h4>INTERFACE ANNONCES</h4>
+                    <p>Les annonces de tournois et événements deviennent plus visibles.</p>
+                    <ul>
+                        <li>✔ Cards dynamiques avec images</li>
+                        <li>✔ Accès direct WhatsApp</li>
+                        <li>✔ Notifications en temps réel</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PAGE SPONSORS ===== -->
+<section id="page-sponsors" class="page">
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="page-breadcrumb">// PARTENAIRES</div>
+            <h2 class="page-title">NOS <span>ALLIÉS</span></h2>
+            <p class="page-desc">Les partenaires qui soutiennent l'esport ivoirien.</p>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- Tiers sponsors -->
+        <div class="sponsors-tiers">
+
+            <!-- OR -->
+            <div class="sponsor-tier">
+                <div class="tier-label tier-or">
+                    <i class="fas fa-crown"></i> PARTENAIRES OR
+                </div>
+                <div class="sponsors-grid" id="sponsors-or">
+                    <!-- Placeholder vide -->
+                    <div class="sponsor-empty-slot">
+                        <i class="fas fa-plus"></i>
+                        <span>Votre marque ici</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ARGENT -->
+            <div class="sponsor-tier">
+                <div class="tier-label tier-argent">
+                    <i class="fas fa-medal"></i> PARTENAIRES ARGENT
+                </div>
+                <div class="sponsors-grid" id="sponsors-argent">
+                    <div class="sponsor-empty-slot">
+                        <i class="fas fa-plus"></i>
+                        <span>Votre marque ici</span>
+                    </div>
+                    <div class="sponsor-empty-slot">
+                        <i class="fas fa-plus"></i>
+                        <span>Votre marque ici</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BRONZE -->
+            <div class="sponsor-tier">
+                <div class="tier-label tier-bronze">
+                    <i class="fas fa-award"></i> PARTENAIRES BRONZE
+                </div>
+                <div class="sponsors-grid sponsors-grid-sm" id="sponsors-bronze">
+                    <div class="sponsor-empty-slot sponsor-slot-sm">
+                        <i class="fas fa-plus"></i>
+                        <span>Votre marque</span>
+                    </div>
+                    <div class="sponsor-empty-slot sponsor-slot-sm">
+                        <i class="fas fa-plus"></i>
+                        <span>Votre marque</span>
+                    </div>
+                    <div class="sponsor-empty-slot sponsor-slot-sm">
+                        <i class="fas fa-plus"></i>
+                        <span>Votre marque</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Devenir partenaire -->
+        <div class="sponsor-cta">
+            <div class="sponsor-cta-inner">
+                <div class="sponsor-cta-icon"><i class="fas fa-rocket"></i></div>
+                <div class="sponsor-cta-text">
+                    <h3>DEVENIR PARTENAIRE</h3>
+                    <p>Rejoignez l'aventure et boostez votre visibilité auprès de toute la communauté Free Fire ivoirienne.</p>
+                    <div class="sponsor-avantages">
+                        <div class="avantage-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Logo affiché sur le site et lors des tournois</span>
+                        </div>
+                        <div class="avantage-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Mention dans les annonces officielles</span>
+                        </div>
+                        <div class="avantage-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Accès à une communauté de +500 joueurs actifs</span>
+                        </div>
+                        <div class="avantage-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Naming rights sur les tournois selon le pack choisi</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="sponsor-cta-actions">
+                    <a href="https://wa.me/2250173661277" target="_blank" class="btn-primary">
+                        <i class="fab fa-whatsapp"></i> NOUS CONTACTER
+                    </a>
+                    <div class="sponsor-packs">
+                        <div class="pack-item pack-or"><i class="fas fa-crown"></i> Pack Or</div>
+                        <div class="pack-item pack-argent"><i class="fas fa-medal"></i> Pack Argent</div>
+                        <div class="pack-item pack-bronze"><i class="fas fa-award"></i> Pack Bronze</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ===== PAGE SUPPORT ===== -->
+<section id="page-support" class="page">
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="page-breadcrumb">// SUPPORT</div>
+            <h2 class="page-title">CENTRE DE <span>COMMANDEMENT</span></h2>
+            <p class="page-desc">Une question ? Le staff est là pour toi.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="support-grid">
+            <a href="https://wa.me/2250173661277" target="_blank" class="support-card">
+                <i class="fab fa-whatsapp"></i>
+                <h4>WHATSAPP STAFF</h4>
+                <p>Contact direct avec l'équipe. Réponse rapide garantie.</p>
+                <span class="btn-primary btn-sm">CONTACTER</span>
+            </a>
+            <a href="https://chat.whatsapp.com/KUm4uoqUBgD78Bh3onKOCi" target="_blank" class="support-card">
+                <i class="fas fa-users"></i>
+                <h4>GROUPE COMMUNAUTÉ</h4>
+                <p>Pose ta question dans le groupe — la communauté peut aussi aider.</p>
+                <span class="btn-primary btn-sm">REJOINDRE</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+
+<!-- ===== PAGE LISTE JOUEURS ===== -->
+<section id="page-joueurs" class="page">
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="page-breadcrumb">// COMMUNAUTÉ / JOUEURS</div>
+            <h2 class="page-title">LISTE DES <span>SOLDATS</span></h2>
+            <p class="page-desc">Tous les joueurs enregistrés sur la plateforme.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Toolbar filtres -->
+        <div class="joueurs-toolbar">
+            <div class="toolbar-left">
+                <span class="toolbar-count">
+                    <span id="compteur-joueurs">0</span> JOUEURS
+                </span>
+            </div>
+            <div class="toolbar-filters">
+                <select id="filter-role" onchange="chargerJoueurs()">
+                    <option value="Tous">🎮 Tous les rôles</option>
+                    <option value="Sniper">🎯 Sniper</option>
+                    <option value="Rusher">⚡ Rusher</option>
+                    <option value="Support">🛡️ Support</option>
+                    <option value="Flex">🔄 Flex</option>
+                    <option value="Bombardier">💣 Bombardier</option>
+                    <option value="Fusilier">🔫 Fusilier</option>
+                </select>
+                <select id="filter-level" onchange="chargerJoueurs()">
+                    <option value="0">⭐ Tous niveaux</option>
+                    <option value="10">Niveau 10+</option>
+                    <option value="30">Niveau 30+</option>
+                    <option value="50">Niveau 50+</option>
+                    <option value="70">Niveau 70+</option>
+                </select>
+                <div class="view-toggle">
+                    <button id="btn-grid" class="view-btn active" onclick="setView('grid')">
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <button id="btn-list" class="view-btn" onclick="setView('list')">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grille joueurs -->
+        <div class="joueurs-grid" id="listeJoueursPublique">
+            <div class="loading-state">
+                <div class="loading-spinner"></div>
+                <p>CHARGEMENT DES SOLDATS...</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PAGE PROFIL (connecté) ===== -->
+<section id="page-profil" class="page">
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="page-breadcrumb">// MON PROFIL</div>
+            <h2 class="page-title">DOSSIER <span>SOLDAT</span></h2>
+            <p class="page-desc">Ton identité sur la plateforme FF ESPORT-CI.</p>
+        </div>
+    </div>
+    <div class="container">
+        <!-- État : non connecté -->
+        <div id="profil-non-connecte" class="auth-wall">
+            <div class="auth-wall-icon"><i class="fas fa-user-lock"></i></div>
+            <h3>ACCÈS RESTREINT</h3>
+            <p>Connecte-toi avec Google pour accéder à ton profil soldat.</p>
+            <button class="btn-google" onclick="connexionGoogle()">
+                <i class="fab fa-google"></i> CONNEXION AVEC GOOGLE
+            </button>
+        </div>
+
+        <!-- État : connecté mais pas de profil -->
+        <div id="profil-creer" style="display:none;">
+            <div class="auth-wall">
+                <div class="auth-wall-icon"><i class="fas fa-id-card"></i></div>
+                <h3>CRÉE TON PROFIL</h3>
+                <p>Tu es connecté mais tu n'as pas encore de profil soldat.</p>
+                <button class="btn-primary" onclick="showPage('page-create-profil')">
+                    <i class="fas fa-plus"></i> CRÉER MON PROFIL
+                </button>
+            </div>
+        </div>
+
+        <!-- État : profil existant -->
+        <div id="profil-affiche" style="display:none;">
+            <div class="profil-card">
+                <div class="profil-card-header">
+                    <div class="profil-avatar-wrap">
+                        <img id="profil-photo" src="" alt="Avatar" class="profil-avatar"
+                            onerror="this.src='https://ui-avatars.com/api/?name=FF&background=00d4ff&color=050810&size=128'">
+                        <div class="profil-avatar-ring"></div>
+                    </div>
+                    <div class="profil-header-info">
+                        <div class="profil-badge-wrap">
+                            <span class="profil-badge" id="profil-role-badge">RÔLE</span>
+                        </div>
+                        <h2 class="profil-pseudo" id="profil-pseudo">—</h2>
+                        <p class="profil-uid"><i class="fas fa-id-badge"></i> UID : <span id="profil-uid">—</span></p>
+                    </div>
+                    <button class="btn-ghost btn-sm profil-edit-btn" onclick="showPage('page-create-profil')">
+                        <i class="fas fa-pen"></i> MODIFIER
+                    </button>
+                </div>
+
+                <div class="profil-stats-row">
+                    <div class="profil-stat">
+                        <span class="ps-label">NIVEAU</span>
+                        <span class="ps-value" id="profil-niveau">—</span>
+                    </div>
+                    <div class="profil-stat-divider"></div>
+                    <div class="profil-stat">
+                        <span class="ps-label">GUILDE</span>
+                        <span class="ps-value" id="profil-guilde">—</span>
+                    </div>
+                    <div class="profil-stat-divider"></div>
+                    <div class="profil-stat">
+                        <span class="ps-label">RÔLE</span>
+                        <span class="ps-value" id="profil-role">—</span>
+                    </div>
+                </div>
+
+                <!-- BIO -->
+                <div class="profil-bio-section" id="profil-bio-section">
+                    <div class="profil-bio-label"><i class="fas fa-quote-left"></i> BIO</div>
+                    <p class="profil-bio-text" id="profil-bio">—</p>
+                </div>
+
+                <div class="profil-actions">
+                    <a id="profil-wa-btn" href="#" target="_blank" class="btn-primary">
+                        <i class="fab fa-whatsapp"></i> MON WHATSAPP
+                    </a>
+                    <button class="btn-ghost" onclick="deconnexion()">
+                        <i class="fas fa-sign-out-alt"></i> DÉCONNEXION
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PAGE CRÉER / MODIFIER PROFIL ===== -->
+<section id="page-create-profil" class="page">
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="page-breadcrumb">// MON PROFIL / CONFIGURATION</div>
+            <h2 class="page-title">CONFIGURER MON <span>PROFIL</span></h2>
+            <p class="page-desc">Remplis tes informations pour rejoindre l'annuaire des soldats.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="form-card form-card-lg">
+
+            <!-- Wizard progress -->
+            <div class="wizard-header">
+                <div class="wizard-steps">
+                    <div class="wiz-step active" id="wiz-s1">
+                        <div class="wiz-step-dot">1</div>
+                        <span>IDENTITÉ</span>
+                    </div>
+                    <div class="wiz-step-line"></div>
+                    <div class="wiz-step" id="wiz-s2">
+                        <div class="wiz-step-dot">2</div>
+                        <span>GUILDE & RÔLE</span>
+                    </div>
+                    <div class="wiz-step-line"></div>
+                    <div class="wiz-step" id="wiz-s3">
+                        <div class="wiz-step-dot">3</div>
+                        <span>CONTACT</span>
+                    </div>
+                </div>
+                <div class="wizard-bar-wrap">
+                    <div class="wizard-bar" id="wiz-bar" style="width:25%"></div>
+                </div>
+            </div>
+
+            <!-- ÉTAPE 1 : Identité -->
+            <div id="step1" class="wiz-body">
+                <div class="form-section-title"><i class="fas fa-user"></i> IDENTITÉ IN-GAME</div>
+                <div class="form-grid">
+                    <div class="form-field">
+                        <label><i class="fas fa-user"></i> PSEUDO FREE FIRE</label>
+                        <input type="text" id="p-pseudo" placeholder="Ton pseudo exact">
+                    </div>
+                    <div class="form-field">
+                        <label><i class="fas fa-id-badge"></i> UID</label>
+                        <input type="text" id="p-uid" placeholder="Ton UID">
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label><i class="fas fa-star"></i> NIVEAU</label>
+                    <input type="number" id="p-niveau" placeholder="Ex: 64" min="1" max="100">
+                </div>
+                <div class="form-actions">
+                    <button class="btn-ghost" onclick="showPage('page-profil')">
+                        <i class="fas fa-arrow-left"></i> RETOUR
+                    </button>
+                    <button class="btn-primary" onclick="nextStep()">
+                        SUIVANT <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ÉTAPE 2 : Guilde & Rôle -->
+            <div id="step2" class="wiz-body" style="display:none;">
+                <div class="form-section-title"><i class="fas fa-shield-alt"></i> GUILDE & RÔLE</div>
+                <div class="form-field">
+                    <label><i class="fas fa-shield-alt"></i> TA GUILDE</label>
+                    <select id="p-guilde-select">
+                        <option value="">— Sans guilde —</option>
+                    </select>
+                </div>
+                <div class="form-field">
+                    <label><i class="fas fa-crosshairs"></i> TON RÔLE</label>
+                    <div class="role-picker" id="rolePicker">
+                        <div class="role-option" data-role="Sniper" onclick="selectRole(this)">
+                            <span class="role-icon">🎯</span>
+                            <span>Sniper</span>
+                        </div>
+                        <div class="role-option" data-role="Rusher" onclick="selectRole(this)">
+                            <span class="role-icon">⚡</span>
+                            <span>Rusher</span>
+                        </div>
+                        <div class="role-option" data-role="Support" onclick="selectRole(this)">
+                            <span class="role-icon">🛡️</span>
+                            <span>Support</span>
+                        </div>
+                        <div class="role-option" data-role="Flex" onclick="selectRole(this)">
+                            <span class="role-icon">🔄</span>
+                            <span>Flex</span>
+                        </div>
+                        <div class="role-option" data-role="Bombardier" onclick="selectRole(this)">
+                            <span class="role-icon">💣</span>
+                            <span>Bombardier</span>
+                        </div>
+                        <div class="role-option" data-role="Fusilier" onclick="selectRole(this)">
+                            <span class="role-icon">🔫</span>
+                            <span>Fusilier</span>
+                        </div>
+                    </div>
+                    <input type="hidden" id="p-role">
+                </div>
+                <div class="form-actions">
+                    <button class="btn-ghost" onclick="prevStep()">
+                        <i class="fas fa-arrow-left"></i> PRÉCÉDENT
+                    </button>
+                    <button class="btn-primary" onclick="nextStep()">
+                        SUIVANT <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ÉTAPE 3 : Contact -->
+            <div id="step3" class="wiz-body" style="display:none;">
+                <div class="form-section-title"><i class="fab fa-whatsapp"></i> CONTACT & BIO</div>
+                <div class="form-field">
+                    <label><i class="fab fa-whatsapp"></i> NUMÉRO WHATSAPP</label>
+                    <div class="phone-input-wrap">
+                        <select id="p-pays">
+                            <option value="225">🇨🇮 +225</option>
+                            <option value="221">🇸🇳 +221</option>
+                            <option value="223">🇲🇱 +223</option>
+                            <option value="226">🇧🇫 +226</option>
+                            <option value="228">🇹🇬 +228</option>
+                            <option value="229">🇧🇯 +229</option>
+                        </select>
+                        <input type="tel" id="p-phone" placeholder="07 XX XX XX XX">
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label><i class="fas fa-quote-left"></i> BIO (optionnel)</label>
+                    <textarea id="p-bio" placeholder="Présente-toi en quelques mots... (ex: Sniper Heroic, j'aime le CS mode et les défis)" rows="3"></textarea>
+                    <span class="field-hint">Max 200 caractères</span>
+                </div>
+                <div class="form-actions">
+                    <button class="btn-ghost" onclick="prevStep()">
+                        <i class="fas fa-arrow-left"></i> PRÉCÉDENT
+                    </button>
+                    <button class="btn-primary" onclick="createProfile()">
+                        <i class="fas fa-check"></i> VALIDER MON PROFIL
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+</main>
+
+<!-- MODAL DÉFI -->
+<div class="modal-overlay" id="modalDefi" style="display:none;">
+    <div class="modal-box">
+        <div class="modal-header">
+            <div class="modal-title-wrap">
                 <i class="fas fa-bolt"></i>
                 <h3>LANCER UN DÉFI</h3>
             </div>
-            <button class="close-cyber" onclick="document.getElementById('modalDefi').style.display='none'">&times;</button>
+            <button class="modal-close" onclick="fermerDefi()"><i class="fas fa-times"></i></button>
         </div>
 
-        <div class="modal-inner">
-            <div class="versus-container">
-                <span class="vs-label">ADVERSAIRE À ABATTRE</span>
-                <div class="vs-name" id="target_guilde_display">NOM GUILDE</div>
+        <div class="modal-body">
+            <div class="defi-target">
+                <span class="defi-target-label">CIBLE</span>
+                <div class="defi-target-name" id="target_guilde_display">—</div>
             </div>
 
-            <div class="form-cyber">
-                <div class="input-block">
-                    <label><i class="fas fa-shield-alt"></i> TA GUILDE</label>
-                    <select id="ma_guilde_select"></select>
+            <div class="form-field">
+                <label><i class="fas fa-shield-alt"></i> TA GUILDE</label>
+                <select id="ma_guilde_select"></select>
+            </div>
+
+            <div class="form-field">
+                <label><i class="fas fa-gamepad"></i> MODE DE JEU</label>
+                <select id="mode_match">
+                    <option value="CS MODE (4vs4)">CS MODE (4vs4)</option>
+                    <option value="HEADSHOT ONLY">HEADSHOT ONLY</option>
+                    <option value="CRAFTLAND">CRAFTLAND</option>
+                </select>
+            </div>
+
+            <div class="form-grid">
+                <div class="form-field">
+                    <label><i class="fas fa-calendar-day"></i> DATE</label>
+                    <input type="date" id="date_match">
                 </div>
-<div class="input-block">
-    <label><i class="fas fa-gamepad"></i> MODE DE JEU</label>
-    <select id="mode_match">
-        <option value="CS MODE (4vs4)">CS MODE (4vs4)</option>
-        <option value="HEADSHOT ONLY">HEADSHOT ONLY</option>
-        <option value="CRAFTLAND">CRAFTLAND</option>
-    </select>
-</div>
-                <div class="input-row">
-                    <div class="input-block">
-                        <label><i class="fas fa-calendar-day"></i> DATE</label>
-                        <input type="date" id="date_match">
-                    </div>
-                    <div class="input-block">
-                        <label><i class="fas fa-clock"></i> HEURE</label>
-                        <input type="time" id="heure_match">
-                    </div>
+                <div class="form-field">
+                    <label><i class="fas fa-clock"></i> HEURE</label>
+                    <input type="time" id="heure_match">
                 </div>
-
-                <button onclick="envoyerDefi()" class="btn-launch-defi">
-                    <span>TRANSMETTRE LE DÉFI</span>
-                    <i class="fab fa-whatsapp"></i>
-                </button>
             </div>
+
+            <button class="btn-primary btn-full" onclick="envoyerDefi()">
+                <i class="fab fa-whatsapp"></i> TRANSMETTRE LE DÉFI
+            </button>
         </div>
     </div>
 </div>
 
-<section id="page-profil" class="page">
-    <div class="container" style="text-align:center; padding:60px;">
-        <h2>🚧 MAINTENANCE</h2>
-        <p>Le système de profil est temporairement indisponible.</p>
-    </div>
-</section>
-</main>
+<!-- TOAST CONTAINER -->
+<div id="toastContainer"></div>
 
-<footer class="main-footer">
-    <div class="footer-wave"></div> <div class="container footer-grid">
-        <div class="footer-column brand-col">
-            <h3 class="font-orbitron">FREE FIRE <span class="text-primary">CI</span></h3>
-            <p>La plus grande communauté de guerriers en Côte d'Ivoire. Rejoignez l'élite, entrez dans la légende.</p>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="https://chat.whatsapp.com/KUm4uoqUBgD78Bh3onKOCi" target="_blank"><i class="fab fa-whatsapp"></i></a>
+<!-- MODAL DÉFIER JOUEUR -->
+<div class="modal-overlay" id="modalDefiJoueur" style="display:none;">
+    <div class="modal-box">
+        <div class="modal-header">
+            <div class="modal-title-wrap">
+                <i class="fas fa-bolt"></i>
+                <h3>DÉFIER UN JOUEUR</h3>
+            </div>
+            <button class="modal-close" onclick="fermerModalJoueur()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+            <div class="defi-target">
+                <span class="defi-target-label">ADVERSAIRE</span>
+                <div class="defi-target-name" id="defi_joueur_pseudo">—</div>
+            </div>
+            <div class="form-field">
+                <label><i class="fas fa-gamepad"></i> MODE DE JEU</label>
+                <select id="defi_joueur_mode">
+                    <option value="1v1 Classique">1v1 Classique</option>
+                    <option value="1v1 Headshot Only">1v1 Headshot Only</option>
+                    <option value="CS MODE (4vs4)">CS MODE (4vs4)</option>
+                    <option value="CRAFTLAND">CRAFTLAND</option>
+                </select>
+            </div>
+            <div class="form-grid">
+                <div class="form-field">
+                    <label><i class="fas fa-calendar-day"></i> DATE</label>
+                    <input type="date" id="defi_joueur_date">
+                </div>
+                <div class="form-field">
+                    <label><i class="fas fa-clock"></i> HEURE</label>
+                    <input type="time" id="defi_joueur_heure">
+                </div>
+            </div>
+            <button class="btn-primary btn-full" onclick="envoyerDefiJoueur()">
+                <i class="fab fa-whatsapp"></i> ENVOYER LE DÉFI
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL INVITER DANS GUILDE -->
+<div class="modal-overlay" id="modalInviter" style="display:none;">
+    <div class="modal-box">
+        <div class="modal-header">
+            <div class="modal-title-wrap">
+                <i class="fas fa-shield-alt"></i>
+                <h3>INVITER DANS MA GUILDE</h3>
+            </div>
+            <button class="modal-close" onclick="fermerModalInviter()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body">
+            <div class="defi-target">
+                <span class="defi-target-label">JOUEUR CIBLÉ</span>
+                <div class="defi-target-name" id="inviter_joueur_pseudo">—</div>
+            </div>
+            <div class="form-field">
+                <label><i class="fas fa-shield-alt"></i> CHOISIR TA GUILDE</label>
+                <select id="inviter_guilde_select">
+                    <option value="">Chargement...</option>
+                </select>
+            </div>
+            <div class="form-field">
+                <label><i class="fas fa-comment-alt"></i> MESSAGE PERSONNALISÉ (optionnel)</label>
+                <textarea id="inviter_message" rows="2" placeholder="Ajoute un mot si tu veux..."></textarea>
+            </div>
+            <button class="btn-primary btn-full" onclick="envoyerInvitation()">
+                <i class="fab fa-whatsapp"></i> ENVOYER L'INVITATION
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <img src="ffesci.png" alt="FFESCI">
+            <div>
+                <p class="footer-name">FF ESPORT-CI</p>
+                <p class="footer-tagline">La plus grande communauté de guerriers ivoiriens.</p>
             </div>
         </div>
-
-        <div class="footer-column">
-            <h4>Navigation</h4>
-            <ul>
-                <li><a onclick="showPage('page-accueil')"><i class="fas fa-chevron-right"></i> Accueil</a></li>
-              <li><a href="#" onclick="showPage('page-tournoi')"><i class="fas fa-trophy"></i> TOURNOIS</a></li>
-                <li><a onclick="showPage('page-but')"><i class="fas fa-chevron-right"></i> Notre Vision</a></li>
-                <li><a onclick="showPage('page-profil')"><i class="fas fa-chevron-right"></i> Mon Profil</a></li>
-            </ul>
+        <div class="footer-links">
+            <a onclick="showPage('page-tournoi')">Tournois</a>
+            <a onclick="showPage('page-guildes')">Guildes</a>
+            <a onclick="showPage('page-commu')">Communauté</a>
+            <a onclick="showPage('page-support')">Support</a>
         </div>
-
-        <div class="footer-column">
-            <h4>Support</h4>
-            <ul>
-                <li><a onclick="showPage('page-support')"><i class="fas fa-chevron-right"></i> Aide Technique</a></li>
-                <li><a onclick="showPage('page-maj')"><i class="fas fa-chevron-right"></i> Mises à jour</a></li>
-                <li><a href="#"><i class="fas fa-chevron-right"></i> Contact Business</a></li>
-            </ul>
+        <div class="footer-social">
+            <a href="https://chat.whatsapp.com/KUm4uoqUBgD78Bh3onKOCi" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
         </div>
     </div>
-    
     <div class="footer-bottom">
-        <div class="container">
-            <p>&copy; 2026 <span class="text-primary font-orbitron">FREE FIRE CI</span> - Plateforme non-officielle de fans.</p>
-        </div>
+        <p>© 2026 <strong>FREE FIRE CI</strong> — Plateforme non-officielle de fans.</p>
     </div>
 </footer>
 
 <script type="module" src="script.js"></script>
-
-<div id="toast-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"></div>
-
-<style>
-.cyber-toast {
-    background: #000;
-    color: var(--primary);
-    border: 1px solid var(--primary);
-    padding: 15px 25px;
-    margin-top: 10px;
-    border-radius: 5px;
-    font-family: 'Orbitron', sans-serif;
-    box-shadow: 0 0 15px rgba(255, 187, 0, 0.3);
-    animation: slideIn 0.3s ease-out;
-}
-@keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
-</style>
-
-<div class="bottom-nav">
-
-    <a onclick="showPage('page-accueil')" class="nav-item">
-        <i class="fas fa-home"></i>
-        <span>Accueil</span>
-    </a>
-
-    <a onclick="showPage('page-tournoi')" class="nav-item">
-        <i class="fas fa-trophy"></i>
-        <span>Tournois</span>
-    </a>
-
-    <a onclick="showPage('page-guildes')" class="nav-item">
-        <i class="fas fa-shield-alt"></i>
-        <span>Guildes</span>
-    </a>
-
-    <a onclick="showPage('page-commu')" class="nav-item">
-        <i class="fas fa-users"></i>
-        <span>Comm</span>
-    </a>
-
-    <a onclick="showPage('page-support')" class="nav-item">
-        <i class="fas fa-headset"></i>
-        <span>Support</span>
-    </a>
-
-</div>
-
 </body>
 </html>
