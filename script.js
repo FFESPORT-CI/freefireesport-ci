@@ -31,14 +31,17 @@ function showPage(pageId) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    window.location.hash = pageId;
+    // Stocker la page dans sessionStorage au lieu du hash URL
+    // (évite le conflit avec le hash OAuth de Supabase)
+    sessionStorage.setItem('currentPage', pageId);
+
+    // Ne PAS modifier window.location.hash ici
 
     document.querySelectorAll('.nav-link').forEach(link => {
         link.classList.remove('active-link');
         if (link.dataset.page === pageId) link.classList.add('active-link');
     });
 
-    // Déclencher les chargements spécifiques par page
     if (pageId === 'page-profil') verifierSession();
     if (pageId === 'page-guildes') chargerGuildes();
     if (pageId === 'page-joueurs') chargerJoueurs();
@@ -834,13 +837,15 @@ document.addEventListener('click', (e) => {
 let sessionInitialized = false;
 
 supabase.auth.onAuthStateChange(async (event, session) => {
-    // Ignorer le premier déclenchement automatique au chargement
-    if (!sessionInitialized) {
-        sessionInitialized = true;
-        return;
-    }
 
     if (event === 'SIGNED_IN' && session) {
+        // Nettoyer l'URL complètement (retire tout le hash)
+        history.replaceState(null, '', window.location.pathname);
+        sessionStorage.removeItem('currentPage');
+
+        // Marquer comme initialisé pour bloquer DOMContentLoaded
+        sessionInitialized = true;
+
         const { data: profil } = await supabase
             .from('joueurs')
             .select('id_user')
@@ -848,13 +853,14 @@ supabase.auth.onAuthStateChange(async (event, session) => {
             .single();
 
         if (profil) {
+            afficherNotif("✅ Connecté !");
             showPage('page-profil');
             verifierSession();
         } else {
+            afficherNotif("✅ Connecté ! Crée ton profil soldat 🔥");
             window._profilActuel = null;
             showPage('page-create-profil');
         }
-        afficherNotif("✅ Connecté avec succès !");
     }
 
     if (event === 'SIGNED_OUT') {
@@ -871,56 +877,27 @@ if ("serviceWorker" in navigator) {
 
 // ===== INITIALISATION =====
 document.addEventListener('DOMContentLoaded', async () => {
-    // Intro
     lancerIntro();
-
-    // Charger les données
     chargerActus();
     chargerGuildes();
     chargerStats();
     chargerJoueurs();
 
-    // Détecter si on revient d'un callback OAuth
-    const hash = window.location.hash;
-    const isOAuthCallback = hash.includes('access_token=');
+    // Si callback OAuth → onAuthStateChange gère tout, on attend
+    if (window.location.hash.includes('access_token=') || window.location.href.includes('access_token=')) return;
 
-    if (isOAuthCallback) {
-        // Nettoyer l'URL
-        history.replaceState(null, '', window.location.pathname);
+    // Attendre un tick pour laisser onAuthStateChange se déclencher si session existante
+    await new Promise(resolve => setTimeout(resolve, 200));
 
-        // Attendre que Supabase traite le token
-        await new Promise(resolve => setTimeout(resolve, 1200));
+    // Si onAuthStateChange a déjà géré la session, ne pas écraser
+    if (sessionInitialized) return;
 
-        const { data: { session } } = await supabase.auth.getSession();
-
-        if (session) {
-            sessionInitialized = true; // Bloquer onAuthStateChange pour éviter doublon
-            const { data: profil } = await supabase
-                .from('joueurs')
-                .select('id_user')
-                .eq('id_user', session.user.id)
-                .single();
-
-            if (profil) {
-                afficherNotif("✅ Connecté !");
-                showPage('page-profil');
-                verifierSession();
-            } else {
-                afficherNotif("✅ Connecté ! Crée ton profil soldat.");
-                window._profilActuel = null;
-                showPage('page-create-profil');
-            }
-        } else {
-            afficherNotif("⚠ Erreur de connexion, réessaie !");
-            showPage('page-profil');
-        }
-        return;
-    }
+    sessionInitialized = true;
 
     // Navigation normale
-    const pageHash = hash.replace('#', '');
-    if (pageHash && document.getElementById(pageHash)) {
-        showPage(pageHash);
+    const savedPage = sessionStorage.getItem('currentPage');
+    if (savedPage && document.getElementById(savedPage)) {
+        showPage(savedPage);
     } else {
         showPage('page-accueil');
     }
