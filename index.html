@@ -63,6 +63,7 @@
                 <a class="nav-link">E-SPORT <i class="fas fa-chevron-down"></i></a>
                 <div class="dropdown-panel">
                     <a onclick="showPage('page-tournoi')"><i class="fas fa-trophy"></i> Tournois</a>
+                    <a onclick="showPage('page-calendrier')"><i class="fas fa-calendar-alt"></i> Calendrier</a>
                     <a onclick="showPage('page-vision')"><i class="fas fa-eye"></i> Vision</a>
                     <a onclick="showPage('page-maj')"><i class="fas fa-bolt"></i> Mises à jour</a>
                 </div>
@@ -81,6 +82,9 @@
             </a>
             <a onclick="showPage('page-support')" class="nav-link" data-page="page-support">
                 <i class="fas fa-headset"></i> SUPPORT
+            </a>
+            <a onclick="showPage('page-admin')" class="nav-link nav-admin-btn" data-page="page-admin" title="Staff only">
+                <i class="fas fa-lock"></i>
             </a>
         </nav>
 
@@ -112,6 +116,7 @@
                 </div>
                 <div class="mobile-acc-body">
                     <a onclick="go('page-tournoi')"><i class="fas fa-trophy"></i> Tournois</a>
+                    <a onclick="go('page-calendrier')"><i class="fas fa-calendar-alt"></i> Calendrier</a>
                     <a onclick="go('page-vision')"><i class="fas fa-eye"></i> Vision</a>
                     <a onclick="go('page-maj')"><i class="fas fa-bolt"></i> Mises à jour</a>
                 </div>
@@ -541,6 +546,60 @@
 
     <div class="container">
         <div class="maj-timeline">
+
+            <div class="maj-item new">
+                <div class="maj-dot"></div>
+                <div class="maj-content">
+                    <div class="maj-meta">
+                        <span class="maj-tag">NOUVEAU</span>
+                        <span class="maj-date">Mai 2026</span>
+                    </div>
+                    <h4>CALENDRIER DES ÉVÉNEMENTS</h4>
+                    <p>Un calendrier complet avec vue grille et vue liste pour suivre tous les tournois.</p>
+                    <ul>
+                        <li>✔ Vue calendrier mensuel avec navigation</li>
+                        <li>✔ Vue liste chronologique</li>
+                        <li>✔ Compte à rebours en temps réel par étape</li>
+                        <li>✔ Élite Cup S1 intégré (inscriptions + tournoi)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="maj-item new">
+                <div class="maj-dot"></div>
+                <div class="maj-content">
+                    <div class="maj-meta">
+                        <span class="maj-tag">NOUVEAU</span>
+                        <span class="maj-date">Mai 2026</span>
+                    </div>
+                    <h4>PANNEAU ADMIN STAFF</h4>
+                    <p>Un espace réservé au staff pour gérer la plateforme sans toucher au code.</p>
+                    <ul>
+                        <li>✔ Ajout et suppression de tournois</li>
+                        <li>✔ Publication d'annonces</li>
+                        <li>✔ Gestion des guildes enregistrées</li>
+                        <li>✔ Génération de notifications WhatsApp J-7, J-3, J-1</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="maj-item new">
+                <div class="maj-dot"></div>
+                <div class="maj-content">
+                    <div class="maj-meta">
+                        <span class="maj-tag">NOUVEAU</span>
+                        <span class="maj-date">Mai 2026</span>
+                    </div>
+                    <h4>PAGE PARTENAIRES</h4>
+                    <p>Nos premiers sponsors officiels rejoignent la plateforme.</p>
+                    <ul>
+                        <li>✔ Jaff E-Shop — Partenaire Or (vente de diamants)</li>
+                        <li>✔ Kiruto Store — Partenaire Argent (recharge + comptes)</li>
+                        <li>✔ Système de tiers Or / Argent / Bronze</li>
+                    </ul>
+                </div>
+            </div>
+
             <div class="maj-item new">
                 <div class="maj-dot"></div>
                 <div class="maj-content">
@@ -551,9 +610,10 @@
                     <h4>REFONTE TOTALE DU SITE</h4>
                     <p>Nouveau design cyber/militaire, code propre, meilleure performance mobile.</p>
                     <ul>
-                        <li>✔ Nouveau système de navigation</li>
-                        <li>✔ Interface guildes améliorée</li>
-                        <li>✔ Système de défi optimisé</li>
+                        <li>✔ Nouveau système de navigation sans bugs</li>
+                        <li>✔ Interface guildes avec système de défi</li>
+                        <li>✔ Page maintenance avec compte à rebours</li>
+                        <li>✔ PWA installable sur mobile</li>
                     </ul>
                 </div>
             </div>
@@ -565,12 +625,13 @@
                         <span class="maj-tag upcoming-tag">À VENIR</span>
                         <span class="maj-date">Bientôt</span>
                     </div>
-                    <h4>RECRUTEMENT AMÉLIORÉ</h4>
-                    <p>Le système de recrutement devient plus rapide et plus intelligent.</p>
+                    <h4>PROFILS JOUEURS & CLASSEMENT</h4>
+                    <p>Le système de profil et le leaderboard arrivent prochainement.</p>
                     <ul>
-                        <li>✔ Filtrage par niveau et rôle</li>
-                        <li>✔ Profil joueur détaillé</li>
-                        <li>✔ Mise en relation directe</li>
+                        <li>✔ Profil joueur avec photo, bio, stats</li>
+                        <li>✔ Liste des joueurs avec filtres</li>
+                        <li>✔ Système de défi entre joueurs</li>
+                        <li>✔ Classement par niveau et rôle</li>
                     </ul>
                 </div>
             </div>
@@ -582,15 +643,16 @@
                         <span class="maj-tag upcoming-tag">À VENIR</span>
                         <span class="maj-date">Bientôt</span>
                     </div>
-                    <h4>INTERFACE ANNONCES</h4>
-                    <p>Les annonces de tournois et événements deviennent plus visibles.</p>
+                    <h4>HALL OF FAME & RÉSULTATS</h4>
+                    <p>Les champions des tournois seront mis en avant.</p>
                     <ul>
-                        <li>✔ Cards dynamiques avec images</li>
-                        <li>✔ Accès direct WhatsApp</li>
-                        <li>✔ Notifications en temps réel</li>
+                        <li>✔ Podiums des tournois passés</li>
+                        <li>✔ Galerie des champions</li>
+                        <li>✔ Historique des cashprizes</li>
                     </ul>
                 </div>
             </div>
+
         </div>
     </div>
 </section>
@@ -616,10 +678,19 @@
                     <i class="fas fa-crown"></i> PARTENAIRES OR
                 </div>
                 <div class="sponsors-grid" id="sponsors-or">
-                    <!-- Placeholder vide -->
-                    <div class="sponsor-empty-slot">
-                        <i class="fas fa-plus"></i>
-                        <span>Votre marque ici</span>
+                    <div class="sponsor-card-real">
+                        <img src="jaff.svg" alt="Jaff E-Shop" class="sponsor-logo"
+                            onerror="this.style.display='none'">
+                        <div class="sponsor-name">JAFF E-SHOP</div>
+                        <div class="sponsor-cat tier-or" style="font-family:var(--font-mono);font-size:10px;letter-spacing:2px;padding:3px 8px;border-radius:2px;display:inline-block;margin-bottom:8px;">
+                            <i class="fas fa-crown"></i> PARTENAIRE OR
+                        </div>
+                        <p class="sponsor-desc">Vendeur officiel de diamants Free Fire en Côte d'Ivoire. Rechargement rapide, sécurisé et au meilleur prix.</p>
+                        <div class="sponsor-links">
+                            <a href="https://wa.me/2250545382782" target="_blank" class="sponsor-link" style="color:var(--whatsapp);border-color:rgba(37,211,102,0.3);">
+                                <i class="fab fa-whatsapp"></i> +225 05 45 38 27 82
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -630,9 +701,19 @@
                     <i class="fas fa-medal"></i> PARTENAIRES ARGENT
                 </div>
                 <div class="sponsors-grid" id="sponsors-argent">
-                    <div class="sponsor-empty-slot">
-                        <i class="fas fa-plus"></i>
-                        <span>Votre marque ici</span>
+                    <div class="sponsor-card-real">
+                        <img src="kiruto.png" alt="Kiruto Store" class="sponsor-logo"
+                            onerror="this.parentElement.querySelector('.sponsor-name').style.fontSize='24px'">
+                        <div class="sponsor-name">KIRUTO STORE</div>
+                        <div class="sponsor-cat tier-argent" style="font-family:var(--font-mono);font-size:10px;letter-spacing:2px;padding:3px 8px;border-radius:2px;display:inline-block;margin-bottom:8px;">
+                            <i class="fas fa-medal"></i> PARTENAIRE ARGENT
+                        </div>
+                        <p class="sponsor-desc">Rechargement de diamants et vente de comptes Free Fire. Service fiable et rapide pour tous les soldats.</p>
+                        <div class="sponsor-links">
+                            <a href="https://wa.me/2250718299013" target="_blank" class="sponsor-link" style="color:var(--whatsapp);border-color:rgba(37,211,102,0.3);">
+                                <i class="fab fa-whatsapp"></i> +225 07 18 29 90 13
+                            </a>
+                        </div>
                     </div>
                     <div class="sponsor-empty-slot">
                         <i class="fas fa-plus"></i>
@@ -791,49 +872,6 @@
     </div>
 </section>
 
-<!-- ===== PAGE SPONSORS ===== -->
-            <div class="toolbar-left">
-                <span class="toolbar-count">
-                    <span id="compteur-joueurs">0</span> JOUEURS
-                </span>
-            </div>
-            <div class="toolbar-filters">
-                <select id="filter-role" onchange="chargerJoueurs()">
-                    <option value="Tous">🎮 Tous les rôles</option>
-                    <option value="Sniper">🎯 Sniper</option>
-                    <option value="Rusher">⚡ Rusher</option>
-                    <option value="Support">🛡️ Support</option>
-                    <option value="Flex">🔄 Flex</option>
-                    <option value="Bombardier">💣 Bombardier</option>
-                    <option value="Fusilier">🔫 Fusilier</option>
-                </select>
-                <select id="filter-level" onchange="chargerJoueurs()">
-                    <option value="0">⭐ Tous niveaux</option>
-                    <option value="10">Niveau 10+</option>
-                    <option value="30">Niveau 30+</option>
-                    <option value="50">Niveau 50+</option>
-                    <option value="70">Niveau 70+</option>
-                </select>
-                <div class="view-toggle">
-                    <button id="btn-grid" class="view-btn active" onclick="setView('grid')">
-                        <i class="fas fa-th"></i>
-                    </button>
-                    <button id="btn-list" class="view-btn" onclick="setView('list')">
-                        <i class="fas fa-list"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Grille joueurs -->
-        <div class="joueurs-grid" id="listeJoueursPublique">
-            <div class="loading-state">
-                <div class="loading-spinner"></div>
-                <p>CHARGEMENT DES SOLDATS...</p>
-            </div>
-        </div>
-    </div>
-</section>
 </main>
 
 <!-- MODAL DÉFI -->
@@ -961,6 +999,266 @@
     </div>
 </div>
 
+<!-- ===== PAGE CALENDRIER ===== -->
+<section id="page-calendrier" class="page">
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="page-breadcrumb">// E-SPORT / CALENDRIER</div>
+            <h2 class="page-title">CALENDRIER DES <span>OPÉRATIONS</span></h2>
+            <p class="page-desc">Tous les événements, tournois et dates clés de la communauté.</p>
+        </div>
+    </div>
+    <div class="container">
+
+        <!-- Switch vue -->
+        <div class="cal-toolbar">
+            <div class="cal-nav" id="calNav">
+                <button onclick="calPrevMonth()"><i class="fas fa-chevron-left"></i></button>
+                <span id="calMonthLabel">MAI 2026</span>
+                <button onclick="calNextMonth()"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="view-toggle">
+                <button class="view-btn active" id="btn-cal-grid" onclick="setCalView('grid')">
+                    <i class="fas fa-calendar"></i>
+                </button>
+                <button class="view-btn" id="btn-cal-list" onclick="setCalView('list')">
+                    <i class="fas fa-list"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Vue grille calendrier -->
+        <div id="cal-grid-view">
+            <div class="cal-grid-header">
+                <span>LUN</span><span>MAR</span><span>MER</span>
+                <span>JEU</span><span>VEN</span><span>SAM</span><span>DIM</span>
+            </div>
+            <div class="cal-grid" id="calGrid"></div>
+        </div>
+
+        <!-- Vue liste -->
+        <div id="cal-list-view" style="display:none;">
+            <div class="cal-list" id="calList"></div>
+        </div>
+
+        <!-- Compte à rebours événements actifs -->
+        <div class="section-title-wrap">
+            <h3 class="section-title">COMPTE À REBOURS</h3>
+        </div>
+        <div class="countdowns-grid" id="countdownsGrid"></div>
+
+    </div>
+</section>
+
+<!-- ===== PAGE ADMIN ===== -->
+<section id="page-admin" class="page">
+    <div class="page-header">
+        <div class="page-header-inner">
+            <div class="page-breadcrumb">// STAFF / ADMINISTRATION</div>
+            <h2 class="page-title">CENTRE DE <span>COMMANDEMENT</span></h2>
+            <p class="page-desc">Accès réservé au staff FF ESPORT-CI.</p>
+        </div>
+    </div>
+    <div class="container">
+
+        <!-- Mur d'authentification admin -->
+        <div id="admin-auth" class="admin-auth-wall">
+            <div class="auth-wall-icon"><i class="fas fa-shield-alt"></i></div>
+            <h3>ACCÈS STAFF UNIQUEMENT</h3>
+            <p>Entre le mot de passe pour accéder au panneau d'administration.</p>
+            <div class="admin-pin-wrap">
+                <input type="password" id="admin-pwd" placeholder="Mot de passe staff" onkeydown="if(event.key==='Enter') verifierAdmin()">
+                <button class="btn-primary" onclick="verifierAdmin()">
+                    <i class="fas fa-unlock"></i> ACCÉDER
+                </button>
+            </div>
+            <p class="admin-auth-error" id="admin-error" style="display:none;">
+                <i class="fas fa-times-circle"></i> Mot de passe incorrect
+            </p>
+        </div>
+
+        <!-- Panneau admin (caché par défaut) -->
+        <div id="admin-panel" style="display:none;">
+
+            <!-- Tabs admin -->
+            <div class="admin-tabs">
+                <button class="admin-tab active" onclick="switchAdminTab('tournois')">
+                    <i class="fas fa-trophy"></i> TOURNOIS
+                </button>
+                <button class="admin-tab" onclick="switchAdminTab('annonces')">
+                    <i class="fas fa-bullhorn"></i> ANNONCES
+                </button>
+                <button class="admin-tab" onclick="switchAdminTab('guildes')">
+                    <i class="fas fa-shield-alt"></i> GUILDES
+                </button>
+                <button class="admin-tab" onclick="switchAdminTab('notifications')">
+                    <i class="fab fa-whatsapp"></i> NOTIFICATIONS
+                </button>
+            </div>
+
+            <!-- TAB : TOURNOIS -->
+            <div class="admin-content" id="tab-tournois">
+                <div class="admin-section-title">
+                    <i class="fas fa-plus-circle"></i> AJOUTER UN TOURNOI / ÉVÉNEMENT
+                </div>
+                <div class="form-card">
+                    <div class="form-grid">
+                        <div class="form-field">
+                            <label><i class="fas fa-tag"></i> NOM DE L'ÉVÉNEMENT</label>
+                            <input type="text" id="ev-nom" placeholder="Ex: ÉLITE CUP S2">
+                        </div>
+                        <div class="form-field">
+                            <label><i class="fas fa-gamepad"></i> TYPE</label>
+                            <select id="ev-type">
+                                <option value="TOURNOI SOLO">TOURNOI SOLO</option>
+                                <option value="TOURNOI DUO">TOURNOI DUO</option>
+                                <option value="TOURNOI SQUAD">TOURNOI SQUAD</option>
+                                <option value="CLASH OF GUILDS">CLASH OF GUILDS</option>
+                                <option value="ÉVÉNEMENT">ÉVÉNEMENT</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-field">
+                            <label><i class="fas fa-calendar"></i> DATE FIN INSCRIPTIONS</label>
+                            <input type="datetime-local" id="ev-date-inscriptions">
+                        </div>
+                        <div class="form-field">
+                            <label><i class="fas fa-flag"></i> DATE DÉBUT TOURNOI</label>
+                            <input type="datetime-local" id="ev-date-debut">
+                        </div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-field">
+                            <label><i class="fas fa-coins"></i> CASHPRIZE (FCFA)</label>
+                            <input type="text" id="ev-cashprize" placeholder="Ex: 39500">
+                        </div>
+                        <div class="form-field">
+                            <label><i class="fas fa-ticket-alt"></i> TICKET (FCFA)</label>
+                            <input type="text" id="ev-ticket" placeholder="Ex: 1000">
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <label><i class="fas fa-users"></i> PLACES DISPONIBLES</label>
+                        <input type="number" id="ev-places" placeholder="Ex: 48">
+                    </div>
+                    <div class="form-field">
+                        <label><i class="fas fa-align-left"></i> DESCRIPTION</label>
+                        <textarea id="ev-description" rows="2" placeholder="Détails du tournoi..."></textarea>
+                    </div>
+                    <div class="form-field">
+                        <label><i class="fab fa-whatsapp"></i> LIEN INSCRIPTION (WhatsApp)</label>
+                        <input type="text" id="ev-lien" placeholder="https://wa.me/...">
+                    </div>
+                    <button class="btn-primary" onclick="ajouterEvenement()">
+                        <i class="fas fa-plus"></i> PUBLIER L'ÉVÉNEMENT
+                    </button>
+                </div>
+
+                <div class="admin-section-title" style="margin-top:32px;">
+                    <i class="fas fa-list"></i> ÉVÉNEMENTS EN COURS
+                </div>
+                <div id="admin-evenements-list"></div>
+            </div>
+
+            <!-- TAB : ANNONCES -->
+            <div class="admin-content" id="tab-annonces" style="display:none;">
+                <div class="admin-section-title">
+                    <i class="fas fa-bullhorn"></i> PUBLIER UNE ANNONCE
+                </div>
+                <div class="form-card">
+                    <div class="form-grid">
+                        <div class="form-field">
+                            <label><i class="fas fa-heading"></i> TITRE</label>
+                            <input type="text" id="ann-titre" placeholder="Titre de l'annonce">
+                        </div>
+                        <div class="form-field">
+                            <label><i class="fas fa-tag"></i> CATÉGORIE</label>
+                            <select id="ann-cat">
+                                <option value="ANNONCE">ANNONCE</option>
+                                <option value="TOURNOI">TOURNOI</option>
+                                <option value="COMMUNAUTÉ">COMMUNAUTÉ</option>
+                                <option value="URGENT">URGENT</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <label><i class="fas fa-align-left"></i> CONTENU</label>
+                        <textarea id="ann-contenu" rows="3" placeholder="Contenu de l'annonce..."></textarea>
+                    </div>
+                    <button class="btn-primary" onclick="publierAnnonce()">
+                        <i class="fas fa-paper-plane"></i> PUBLIER
+                    </button>
+                </div>
+            </div>
+
+            <!-- TAB : GUILDES -->
+            <div class="admin-content" id="tab-guildes" style="display:none;">
+                <div class="admin-section-title">
+                    <i class="fas fa-shield-alt"></i> GUILDES EN ATTENTE DE VALIDATION
+                </div>
+                <div id="admin-guildes-list">
+                    <div class="loading-state">
+                        <div class="loading-spinner"></div>
+                        <p>CHARGEMENT...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB : NOTIFICATIONS -->
+            <div class="admin-content" id="tab-notifications" style="display:none;">
+                <div class="admin-section-title">
+                    <i class="fab fa-whatsapp"></i> ENVOYER UNE NOTIFICATION WHATSAPP
+                </div>
+                <div class="form-card">
+                    <div class="notif-info-box">
+                        <i class="fas fa-info-circle"></i>
+                        <p>Les notifications sont envoyées via WhatsApp. Sélectionne l'événement et le type de rappel.</p>
+                    </div>
+                    <div class="form-field">
+                        <label><i class="fas fa-calendar"></i> ÉVÉNEMENT CIBLÉ</label>
+                        <select id="notif-event-select">
+                            <option value="">Sélectionne un événement...</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label><i class="fas fa-bell"></i> TYPE DE RAPPEL</label>
+                        <div class="notif-types">
+                            <label class="notif-type-item">
+                                <input type="radio" name="notif-type" value="j7"> J-7 (une semaine avant)
+                            </label>
+                            <label class="notif-type-item">
+                                <input type="radio" name="notif-type" value="j3"> J-3 (3 jours avant)
+                            </label>
+                            <label class="notif-type-item">
+                                <input type="radio" name="notif-type" value="j1" checked> J-1 (veille du tournoi)
+                            </label>
+                            <label class="notif-type-item">
+                                <input type="radio" name="notif-type" value="custom"> Message personnalisé
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-field" id="notif-custom-msg" style="display:none;">
+                        <label><i class="fas fa-comment"></i> MESSAGE PERSONNALISÉ</label>
+                        <textarea id="notif-message" rows="3" placeholder="Ton message..."></textarea>
+                    </div>
+                    <div class="notif-preview" id="notif-preview"></div>
+                    <button class="btn-primary" onclick="envoyerNotifWA()">
+                        <i class="fab fa-whatsapp"></i> OUVRIR WHATSAPP ET ENVOYER
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bouton déconnexion admin -->
+            <div style="margin-top:40px; text-align:right;">
+                <button class="btn-ghost btn-sm" onclick="deconnecterAdmin()">
+                    <i class="fas fa-sign-out-alt"></i> QUITTER LE PANNEAU
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- FOOTER -->
 <footer class="site-footer">
     <div class="footer-inner">
@@ -973,6 +1271,7 @@
         </div>
         <div class="footer-links">
             <a onclick="showPage('page-tournoi')">Tournois</a>
+            <a onclick="showPage('page-calendrier')">Calendrier</a>
             <a onclick="showPage('page-guildes')">Guildes</a>
             <a onclick="showPage('page-commu')">Communauté</a>
             <a onclick="showPage('page-support')">Support</a>

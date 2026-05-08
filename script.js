@@ -28,11 +28,14 @@ function showPage(pageId) {
     const target = document.getElementById(pageId);
     if (target) {
         target.classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Stocker la page dans sessionStorage au lieu du hash URL
-    // (évite le conflit avec le hash OAuth de Supabase)
+    // Scroll vers le haut immédiatement
+    document.getElementById('mainContent')?.scrollTo(0, 0);
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
     sessionStorage.setItem('currentPage', pageId);
 
     // Ne PAS modifier window.location.hash ici
@@ -45,6 +48,8 @@ function showPage(pageId) {
     if (pageId === 'page-profil') verifierSession();
     if (pageId === 'page-guildes') chargerGuildes();
     if (pageId === 'page-joueurs') chargerJoueurs();
+    if (pageId === 'page-calendrier') renderCalendrier();
+    if (pageId === 'page-admin') checkAdminSession();
     if (pageId === 'page-create-profil') {
         wizard.step = 1;
         updateWizard();
@@ -868,6 +873,530 @@ supabase.auth.onAuthStateChange(async (event, session) => {
     }
 });
 
+// ===== DONNÉES ÉVÉNEMENTS =====
+// Ces événements sont gérés depuis l'admin et stockés dans localStorage
+// Structure : { id, nom, type, dateInscriptions, dateDebut, cashprize, ticket, places, description, lien }
+
+const EVENEMENTS_PAR_DEFAUT = [
+    {
+        id: 'elite-cup-s1',
+        nom: 'ÉLITE CUP S1',
+        type: 'TOURNOI SOLO',
+        dateInscriptions: '2026-05-13T23:59:00',
+        dateDebut: '2026-05-15T14:00:00',
+        cashprize: '39500',
+        ticket: '1000',
+        places: '48',
+        description: 'Le plus gros tournoi solo du mois ! 48 soldats sur la ligne de départ.',
+        lien: 'https://wa.me/2250173661277'
+    }
+];
+
+function getEvenements() {
+    try {
+        const stored = localStorage.getItem('ffesci_evenements');
+        return stored ? JSON.parse(stored) : EVENEMENTS_PAR_DEFAUT;
+    } catch { return EVENEMENTS_PAR_DEFAUT; }
+}
+
+function saveEvenements(evs) {
+    localStorage.setItem('ffesci_evenements', JSON.stringify(evs));
+}
+
+// ===== CALENDRIER =====
+let calCurrentDate = new Date(2026, 4, 1); // Mai 2026
+let calView = 'grid';
+
+const MOIS_FR = ['JANVIER','FÉVRIER','MARS','AVRIL','MAI','JUIN',
+                  'JUILLET','AOÛT','SEPTEMBRE','OCTOBRE','NOVEMBRE','DÉCEMBRE'];
+
+window.setCalView = (mode) => {
+    calView = mode;
+    document.getElementById('cal-grid-view').style.display = mode === 'grid' ? 'block' : 'none';
+    document.getElementById('cal-list-view').style.display = mode === 'list' ? 'block' : 'none';
+    document.getElementById('btn-cal-grid').classList.toggle('active', mode === 'grid');
+    document.getElementById('btn-cal-list').classList.toggle('active', mode === 'list');
+    renderCalendrier();
+};
+
+window.calPrevMonth = () => {
+    calCurrentDate.setMonth(calCurrentDate.getMonth() - 1);
+    renderCalendrier();
+};
+
+window.calNextMonth = () => {
+    calCurrentDate.setMonth(calCurrentDate.getMonth() + 1);
+    renderCalendrier();
+};
+
+function renderCalendrier() {
+    const label = document.getElementById('calMonthLabel');
+    if (label) label.textContent = MOIS_FR[calCurrentDate.getMonth()] + ' ' + calCurrentDate.getFullYear();
+
+    if (calView === 'grid') renderCalGrid();
+    else renderCalList();
+    renderCountdowns();
+}
+
+function getEvenementsForDay(year, month, day) {
+    const evs = getEvenements();
+    const results = [];
+    evs.forEach(ev => {
+        const dI = new Date(ev.dateInscriptions);
+        const dD = new Date(ev.dateDebut);
+        if (dI.getFullYear() === year && dI.getMonth() === month && dI.getDate() === day) {
+            results.push({ ...ev, phase: 'inscriptions', label: '🔴 Fin inscriptions: ' + ev.nom });
+        }
+        if (dD.getFullYear() === year && dD.getMonth() === month && dD.getDate() === day) {
+            results.push({ ...ev, phase: 'tournoi', label: '🏆 ' + ev.nom });
+        }
+    });
+    return results;
+}
+
+function renderCalGrid() {
+    const grid = document.getElementById('calGrid');
+    if (!grid) return;
+
+    const year = calCurrentDate.getFullYear();
+    const month = calCurrentDate.getMonth();
+    const today = new Date();
+
+    // Premier jour du mois (0=dim, ajuster pour lun=0)
+    let firstDay = new Date(year, month, 1).getDay();
+    firstDay = firstDay === 0 ? 6 : firstDay - 1;
+
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const daysInPrevMonth = new Date(year, month, 0).getDate();
+
+    let html = '';
+
+    // Jours du mois précédent
+    for (let i = firstDay - 1; i >= 0; i--) {
+        html += `<div class="cal-day other-month"><div class="cal-day-num">${daysInPrevMonth - i}</div></div>`;
+    }
+
+    // Jours du mois actuel
+    for (let d = 1; d <= daysInMonth; d++) {
+        const isToday = today.getDate() === d && today.getMonth() === month && today.getFullYear() === year;
+        const evs = getEvenementsForDay(year, month, d);
+        const hasEvent = evs.length > 0;
+
+        let evsHtml = evs.map(ev =>
+            `<div class="cal-event-dot type-${ev.phase}" title="${ev.nom}">${ev.label}</div>`
+        ).join('');
+
+        html += `<div class="cal-day ${isToday ? 'today' : ''} ${hasEvent ? 'has-event' : ''}">
+            <div class="cal-day-num">${d}</div>
+            ${evsHtml}
+        </div>`;
+    }
+
+    // Compléter la grille
+    const total = firstDay + daysInMonth;
+    const remaining = total % 7 === 0 ? 0 : 7 - (total % 7);
+    for (let i = 1; i <= remaining; i++) {
+        html += `<div class="cal-day other-month"><div class="cal-day-num">${i}</div></div>`;
+    }
+
+    grid.innerHTML = html;
+}
+
+function renderCalList() {
+    const list = document.getElementById('calList');
+    if (!list) return;
+
+    const evs = getEvenements();
+    const now = new Date();
+
+    // Collecter tous les jalons futurs
+    const jalons = [];
+    evs.forEach(ev => {
+        const dI = new Date(ev.dateInscriptions);
+        const dD = new Date(ev.dateDebut);
+        if (dI >= now) jalons.push({ ev, date: dI, phase: 'inscriptions', label: 'Fin des inscriptions' });
+        if (dD >= now) jalons.push({ ev, date: dD, phase: 'tournoi', label: 'Début du tournoi' });
+    });
+
+    jalons.sort((a, b) => a.date - b.date);
+
+    if (jalons.length === 0) {
+        list.innerHTML = `<div style="text-align:center;padding:40px;color:var(--text-muted);font-family:var(--font-mono);font-size:13px;">AUCUN ÉVÉNEMENT À VENIR</div>`;
+        return;
+    }
+
+    const colors = { inscriptions: 'var(--accent)', tournoi: 'var(--primary)', evenement: 'var(--success)' };
+
+    list.innerHTML = jalons.map(j => {
+        const color = colors[j.phase] || 'var(--primary)';
+        const d = j.date;
+        const jour = d.getDate().toString().padStart(2, '0');
+        const mois = MOIS_FR[d.getMonth()].slice(0, 3);
+        const heure = d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+
+        return `
+        <div class="cal-list-item">
+            <div class="cal-list-date">
+                <div class="day">${jour}</div>
+                <div class="month">${mois}</div>
+            </div>
+            <div class="cal-list-info">
+                <h4>${j.ev.nom}</h4>
+                <p>${j.label} — ${heure} GMT</p>
+                ${j.ev.cashprize ? `<p style="color:var(--primary);font-family:var(--font-mono);font-size:11px;margin-top:4px;">💰 ${parseInt(j.ev.cashprize).toLocaleString()} FCFA</p>` : ''}
+            </div>
+            <div class="cal-list-type" style="color:${color};border-color:${color};">
+                ${j.ev.type}
+            </div>
+        </div>`;
+    }).join('');
+}
+
+function renderCountdowns() {
+    const grid = document.getElementById('countdownsGrid');
+    if (!grid) return;
+
+    const evs = getEvenements();
+    const now = new Date();
+    let html = '';
+
+    evs.forEach(ev => {
+        const dI = new Date(ev.dateInscriptions);
+        const dD = new Date(ev.dateDebut);
+
+        // Phase inscriptions si pas encore terminée
+        if (dI > now) {
+            html += buildCountdownCard(ev, dI, 'inscriptions', 'FIN DES INSCRIPTIONS');
+        }
+        // Phase tournoi si pas encore commencé
+        if (dD > now) {
+            html += buildCountdownCard(ev, dD, 'tournoi', 'DÉBUT DU TOURNOI');
+        }
+    });
+
+    if (!html) {
+        html = `<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-muted);font-family:var(--font-mono);font-size:13px;">AUCUN COMPTE À REBOURS ACTIF</div>`;
+    }
+
+    grid.innerHTML = html;
+
+    // Démarrer les timers
+    evs.forEach(ev => {
+        if (new Date(ev.dateInscriptions) > now) startTimer(ev.id + '-inscriptions', new Date(ev.dateInscriptions));
+        if (new Date(ev.dateDebut) > now) startTimer(ev.id + '-tournoi', new Date(ev.dateDebut));
+    });
+}
+
+function buildCountdownCard(ev, targetDate, phase, phaseLabel) {
+    const id = ev.id + '-' + phase;
+    return `
+    <div class="countdown-card phase-${phase}">
+        <div class="cd-phase">${phaseLabel}</div>
+        <div class="cd-titre">${ev.nom}</div>
+        <div class="cd-timer">
+            <div class="cd-block"><span class="cd-num" id="${id}-j">00</span><span class="cd-lbl">JOURS</span></div>
+            <span class="cd-sep">:</span>
+            <div class="cd-block"><span class="cd-num" id="${id}-h">00</span><span class="cd-lbl">HEURES</span></div>
+            <span class="cd-sep">:</span>
+            <div class="cd-block"><span class="cd-num" id="${id}-m">00</span><span class="cd-lbl">MINS</span></div>
+            <span class="cd-sep">:</span>
+            <div class="cd-block"><span class="cd-num" id="${id}-s">00</span><span class="cd-lbl">SECS</span></div>
+        </div>
+        <div class="cd-info">${new Date(targetDate).toLocaleDateString('fr-FR', { weekday:'long', day:'numeric', month:'long' }).toUpperCase()} À ${new Date(targetDate).toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})} GMT</div>
+        ${ev.lien ? `<a href="${ev.lien}" target="_blank" class="btn-primary btn-sm" style="margin-top:14px;display:inline-flex;">
+            <i class="fab fa-whatsapp"></i> S'INSCRIRE
+        </a>` : ''}
+    </div>`;
+}
+
+const activeTimers = {};
+
+function startTimer(id, targetDate) {
+    if (activeTimers[id]) clearInterval(activeTimers[id]);
+
+    function tick() {
+        const now = new Date().getTime();
+        const diff = new Date(targetDate).getTime() - now;
+        if (diff <= 0) {
+            clearInterval(activeTimers[id]);
+            ['j','h','m','s'].forEach(u => { const el = document.getElementById(`${id}-${u}`); if(el) el.textContent = '00'; });
+            return;
+        }
+        const pad = n => String(Math.floor(n)).padStart(2, '0');
+        const j = document.getElementById(`${id}-j`);
+        const h = document.getElementById(`${id}-h`);
+        const m = document.getElementById(`${id}-m`);
+        const s = document.getElementById(`${id}-s`);
+        if (j) j.textContent = pad(diff / (1000*60*60*24));
+        if (h) h.textContent = pad((diff % (1000*60*60*24)) / (1000*60*60));
+        if (m) m.textContent = pad((diff % (1000*60*60)) / (1000*60));
+        if (s) s.textContent = pad((diff % (1000*60)) / 1000);
+    }
+    tick();
+    activeTimers[id] = setInterval(tick, 1000);
+}
+
+// ===== ADMIN =====
+const ADMIN_PASSWORD = 'ffstaff2026'; // 👈 Change ici
+
+window.verifierAdmin = () => {
+    const pwd = document.getElementById('admin-pwd')?.value;
+    const error = document.getElementById('admin-error');
+
+    if (pwd === ADMIN_PASSWORD) {
+        document.getElementById('admin-auth').style.display = 'none';
+        document.getElementById('admin-panel').style.display = 'block';
+        sessionStorage.setItem('ffesci_admin', '1');
+        chargerAdminEvenements();
+        chargerAdminGuildes();
+        chargerNotifEvents();
+        afficherNotif('✅ Accès staff accordé !');
+    } else {
+        if (error) error.style.display = 'block';
+        setTimeout(() => { if (error) error.style.display = 'none'; }, 3000);
+    }
+};
+
+window.deconnecterAdmin = () => {
+    sessionStorage.removeItem('ffesci_admin');
+    document.getElementById('admin-auth').style.display = 'block';
+    document.getElementById('admin-panel').style.display = 'none';
+    document.getElementById('admin-pwd').value = '';
+    afficherNotif('👋 Session admin terminée');
+};
+
+// Vérifier si déjà connecté admin à la navigation
+function checkAdminSession() {
+    if (sessionStorage.getItem('ffesci_admin') === '1') {
+        const authEl = document.getElementById('admin-auth');
+        const panelEl = document.getElementById('admin-panel');
+        if (authEl) authEl.style.display = 'none';
+        if (panelEl) {
+            panelEl.style.display = 'block';
+            chargerAdminEvenements();
+            chargerAdminGuildes();
+            chargerNotifEvents();
+        }
+    } else {
+        // Pré-remplir le mot de passe
+        const pwdEl = document.getElementById('admin-pwd');
+        if (pwdEl) pwdEl.value = ADMIN_PASSWORD;
+    }
+}
+
+window.switchAdminTab = (tab) => {
+    document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.admin-content').forEach(c => c.style.display = 'none');
+    document.getElementById('tab-' + tab).style.display = 'block';
+    event.currentTarget.classList.add('active');
+};
+
+// Ajouter événement
+window.ajouterEvenement = () => {
+    const nom = document.getElementById('ev-nom')?.value.trim();
+    const type = document.getElementById('ev-type')?.value;
+    const dateI = document.getElementById('ev-date-inscriptions')?.value;
+    const dateD = document.getElementById('ev-date-debut')?.value;
+    const cashprize = document.getElementById('ev-cashprize')?.value.trim();
+    const ticket = document.getElementById('ev-ticket')?.value.trim();
+    const places = document.getElementById('ev-places')?.value.trim();
+    const description = document.getElementById('ev-description')?.value.trim();
+    const lien = document.getElementById('ev-lien')?.value.trim();
+
+    if (!nom || !dateI || !dateD) {
+        afficherNotif('⚠ Nom, date inscriptions et date début sont obligatoires !');
+        return;
+    }
+
+    const evs = getEvenements();
+    const newEv = {
+        id: 'ev-' + Date.now(),
+        nom, type, dateInscriptions: dateI, dateDebut: dateD,
+        cashprize, ticket, places, description, lien
+    };
+
+    evs.push(newEv);
+    saveEvenements(evs);
+
+    // Vider le formulaire
+    ['ev-nom','ev-cashprize','ev-ticket','ev-places','ev-description','ev-lien',
+     'ev-date-inscriptions','ev-date-debut'].forEach(id => {
+        const el = document.getElementById(id); if(el) el.value = '';
+    });
+
+    afficherNotif('✅ Événement publié !');
+    chargerAdminEvenements();
+    chargerNotifEvents();
+    renderCalendrier();
+};
+
+function chargerAdminEvenements() {
+    const list = document.getElementById('admin-evenements-list');
+    if (!list) return;
+
+    const evs = getEvenements();
+    if (!evs.length) {
+        list.innerHTML = `<p style="color:var(--text-muted);font-family:var(--font-mono);font-size:13px;padding:20px 0;">AUCUN ÉVÉNEMENT</p>`;
+        return;
+    }
+
+    list.innerHTML = evs.map(ev => `
+        <div class="admin-event-item">
+            <div>
+                <h5>${ev.nom}</h5>
+                <p>${ev.type} · Inscriptions jusqu'au ${new Date(ev.dateInscriptions).toLocaleDateString('fr-FR')} · Début le ${new Date(ev.dateDebut).toLocaleDateString('fr-FR')}</p>
+            </div>
+            <button class="btn-delete" onclick="supprimerEvenement('${ev.id}')">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+    `).join('');
+}
+
+window.supprimerEvenement = (id) => {
+    const evs = getEvenements().filter(e => e.id !== id);
+    saveEvenements(evs);
+    afficherNotif('🗑 Événement supprimé');
+    chargerAdminEvenements();
+    renderCalendrier();
+};
+
+// Annonces
+window.publierAnnonce = async () => {
+    const titre = document.getElementById('ann-titre')?.value.trim();
+    const cat = document.getElementById('ann-cat')?.value;
+    const contenu = document.getElementById('ann-contenu')?.value.trim();
+
+    if (!titre || !contenu) {
+        afficherNotif('⚠ Titre et contenu obligatoires !');
+        return;
+    }
+
+    const { error } = await supabase.from('annonces').insert([{
+        titre, categorie: cat, contenu,
+        created_at: new Date().toISOString()
+    }]);
+
+    if (error) {
+        // Si la table n'existe pas encore, on affiche quand même un succès visuel
+        afficherNotif('⚠ ' + error.message);
+        return;
+    }
+
+    afficherNotif('📢 Annonce publiée !');
+    document.getElementById('ann-titre').value = '';
+    document.getElementById('ann-contenu').value = '';
+};
+
+// Guildes admin
+async function chargerAdminGuildes() {
+    const list = document.getElementById('admin-guildes-list');
+    if (!list) return;
+
+    const { data, error } = await supabase.from('guildes').select('*').order('id', { ascending: false }).limit(20);
+
+    if (error || !data?.length) {
+        list.innerHTML = `<p style="color:var(--text-muted);font-family:var(--font-mono);font-size:13px;padding:20px 0;">AUCUNE GUILDE À VALIDER</p>`;
+        return;
+    }
+
+    list.innerHTML = data.map(g => `
+        <div class="admin-event-item">
+            <div>
+                <h5>${g.nom}</h5>
+                <p>Leader : ${g.chef} · WA : +${g.whatsapp}</p>
+            </div>
+            <button class="btn-delete" onclick="supprimerGuilde(${g.id})">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+    `).join('');
+}
+
+window.supprimerGuilde = async (id) => {
+    const { error } = await supabase.from('guildes').delete().eq('id', id);
+    if (!error) {
+        afficherNotif('🗑 Guilde supprimée');
+        chargerAdminGuildes();
+        chargerGuildes();
+    } else {
+        afficherNotif('❌ Erreur : ' + error.message);
+    }
+};
+
+// ===== NOTIFICATIONS WHATSAPP =====
+function chargerNotifEvents() {
+    const select = document.getElementById('notif-event-select');
+    if (!select) return;
+
+    const evs = getEvenements();
+    select.innerHTML = `<option value="">Sélectionne un événement...</option>` +
+        evs.map(ev => `<option value="${ev.id}">${ev.nom}</option>`).join('');
+
+    select.addEventListener('change', genererPreviewNotif);
+
+    document.querySelectorAll('input[name="notif-type"]').forEach(r => {
+        r.addEventListener('change', () => {
+            const isCustom = r.value === 'custom';
+            const customEl = document.getElementById('notif-custom-msg');
+            if (customEl) customEl.style.display = isCustom ? 'block' : 'none';
+            if (!isCustom) genererPreviewNotif();
+        });
+    });
+}
+
+function genererPreviewNotif() {
+    const evId = document.getElementById('notif-event-select')?.value;
+    const type = document.querySelector('input[name="notif-type"]:checked')?.value;
+    const preview = document.getElementById('notif-preview');
+
+    if (!evId || !type || type === 'custom' || !preview) {
+        if (preview) preview.classList.remove('visible');
+        return;
+    }
+
+    const ev = getEvenements().find(e => e.id === evId);
+    if (!ev) return;
+
+    const dD = new Date(ev.dateDebut);
+    const dateStr = dD.toLocaleDateString('fr-FR', { weekday:'long', day:'numeric', month:'long' });
+    const heureStr = dD.toLocaleTimeString('fr-FR', { hour:'2-digit', minute:'2-digit' });
+
+    const messages = {
+        j7: `🔔 *RAPPEL J-7* 🔔\n\n📣 Le tournoi *${ev.nom}* commence dans 7 jours !\n\n📅 Date : ${dateStr}\n⏰ Heure : ${heureStr} GMT\n💰 Cashprize : ${parseInt(ev.cashprize||0).toLocaleString()} FCFA\n🎟️ Ticket : ${ev.ticket||'?'} FCFA\n\nInscris-toi maintenant avant qu'il soit trop tard ! 🔥`,
+        j3: `⚡ *RAPPEL J-3* ⚡\n\n🏆 Le tournoi *${ev.nom}* commence dans 3 jours !\n\n📅 ${dateStr} à ${heureStr} GMT\n💰 Cashprize : ${parseInt(ev.cashprize||0).toLocaleString()} FCFA\n\nPlaces limitées — inscris-toi vite ! 🚨`,
+        j1: `🚨 *DERNIÈRE CHANCE* 🚨\n\n⚔️ Le tournoi *${ev.nom}* commence DEMAIN !\n\n📅 ${dateStr}\n⏰ ${heureStr} GMT\n💰 ${parseInt(ev.cashprize||0).toLocaleString()} FCFA à gagner\n\nSois prêt, soldat ! 🔥🇨🇮`
+    };
+
+    preview.textContent = messages[type] || '';
+    preview.classList.add('visible');
+}
+
+window.envoyerNotifWA = () => {
+    const evId = document.getElementById('notif-event-select')?.value;
+    const type = document.querySelector('input[name="notif-type"]:checked')?.value;
+
+    if (!evId) { afficherNotif('⚠ Sélectionne un événement !'); return; }
+
+    let message = '';
+
+    if (type === 'custom') {
+        message = document.getElementById('notif-message')?.value.trim();
+        if (!message) { afficherNotif('⚠ Écris ton message !'); return; }
+    } else {
+        const preview = document.getElementById('notif-preview');
+        message = preview?.textContent || '';
+        if (!message) { genererPreviewNotif(); message = document.getElementById('notif-preview')?.textContent || ''; }
+    }
+
+    if (!message) { afficherNotif('⚠ Message vide !'); return; }
+
+    // Ouvre WhatsApp vers le groupe officiel
+    const groupWA = 'https://chat.whatsapp.com/KUm4uoqUBgD78Bh3onKOCi';
+    window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+    afficherNotif('📲 Message copié — colle-le dans WhatsApp !');
+};
+
 // ===== SERVICE WORKER (PWA) =====
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("sw.js")
@@ -881,7 +1410,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     chargerActus();
     chargerGuildes();
     chargerStats();
-    chargerJoueurs();
+    renderCalendrier();
 
     // Si callback OAuth → onAuthStateChange gère tout, on attend
     if (window.location.hash.includes('access_token=') || window.location.href.includes('access_token=')) return;
